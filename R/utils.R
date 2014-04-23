@@ -43,3 +43,56 @@ layoutShow = function(layout)
   setLayout(layout)
   layout.show(max(layout@mat))
 }
+
+
+
+
+
+.cleanCols = function(lay)
+{
+  mat = lay@mat
+  widths = lay@widths
+  i = 1
+  while(i < ncol(mat))
+  {
+    if(all(mat[,i] == mat[,i+1]))
+    {
+      mat = mat[,-(i+1)]
+      widths[i] = widths[i] + widths[i+1]
+      widths = widths[-(i+1)]
+    } else i = i + 1
+  }
+  lay@mat = mat
+  lay@widths = widths
+  lay
+}
+
+
+.cleanRows = function(lay)
+{
+  mat = lay@mat
+  heights = lay@heights
+  i = 1
+  while(i < nrow(mat))
+  {
+    if(all(mat[i,] == mat[i+1,]))
+    {
+      mat = mat[-(i+1),]
+      heights[i] = heights[i] + heights[i+1]
+      heights = heights[-(i+1)]
+    } else i = i + 1
+  }
+  lay@mat = mat
+  lay@heights = heights
+  lay
+}
+
+.cleanLay = function(lay)
+{
+  lay = .cleanCols(lay)
+  lay = .cleanRows(lay)
+  lay
+}
+
+
+

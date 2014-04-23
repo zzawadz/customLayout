@@ -71,7 +71,8 @@ setMethod("colBind", signature=c(x="Layout",y="Layout"),function(x,y, widths = c
   widths = c(x@widths*widths[1]*sum(y@widths), y@widths*widths[2]*sum(x@widths))
   heights = rep(1,nrow(mat))
   
-  new("Layout",mat = mat, widths = widths, heights = heights, plots = c(x@plots,y@plots))
+  layout = new("Layout",mat = mat, widths = widths, heights = heights, plots = c(x@plots,y@plots))
+  .cleanLay(layout)
 })
 
 #' Take two Layout objects and combine by rows.
@@ -109,7 +110,8 @@ setMethod("rowBind", signature=c(x="Layout",y="Layout"),function(x,y, heights = 
   widths = rep(1,ncol(mat))
   heights = c(x@heights*heights[1]*sum(y@heights), sum(x@heights)*y@heights*heights[2])
   
-  new("Layout",mat = mat, widths = widths, heights = heights,plots = c(x@plots,y@plots))
+  layout = new("Layout",mat = mat, widths = widths, heights = heights,plots = c(x@plots,y@plots))
+  .cleanLay(layout)
 })
 
 
