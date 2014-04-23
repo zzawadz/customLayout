@@ -1,7 +1,22 @@
 customLayout
 ========================================================
 
-customLayout is a simple extension of basic layout function from R.
+
+
+
+`customLayout` is a simple extension of basic `layout` function from `R`.
+
+## Instalation:
+
+`customLayout` is available only via GitHub and can be installed using `devtools`:
+
+
+```r
+require(devtools)
+install_github("customLayout", username = "zzawadz")
+```
+
+
 
 ## Basic functionality:
 
@@ -13,14 +28,14 @@ lay = createLayout(matrix(1:4, nc = 2), widths = c(3, 2), heights = c(2, 1))
 layoutShow(lay)
 ```
 
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-11.png) 
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-21.png) 
 
 ```r
 lay2 = createLayout(matrix(1:4, nc = 2), widths = c(3, 5), heights = c(2, 4))
 layoutShow(lay2)
 ```
 
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-12.png) 
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-22.png) 
 
 But main strength of this package is in combining created layouts with specific ratio:
 
@@ -31,7 +46,7 @@ cl = colBind(lay,lay2, widths=c(3,1))
 layoutShow(cl)
 ```
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2.png) 
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3.png) 
 
 You can also create even more complicated layouts:
 
@@ -41,7 +56,7 @@ lay4 = rowBind(cl, lay3, heights = c(5, 2))
 layoutShow(lay4)
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-31.png) 
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-41.png) 
 
 ```r
 
@@ -49,7 +64,7 @@ lay5 = colBind(lay4, lay3, widths = c(5, 2))
 layoutShow(lay5)
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-32.png) 
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-42.png) 
 
 
 ## Example session:
@@ -71,12 +86,12 @@ pie(c(3, 2, 7), col = 2:4 + 3)
 pie(c(5, 4, 2), col = 2:4 + 6)
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4.png) 
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5.png) 
 
 
 ## Store plots in Layout
 
-You can create Layout with plots and then combine it with another Layout.
+You can create `Layout` with plots and then combine it with another `Layout`.
 
 
 ```r
@@ -96,7 +111,7 @@ lay = createLayout(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1),plots=plots)
 renderPlots(lay)
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-51.png) 
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-61.png) 
 
 ```r
 
@@ -113,7 +128,7 @@ lay2 = createLayout(matrix(1:3),plots=pie_plots)
 renderPlots(lay2)
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-52.png) 
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-62.png) 
 
 ```r
 
@@ -122,7 +137,7 @@ cl = colBind(lay,lay2, widths=c(3,1))
 renderPlots(cl)
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-53.png) 
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-63.png) 
 
 
 

@@ -1,7 +1,22 @@
 customLayout
 ========================================================
 
-customLayout is a simple extension of basic layout function from R.
+```{r setup, include=FALSE}
+# set global chunk options
+opts_chunk$set(cache=TRUE)
+```
+
+`customLayout` is a simple extension of basic `layout` function from `R`.
+
+## Instalation:
+
+`customLayout` is available only via GitHub and can be installed using `devtools`:
+
+```{r, eval=FALSE}
+require(devtools)
+install_github("customLayout",username="zzawadz")
+```
+
 
 ## Basic functionality:
 
@@ -50,7 +65,7 @@ pie(c(5,4,2),col = 2:4+6)
 
 ## Store plots in Layout
 
-You can create Layout with plots and then combine it with another Layout.
+You can create `Layout` with plots and then combine it with another `Layout`.
 
 ```{r,message=FALSE,results='hide',fig.width=10,fig.height=6,tidy=FALSE}
 require(customLayout)
