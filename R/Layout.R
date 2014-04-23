@@ -74,7 +74,7 @@ setMethod("colBind", signature=c(x="Layout",y="Layout"),function(x,y, widths = c
   rowx = nrow(xmat)
   rowy = nrow(ymat)
   # najmniejszy wspolny dzielnik:
-  lcm  = scm(rowx, rowy)
+  lcm  = getSCM(rowx, rowy)
   
   xmat = repRow(xmat,lcm/rowx)
   ymat = repRow(ymat,lcm/rowy)
@@ -105,15 +105,12 @@ setMethod("rowBind", signature=c(x="Layout",y="Layout"),function(x,y, heights = 
   ymat = y@mat + max(xmat)
   
   ymat = repCol(ymat,y@widths)
-  print(ymat)
-  print(y@widths)
-  print(x@widths)
   xmat = repCol(xmat,x@widths)
   
   colx = ncol(xmat)
   coly = ncol(ymat)
   # najmniejszy wspolny dzielnik:
-  lcm  = scm(colx, coly)
+  lcm  = getSCM(colx, coly)
   
   xmat = repCol(xmat,lcm/colx)
   ymat = repCol(ymat,lcm/coly)

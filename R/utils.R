@@ -95,4 +95,5 @@ layoutShow = function(layout)
 }
 
 
-
+getGCD = function(a,b) ifelse (b==0, a, getGCD(b, a %% b)) 
+getSCM = function(a,b) (a*b)/getGCD(a,b)
