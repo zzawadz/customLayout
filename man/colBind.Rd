@@ -2,7 +2,7 @@
 \alias{colBind}
 \title{Take two Layout objects and combine by rows.}
 \usage{
-colBind(x, y, widths = c(1, 1))
+colBind(x, y, widths = c(1, 1), addmax = TRUE)
 }
 \arguments{
   \item{x}{object of class Layout}

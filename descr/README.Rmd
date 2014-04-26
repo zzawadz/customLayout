@@ -100,5 +100,18 @@ cl = colBind(lay,lay2, widths=c(3,1))
 renderPlots(cl)
 ```
 
+## Split layout
 
+You can create even more complicated layouts by splitting one field:
 
+```{r,message=FALSE,results='hide',fig.width=4,fig.height=2,tidy=FALSE, fig.keep='all',}
+require(customLayout)
+lay = createLayout(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1))
+layoutShow(lay)
+lay2 = createLayout(matrix(1:4,nc=2),widths=c(3,5),heights=c(2,4))
+layoutShow(lay2)
+
+# Split field 4 from lay into lay2:
+slay = splitField(lay, lay2, field = 4)
+layoutShow(slay)
+```

@@ -140,5 +140,32 @@ renderPlots(cl)
 ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-63.png) 
 
 
+## Split layout
 
+You can create even more complicated layouts by splitting one field:
+
+
+```r
+require(customLayout)
+lay = createLayout(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1))
+layoutShow(lay)
+```
+
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-71.png) 
+
+```r
+lay2 = createLayout(matrix(1:4,nc=2),widths=c(3,5),heights=c(2,4))
+layoutShow(lay2)
+```
+
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-72.png) 
+
+```r
+
+# Split field 4 from lay into lay2:
+slay = splitField(lay, lay2, field = 4)
+layoutShow(slay)
+```
+
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-73.png) 
 
