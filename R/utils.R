@@ -97,3 +97,13 @@ layoutShow = function(layout)
 
 getGCD = function(a,b) ifelse (b==0, a, getGCD(b, a %% b)) 
 getSCM = function(a,b) (a*b)/getGCD(a,b)
+
+
+
+
+multipleGCD = function(x) 
+{
+  for(i in 2:length(x)) x[i] = getGCD(x[i-1],x[i])
+  tail(x,1) 
+}
+

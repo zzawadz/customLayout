@@ -61,12 +61,13 @@ setLayout = function(layout)
 #' l2 = createLayout(matrix(c(1:4),ncol = 2),widths=c(1,1))
 #' lb = colBind(l1,l2)
 #' layoutShow(lb)
-setGeneric("colBind",function(x,y, widths = c(1,1)) standardGeneric("colBind"))
-setMethod("colBind", signature=c(x="Layout",y="Layout"),function(x,y, widths = c(1,1))
+setGeneric("colBind",function(x,y, widths = c(1,1), addmax = TRUE) standardGeneric("colBind"))
+setMethod("colBind", signature=c(x="Layout",y="Layout"),function(x,y, widths = c(1,1), addmax= TRUE)
 {
   #Przesuwanie wszystkich wykresow z drugiej macierzy:
   xmat = x@mat
-  ymat = y@mat + max(xmat)
+  ymat = y@mat
+  if(addmax) ymat[ymat > 0] = ymat[ymat > 0] + max(xmat)
   
   ymat = repRow(ymat,y@heights)
   xmat = repRow(xmat,x@heights)
@@ -81,6 +82,7 @@ setMethod("colBind", signature=c(x="Layout",y="Layout"),function(x,y, widths = c
   
   mat = cbind(xmat,ymat)
   widths = c(x@widths*widths[1]*sum(y@widths), y@widths*widths[2]*sum(x@widths))
+  widths = widths/multipleGCD(widths)
   heights = rep(1,nrow(mat))
   
   layout = new("Layout",mat = mat, widths = widths, heights = heights, plots = c(x@plots,y@plots))
@@ -97,12 +99,13 @@ setMethod("colBind", signature=c(x="Layout",y="Layout"),function(x,y, widths = c
 #' l2 = createLayout(matrix(c(1:4),ncol = 2),widths=c(1,1))
 #' lb = rowBind(l1,l2)
 #' layoutShow(lb)
-setGeneric("rowBind",function(x,y, heights = c(1,1)) standardGeneric("rowBind"))
-setMethod("rowBind", signature=c(x="Layout",y="Layout"),function(x,y, heights = c(1,1))
+setGeneric("rowBind",function(x,y, heights = c(1,1), addmax = TRUE) standardGeneric("rowBind"))
+setMethod("rowBind", signature=c(x="Layout",y="Layout"),function(x,y, heights = c(1,1), addmax = TRUE)
 {
   #Przesuwanie wszystkich wykresow z drugiej macierzy:
   xmat = x@mat
-  ymat = y@mat + max(xmat)
+  ymat = y@mat
+  if(addmax) ymat[ymat > 0] = ymat[ymat > 0] + max(xmat)
   
   ymat = repCol(ymat,y@widths)
   xmat = repCol(xmat,x@widths)
@@ -118,6 +121,7 @@ setMethod("rowBind", signature=c(x="Layout",y="Layout"),function(x,y, heights = 
   mat = rbind(xmat,ymat)
   widths = rep(1,ncol(mat))
   heights = c(x@heights*heights[1]*sum(y@heights), sum(x@heights)*y@heights*heights[2])
+  heights = heights/multipleGCD(heights)
   
   layout = new("Layout",mat = mat, widths = widths, heights = heights,plots = c(x@plots,y@plots))
   .cleanLay(layout)
@@ -161,7 +165,11 @@ listPlot = function(...)
 renderPlots = function(layout)
 {
   setLayout(layout)
-  sapply(layout@plots, function(x) eval(x))
+  sapply(layout@plots, function(x) 
+  {
+    if(class(x) %in% c("call","{")) eval(x)
+    if(class(x) == "function") x()
+  })
   return(invisible())
 }
 
