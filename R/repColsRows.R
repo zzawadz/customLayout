@@ -11,7 +11,7 @@ layColRepGenerator = function(side)
     {
       size = c(i-1,1)
       print(size)
-      layall = layColBind(layall,layout, size)
+      layall = fnc(layall,layout, size)
     }
     layall
   }
