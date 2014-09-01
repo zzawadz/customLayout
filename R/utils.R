@@ -56,7 +56,7 @@ layShow = function(layout)
   {
     if(all(mat[,i] == mat[,i+1]))
     {
-      mat = mat[,-(i+1)]
+      mat = mat[,-(i+1), drop = FALSE]
       widths[i] = widths[i] + widths[i+1]
       widths = widths[-(i+1)]
     } else i = i + 1
@@ -76,7 +76,7 @@ layShow = function(layout)
   {
     if(all(mat[i,] == mat[i+1,]))
     {
-      mat = mat[-(i+1),]
+      mat = mat[-(i+1),, drop = FALSE]
       heights[i] = heights[i] + heights[i+1]
       heights = heights[-(i+1)]
     } else i = i + 1
