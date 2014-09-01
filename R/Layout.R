@@ -1,7 +1,7 @@
 #### TODO: poprawic problem z zerem!
 
 
-setClass("Layout", slots=c(mat="matrix",widths = "numeric",heights = "numeric", plots = "list"))
+setClass("Layout", slots=c(mat="matrix",widths = "numeric",heights = "numeric"))
 
 
 #' Create custom layout.
@@ -11,9 +11,9 @@ setClass("Layout", slots=c(mat="matrix",widths = "numeric",heights = "numeric", 
 #' @examples
 #' require(customLayout)
 #' par(mar = c(3,2,2,1))
-#' lay = createLayout(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1))
-#' lay2 = createLayout(matrix(1:3))
-#' cl = colBind(lay,lay2, widths=c(3,1))
+#' lay = layCreate(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1))
+#' lay2 = layCreate(matrix(1:3))
+#' cl = layColBind(lay,lay2, widths=c(3,1))
 #' setLayout(cl) # initialize drawing area
 #' plot(1:100+rnorm(100))
 #' plot(rnorm(100), type = "l")
@@ -22,13 +22,13 @@ setClass("Layout", slots=c(mat="matrix",widths = "numeric",heights = "numeric", 
 #' pie(c(3,4,6),col = 2:4)
 #' pie(c(3,2,7),col = 2:4+3)
 #' pie(c(5,4,2),col = 2:4+6)
-createLayout = function(mat, widths = NULL, heights = NULL, plots = list())
+layCreate = function(mat, widths = NULL, heights = NULL)
 {
   if(!is.matrix(mat)) mat = matrix(mat)
   if(is.null(widths)) widths = rep(1,ncol(mat))
   if(is.null(heights)) heights = rep(1,nrow(mat))
   
-  new("Layout",mat=mat,widths = widths, heights = heights, plots = plots)
+  new("Layout",mat=mat,widths = widths, heights = heights)
 }
 
 
@@ -38,14 +38,14 @@ createLayout = function(mat, widths = NULL, heights = NULL, plots = list())
 #' 
 #' @examples
 #' 
-#' lplots = createLayout(matrix(1:2))
-#' lpie   = createLayout(1)
-#' lay = colBind(lplots,lpie)
+#' lplots = layCreate(matrix(1:2))
+#' lpie   = layCreate(1)
+#' lay = layColBind(lplots,lpie)
 #' setLayout(lay)
 #' plot(1:10)
 #' plot(1:10)
 #' plot(1:20)
-setLayout = function(layout)
+laySet = function(layout)
 {
   layout(layout@mat,widths=layout@widths,heights=layout@heights)
 }
@@ -57,35 +57,35 @@ setLayout = function(layout)
 #' @param y object of class Layout
 #' 
 #' @examples
-#' l1 = createLayout(matrix(c(1:2),ncol = 2),widths=c(4,1))
-#' l2 = createLayout(matrix(c(1:4),ncol = 2),widths=c(1,1))
-#' lb = colBind(l1,l2)
+#' l1 = layCreate(matrix(c(1:2),ncol = 2),widths=c(4,1))
+#' l2 = layCreate(matrix(c(1:4),ncol = 2),widths=c(1,1))
+#' lb = layColBind(l1,l2)
 #' layoutShow(lb)
-setGeneric("colBind",function(x,y, widths = c(1,1), addmax = TRUE) standardGeneric("colBind"))
-setMethod("colBind", signature=c(x="Layout",y="Layout"),function(x,y, widths = c(1,1), addmax= TRUE)
+setGeneric("layColBind",function(x,y, widths = c(1,1), addmax = TRUE) standardGeneric("layColBind"))
+setMethod("layColBind", signature=c(x="Layout",y="Layout"),function(x,y, widths = c(1,1), addmax= TRUE)
 {
   #Przesuwanie wszystkich wykresow z drugiej macierzy:
   xmat = x@mat
   ymat = y@mat
   if(addmax) ymat[ymat > 0] = ymat[ymat > 0] + max(xmat)
   
-  ymat = repRow(ymat,y@heights)
-  xmat = repRow(xmat,x@heights)
+  ymat = layRepRow(ymat,y@heights)
+  xmat = layRepRow(xmat,x@heights)
   
   rowx = nrow(xmat)
   rowy = nrow(ymat)
   # najmniejszy wspolny dzielnik:
-  lcm  = getSCM(rowx, rowy)
+  lcm  = .getSCM(rowx, rowy)
   
-  xmat = repRow(xmat,lcm/rowx)
-  ymat = repRow(ymat,lcm/rowy)
+  xmat = layRepRow(xmat,lcm/rowx)
+  ymat = layRepRow(ymat,lcm/rowy)
   
   mat = cbind(xmat,ymat)
   widths = c(x@widths*widths[1]*sum(y@widths), y@widths*widths[2]*sum(x@widths))
-  widths = widths/multipleGCD(widths)
+  widths = widths/.multipleGCD(widths)
   heights = rep(1,nrow(mat))
   
-  layout = new("Layout",mat = mat, widths = widths, heights = heights, plots = c(x@plots,y@plots))
+  layout = new("Layout",mat = mat, widths = widths, heights = heights)
   .cleanLay(layout)
 })
 
@@ -95,83 +95,41 @@ setMethod("colBind", signature=c(x="Layout",y="Layout"),function(x,y, widths = c
 #' @param y object of class Layout
 #' 
 #' @examples
-#' l1 = createLayout(matrix(c(1:2),ncol = 2),widths=c(4,1))
-#' l2 = createLayout(matrix(c(1:4),ncol = 2),widths=c(1,1))
-#' lb = rowBind(l1,l2)
+#' l1 = layCreate(matrix(c(1:2),ncol = 2),widths=c(4,1))
+#' l2 = layCreate(matrix(c(1:4),ncol = 2),widths=c(1,1))
+#' lb = layRowBind(l1,l2)
 #' layoutShow(lb)
-setGeneric("rowBind",function(x,y, heights = c(1,1), addmax = TRUE) standardGeneric("rowBind"))
-setMethod("rowBind", signature=c(x="Layout",y="Layout"),function(x,y, heights = c(1,1), addmax = TRUE)
+setGeneric("layRowBind",function(x,y, heights = c(1,1), addmax = TRUE) standardGeneric("layRowBind"))
+setMethod("layRowBind", signature=c(x="Layout",y="Layout"),function(x,y, heights = c(1,1), addmax = TRUE)
 {
   #Przesuwanie wszystkich wykresow z drugiej macierzy:
   xmat = x@mat
   ymat = y@mat
   if(addmax) ymat[ymat > 0] = ymat[ymat > 0] + max(xmat)
   
-  ymat = repCol(ymat,y@widths)
-  xmat = repCol(xmat,x@widths)
+  ymat = layRepCol(ymat,y@widths)
+  xmat = layRepCol(xmat,x@widths)
   
   colx = ncol(xmat)
   coly = ncol(ymat)
   # najmniejszy wspolny dzielnik:
-  lcm  = getSCM(colx, coly)
+  lcm  = .getSCM(colx, coly)
   
-  xmat = repCol(xmat,lcm/colx)
-  ymat = repCol(ymat,lcm/coly)
+  xmat = layRepCol(xmat,lcm/colx)
+  ymat = layRepCol(ymat,lcm/coly)
   
   mat = rbind(xmat,ymat)
   widths = rep(1,ncol(mat))
   heights = c(x@heights*heights[1]*sum(y@heights), sum(x@heights)*y@heights*heights[2])
-  heights = heights/multipleGCD(heights)
+  heights = heights/.multipleGCD(heights)
   
-  layout = new("Layout",mat = mat, widths = widths, heights = heights,plots = c(x@plots,y@plots))
+  layout = new("Layout",mat = mat, widths = widths, heights = heights)
   .cleanLay(layout)
 })
 
 
-#' Create list of plots that can be stored in Layout object.
-#' 
-#' @param ... expressions that produces plots
-#' 
-#' @examples
-#' 
-#' # Easy way to draw plots stored in list of plots
-#' list_plot = listPlot(plot(1:1000), plot(1:100))
-#' par(mfrow = c(2,1))
-#' sapply(list_plot, eval)
-#' 
-#' #' list_plot = listPlot(plot(1:1000), plot(1:100))
-#'
-#' lplots = createLayout(matrix(1:2),plots=list_plot)
-#' renderPlots(lplots)
-listPlot = function(...)
-{
-  as.list(eval(substitute(expression(...))))
-}
 
 
-#' Set custom layout and render all plots stored in Layout object.
-#' 
-#' @param layout object of class Layout.
-#' 
-#' @examples
-#' 
-#' list_plot = listPlot(plot(1:1000), plot(1:100))
-#' list_pie  = listPlot(pie(1:3,col = 2:4))
-#'
-#' lplots = createLayout(matrix(1:2),plots=list_plot)
-#' lpie   = createLayout(1,plots=list_pie)
-#' lay = colBind(lplots,lpie)
-#' renderPlots(lay)
-renderPlots = function(layout)
-{
-  setLayout(layout)
-  sapply(layout@plots, function(x) 
-  {
-    if(class(x) %in% c("call","{")) eval(x)
-    if(class(x) == "function") x()
-  })
-  return(invisible())
-}
 
 
 

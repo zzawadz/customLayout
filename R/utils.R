@@ -5,10 +5,9 @@
 #' 
 #' @examples
 #' 
-#' repRow(matrix(1:4,ncol=2),c(4,2))
-#' repRow(matrix(1:4,ncol=2),2)
-
-repRow = function(x,fr)
+#' layRepRow(matrix(1:4,ncol=2),c(4,2))
+#' layRepRow(matrix(1:4,ncol=2),2)
+layRepRow = function(x,fr)
 {
   nr = sum(fr)# ilosc wierszy w nowej macierzy:
   nx = NULL
@@ -25,9 +24,9 @@ repRow = function(x,fr)
 #' 
 #' @examples
 #' 
-#' repCol(matrix(1:4,ncol=2),c(4,2))
-#' repCol(matrix(1:4,ncol=2),2)
-repCol = function(x,fr)
+#' layRepCol(matrix(1:4,ncol=2),c(4,2))
+#' layRepCol(matrix(1:4,ncol=2),2)
+layRepCol = function(x,fr)
 {
   nr = sum(fr)# ilosc wierszy w nowej macierzy:
   nx = NULL
@@ -38,9 +37,9 @@ repCol = function(x,fr)
   nx
 }
 
-layoutShow = function(layout)
+layShow = function(layout)
 {
-  setLayout(layout)
+  laySet(layout)
   layout.show(max(layout@mat))
 }
 
@@ -95,15 +94,15 @@ layoutShow = function(layout)
 }
 
 
-getGCD = function(a,b) ifelse (b==0, a, getGCD(b, a %% b)) 
-getSCM = function(a,b) (a*b)/getGCD(a,b)
+.getGCD = function(a,b) ifelse (b==0, a, .getGCD(b, a %% b)) 
+.getSCM = function(a,b) (a*b)/.getGCD(a,b)
 
 
 
 
-multipleGCD = function(x) 
+.multipleGCD = function(x) 
 {
-  for(i in 2:length(x)) x[i] = getGCD(x[i-1],x[i])
+  for(i in 2:length(x)) x[i] = .getGCD(x[i-1],x[i])
   tail(x,1) 
 }
 

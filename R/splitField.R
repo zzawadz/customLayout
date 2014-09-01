@@ -1,4 +1,4 @@
-splitField = function(lay, newlay, field)
+laySplitField = function(lay, newlay, field)
 {
 
   n = field
@@ -7,7 +7,7 @@ splitField = function(lay, newlay, field)
   heights = lay@heights
   
   newmat = matrix(1:4, ncol = 2)
-  newlay = createLayout(newmat,widths=c(2,1),heights=c(3,1))
+  newlay = layCreate(newmat,widths=c(2,1),heights=c(3,1))
   
   newmat = newlay@mat
   
@@ -27,7 +27,7 @@ splitField = function(lay, newlay, field)
     east = mat[,neast]
     east_width = widths[neast]
     east_height = heights
-    east = createLayout(east,widths = east_width,heights = east_height)
+    east = layCreate(east,widths = east_width,heights = east_height)
     east_ratio = c(sum(widths[-neast]), sum(east_width))
   } else east = NULL
   
@@ -37,7 +37,7 @@ splitField = function(lay, newlay, field)
     west = mat[,nwest]
     west_width = widths[nwest]
     west_height = heights
-    west = createLayout(west,widths=west_width,heights=west_height)
+    west = layCreate(west,widths=west_width,heights=west_height)
     west_ratio = rev(c(sum(widths[-c(nwest, neast)]), sum(west_width)))
   } else west = NULL
   
@@ -49,7 +49,7 @@ splitField = function(lay, newlay, field)
     north = mat[rownorth,colnorth, drop = FALSE]
     north_width = widths[colnorth]
     north_height = heights[rownorth]
-    north = createLayout(north,widths = north_width,heights = north_height)
+    north = layCreate(north,widths = north_width,heights = north_height)
     north_ratio = rev(c(sum(heights[-rownorth]), sum(north_height)))
   } else north = NULL
   
@@ -60,28 +60,28 @@ splitField = function(lay, newlay, field)
     south = mat[rowsouth, colsouth, drop = FALSE]
     south_width = widths[colsouth]
     south_height = heights[rowsouth]
-    south = createLayout(south,widths = south_width,heights = south_height)
+    south = layCreate(south,widths = south_width,heights = south_height)
     south_ratio = c(sum(heights[-c(rowsouth, rownorth)]), sum(south_height)) 
   } else south = NULL
   
   if(!is.null(south))
   {
-    ls = rowBind(newlay, south, heights=south_ratio,addmax=FALSE)
+    ls =  layRowBind(newlay, south, heights=south_ratio,addmax=FALSE)
   } else ls = newlay
   
   if(!is.null(north))
   {
-    lsn = rowBind(north, ls,heights=north_ratio, addmax = FALSE)
+    lsn =  layRowBind(north, ls,heights=north_ratio, addmax = FALSE)
   } else lsn = ls
   
   if(!is.null(west))
   {
-    lsne = colBind(west ,lsn, widths=west_ratio,addmax = FALSE)
+    lsne = layColBind(west ,lsn, widths=west_ratio,addmax = FALSE)
   } else lsne = lsn
   
   if(!is.null(east))
   {
-    lsnew = colBind(lsne, east, widths= east_ratio,addmax = FALSE)
+    lsnew = layColBind(lsne, east, widths= east_ratio,addmax = FALSE)
   } else lsnew = lsne
   
   lsnew
