@@ -3,6 +3,7 @@ customLayout
 
 ```{r setup, include=FALSE}
 # set global chunk options
+library(knitr)
 opts_chunk$set(cache=TRUE)
 ```
 
@@ -23,7 +24,7 @@ install_github("customLayout",username="zzawadz")
 You can simply create layouts like in base R:
 
 ```{r,message=FALSE,results='hide',fig.width=4,fig.height=2,fig.keep='all',fig.pos='H'}
-require(customLayout)
+library(customLayout)
 lay = layCreate(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1))
 layShow(lay)
 lay2 = layCreate(matrix(1:4,nc=2),widths=c(3,5),heights=c(2,4))
@@ -56,7 +57,7 @@ layShow(lay5)
 You can create very complicated layouts by splitting one field:
 
 ```{r,message=FALSE,results='hide',fig.width=4,fig.height=2,tidy=FALSE, fig.keep='all',}
-require(customLayout)
+library(customLayout)
 lay = layCreate(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1))
 layShow(lay)
 lay2 = layCreate(matrix(1:4,nc=2),widths=c(3,5),heights=c(2,4))
