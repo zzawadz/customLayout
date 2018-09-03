@@ -23,7 +23,7 @@ install_github("customLayout",username="zzawadz")
 
 You can simply create layouts like in base R:
 
-```{r,message=FALSE,results='hide',fig.width=4,fig.height=2,fig.keep='all',fig.pos='H'}
+```{r base,message=FALSE,results='hide',fig.width=4,fig.height=2,fig.keep='all',fig.pos='H'}
 library(customLayout)
 lay = layCreate(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1))
 layShow(lay)
@@ -33,7 +33,7 @@ layShow(lay2)
 
 But main strength of this package is in combining created layouts with specific ratio:
 
-```{r,message=FALSE,results='hide',fig.width=4,fig.height=2,tidy=FALSE}
+```{r combine,message=FALSE,results='hide',fig.width=4,fig.height=2,tidy=FALSE}
 # lay will be 3 times wider that lay2
 # all ascects in lay and lay2 will be preserved
 cl = layColBind(lay,lay2, widths=c(3,1))
@@ -42,7 +42,7 @@ layShow(cl)
 
 You can also create even more complicated layouts:
 
-```{r,message=FALSE,results='hide',fig.width=4,fig.height=2}
+```{r complicated,message=FALSE,results='hide',fig.width=4,fig.height=2}
 lay3 = layCreate(matrix(1:2))
 lay4 = layRowBind(cl,lay3, heights=c(5,2))
 layShow(lay4)
@@ -56,7 +56,7 @@ layShow(lay5)
 
 You can create very complicated layouts by splitting one field:
 
-```{r,message=FALSE,results='hide',fig.width=4,fig.height=2,tidy=FALSE, fig.keep='all',}
+```{r split,message=FALSE,results='hide',fig.width=4,fig.height=2,tidy=FALSE, fig.keep='all',}
 library(customLayout)
 lay = layCreate(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1))
 layShow(lay)
@@ -71,7 +71,7 @@ layShow(slay)
 
 ## Example session:
 
-```{r,message=FALSE,results='hide',fig.width=10,fig.height=6}
+```{r example,message=FALSE,results='hide',fig.width=10,fig.height=6}
 require(customLayout)
 par(mar = c(3,2,2,1))
 lay = layCreate(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1))
@@ -86,5 +86,3 @@ pie(c(3,4,6),col = 2:4)
 pie(c(3,2,7),col = 2:4+3)
 pie(c(5,4,2),col = 2:4+6)
 ```
-
-
