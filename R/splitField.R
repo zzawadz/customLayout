@@ -1,3 +1,4 @@
+#' @export
 laySplitField = function(lay, newlay, field)
 {
 

@@ -1,4 +1,4 @@
-#### TODO: poprawic problem z zerem!
+#### TODO: Fix problem with zero
 
 
 setClass("Layout", slots=c(mat="matrix",widths = "numeric",heights = "numeric"))
@@ -8,8 +8,9 @@ setClass("Layout", slots=c(mat="matrix",widths = "numeric",heights = "numeric"))
 #' 
 #' @param layout object of class Layout.
 #' 
+#' @export
 #' @examples
-#' require(customLayout)
+#' library(customLayout)
 #' par(mar = c(3,2,2,1))
 #' lay = layCreate(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1))
 #' lay2 = layCreate(matrix(1:3))

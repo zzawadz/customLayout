@@ -37,6 +37,7 @@ layRepCol = function(x,fr)
   nx
 }
 
+#' @export
 layShow = function(layout)
 {
   laySet(layout)
