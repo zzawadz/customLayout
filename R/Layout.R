@@ -127,9 +127,14 @@ setMethod("layRowBind", signature=c(x="Layout",y="Layout"),function(x,y, heights
   .cleanLay(layout)
 })
 
+setLayout <- function(cl) {
+  layout(cl@mat, widths = cl@widths, heights = cl@heights)
+}
 
-
-
-
-
-
+setGridLayout <- function(grobs, cl, ...) {
+  grid.arrange(
+    grobs = grobs,
+    layout_matrix = cl@mat,
+    widths = cl@widths,
+    heights = cl@heights, ...)
+}
