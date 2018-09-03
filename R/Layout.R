@@ -14,7 +14,7 @@ setClass("Layout", slots=c(mat="matrix",widths = "numeric",heights = "numeric"))
 #' lay = layCreate(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1))
 #' lay2 = layCreate(matrix(1:3))
 #' cl = layColBind(lay,lay2, widths=c(3,1))
-#' setLayout(cl) # initialize drawing area
+#' laySet(cl) # initialize drawing area
 #' plot(1:100+rnorm(100))
 #' plot(rnorm(100), type = "l")
 #' hist(rnorm(500))
@@ -31,11 +31,11 @@ layCreate = function(mat, widths = NULL, heights = NULL)
   new("Layout",mat=mat,widths = widths, heights = heights)
 }
 
-
 #' Set custom layout.
 #' 
 #' @param layout object of class Layout.
 #' 
+#' @export
 #' @examples
 #' 
 #' lplots = layCreate(matrix(1:2))
@@ -55,7 +55,7 @@ laySet = function(layout)
 #' 
 #' @param x object of class Layout
 #' @param y object of class Layout
-#' 
+#' @export
 #' @examples
 #' l1 = layCreate(matrix(c(1:2),ncol = 2),widths=c(4,1))
 #' l2 = layCreate(matrix(c(1:4),ncol = 2),widths=c(1,1))
@@ -94,6 +94,7 @@ setMethod("layColBind", signature=c(x="Layout",y="Layout"),function(x,y, widths 
 #' @param x object of class Layout
 #' @param y object of class Layout
 #' 
+#' @export
 #' @examples
 #' l1 = layCreate(matrix(c(1:2),ncol = 2),widths=c(4,1))
 #' l2 = layCreate(matrix(c(1:4),ncol = 2),widths=c(1,1))
@@ -128,11 +129,8 @@ setMethod("layRowBind", signature=c(x="Layout",y="Layout"),function(x,y, heights
   .cleanLay(layout)
 })
 
-setLayout <- function(cl) {
-  layout(cl@mat, widths = cl@widths, heights = cl@heights)
-}
-
-setGridLayout <- function(grobs, cl, ...) {
+#' @export
+layGrid <- function(grobs, cl, ...) {
   grid.arrange(
     grobs = grobs,
     layout_matrix = cl@mat,
@@ -140,7 +138,3 @@ setGridLayout <- function(grobs, cl, ...) {
     heights = cl@heights, ...)
 }
 
-layoutShow <- function(cl) {
-  setLayout(cl)
-  layout.show(max(cl@mat))
-}
