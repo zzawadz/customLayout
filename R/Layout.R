@@ -99,6 +99,7 @@ setMethod("layColBind", signature=c(x="Layout",y="Layout"),function(x,y, widths 
 #' l2 = layCreate(matrix(c(1:4),ncol = 2),widths=c(1,1))
 #' lb = layRowBind(l1,l2)
 #' layoutShow(lb)
+#' 
 setGeneric("layRowBind",function(x,y, heights = c(1,1), addmax = TRUE) standardGeneric("layRowBind"))
 setMethod("layRowBind", signature=c(x="Layout",y="Layout"),function(x,y, heights = c(1,1), addmax = TRUE)
 {
@@ -137,4 +138,9 @@ setGridLayout <- function(grobs, cl, ...) {
     layout_matrix = cl@mat,
     widths = cl@widths,
     heights = cl@heights, ...)
+}
+
+layoutShow <- function(cl) {
+  setLayout(cl)
+  layout.show(max(cl@mat))
 }
