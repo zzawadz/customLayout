@@ -3,10 +3,12 @@
 #' @param x matrix
 #' @param fr numeric value or vector with number of repetition of given row.
 #' 
+#' @noRd
 #' @examples
 #' 
 #' layRepRow(matrix(1:4,ncol=2),c(4,2))
 #' layRepRow(matrix(1:4,ncol=2),2)
+#' 
 layRepRow = function(x,fr)
 {
   nr = sum(fr)# ilosc wierszy w nowej macierzy:
@@ -22,10 +24,12 @@ layRepRow = function(x,fr)
 #' @param x matrix
 #' @param fr numeric value or vector with number of repetition of given column.
 #' 
+#' @noRd
 #' @examples
 #' 
 #' layRepCol(matrix(1:4,ncol=2),c(4,2))
 #' layRepCol(matrix(1:4,ncol=2),2)
+#' 
 layRepCol = function(x,fr)
 {
   nr = sum(fr)# ilosc wierszy w nowej macierzy:

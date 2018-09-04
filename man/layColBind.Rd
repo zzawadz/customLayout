@@ -18,5 +18,6 @@ Take two Layout objects and combine by rows.
 l1 = layCreate(matrix(c(1:2),ncol = 2),widths=c(4,1))
 l2 = layCreate(matrix(c(1:4),ncol = 2),widths=c(1,1))
 lb = layColBind(l1,l2)
-layoutShow(lb)
+layShow(lb)
+
 }
