@@ -61,7 +61,8 @@ laySet = function(layout)
 #' l1 = layCreate(matrix(c(1:2),ncol = 2),widths=c(4,1))
 #' l2 = layCreate(matrix(c(1:4),ncol = 2),widths=c(1,1))
 #' lb = layColBind(l1,l2)
-#' layoutShow(lb)
+#' layShow(lb)
+#' 
 setGeneric("layColBind",function(x,y, widths = c(1,1), addmax = TRUE) standardGeneric("layColBind"))
 setMethod("layColBind", signature=c(x="Layout",y="Layout"),function(x,y, widths = c(1,1), addmax= TRUE)
 {
@@ -100,7 +101,7 @@ setMethod("layColBind", signature=c(x="Layout",y="Layout"),function(x,y, widths 
 #' l1 = layCreate(matrix(c(1:2),ncol = 2),widths=c(4,1))
 #' l2 = layCreate(matrix(c(1:4),ncol = 2),widths=c(1,1))
 #' lb = layRowBind(l1,l2)
-#' layoutShow(lb)
+#' layShow(lb)
 #' 
 setGeneric("layRowBind",function(x,y, heights = c(1,1), addmax = TRUE) standardGeneric("layRowBind"))
 setMethod("layRowBind", signature=c(x="Layout",y="Layout"),function(x,y, heights = c(1,1), addmax = TRUE)
