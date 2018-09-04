@@ -3,7 +3,7 @@ Type: Package
 Title: Extended version of base layout functionality.
 Version: 0.1
 Date: 2014-04-23
-Authors@R: c(person("Zygmunt", "Zawadzki", role = c("aut", "cre")))
+Authors@R: c(person("Zygmunt", "Zawadzki", role = c("aut", "cre"), email = "zygmunt@zstat.pl"))
 Maintainer: Zygmunt Zawadzki <zygmunt@zstat.pl>
 Description: This package provides extended version of base layout. Layouts can be easliy merged to create complicated drawing area. See the project page on github for more information, and examples.
 License: MIT
