@@ -1,4 +1,19 @@
+
+#' Split a selected field from layout using a schema from another layout.
+#'
+#' @param lay a Layout object.
+#' @param newlay a Layout object used to split a field from \code{lay}.
+#' @param field id of a field from \code{lay}.
+#'
 #' @export
+#'
+#' @examples
+#' 
+#' l1 <- layCreate(matrix(c(1:4), ncol = 2), widths = c(4, 1))
+#' l2 <- layCreate(matrix(c(1:4), ncol = 2), widths = c(1, 1))
+#' l3 <- laySplitField(l1, l2, 2)
+#' layShow(l3)
+#' 
 laySplitField = function(lay, newlay, field)
 {
 
@@ -6,9 +21,6 @@ laySplitField = function(lay, newlay, field)
   mat = lay@mat
   widths = lay@widths
   heights = lay@heights
-  
-  newmat = matrix(1:4, ncol = 2)
-  newlay = layCreate(newmat,widths=c(2,1),heights=c(3,1))
   
   newmat = newlay@mat
   

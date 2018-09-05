@@ -60,7 +60,7 @@ layRepCol = function(x,fr)
 #' l6 <- layColBind(l4, l5, widths = c(1, 1))
 #' layShow(l6)
 #' 
-layShow = function(layout)
+layShow <- function(layout)
 {
   laySet(layout)
   graphics::layout.show(max(layout@mat))
