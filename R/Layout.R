@@ -87,27 +87,32 @@ setGeneric("layColBind",function(x,y, widths = c(1,1), addmax = TRUE) standardGe
 setMethod("layColBind", signature=c(x="Layout",y="Layout"),function(x,y, widths = c(1,1), addmax= TRUE)
 {
   #Przesuwanie wszystkich wykresow z drugiej macierzy:
-  xmat = x@mat
-  ymat = y@mat
-  if(addmax) ymat[ymat > 0] = ymat[ymat > 0] + max(xmat)
+  xmat <- x@mat
+  ymat <- y@mat
+  if (addmax)
+    ymat[ymat > 0] <- ymat[ymat > 0] + max(xmat)
   
-  ymat = layRepRow(ymat,y@heights)
-  xmat = layRepRow(xmat,x@heights)
+  ymat <- layRepRow(ymat, y@heights)
+  xmat <- layRepRow(xmat, x@heights)
   
-  rowx = nrow(xmat)
-  rowy = nrow(ymat)
+  rowx <- nrow(xmat)
+  rowy <- nrow(ymat)
   # najmniejszy wspolny dzielnik:
-  lcm  = .getSCM(rowx, rowy)
+  lcm  <- .getSCM(rowx, rowy)
   
-  xmat = layRepRow(xmat,lcm/rowx)
-  ymat = layRepRow(ymat,lcm/rowy)
+  xmat <- layRepRow(xmat, lcm / rowx)
+  ymat <- layRepRow(ymat, lcm / rowy)
   
-  mat = cbind(xmat,ymat)
-  widths = c(x@widths*widths[1]*sum(y@widths), y@widths*widths[2]*sum(x@widths))
-  widths = widths/.multipleGCD(widths)
-  heights = rep(1,nrow(mat))
+  mat <- cbind(xmat, ymat)
+  widths <- c(x@widths * widths[1] * sum(y@widths),
+             y@widths * widths[2] * sum(x@widths))
+  widths  <- widths / .multipleGCD(widths)
+  heights <- rep(1, nrow(mat))
   
-  layout = methods::new("Layout",mat = mat, widths = widths, heights = heights)
+  layout <- methods::new("Layout",
+                        mat = mat,
+                        widths = widths,
+                        heights = heights)
   .cleanLay(layout)
 })
 
@@ -135,27 +140,32 @@ setGeneric("layRowBind",function(x,y, heights = c(1,1), addmax = TRUE) standardG
 setMethod("layRowBind", signature=c(x="Layout",y="Layout"),function(x,y, heights = c(1,1), addmax = TRUE)
 {
   #Przesuwanie wszystkich wykresow z drugiej macierzy:
-  xmat = x@mat
-  ymat = y@mat
-  if(addmax) ymat[ymat > 0] = ymat[ymat > 0] + max(xmat)
+  xmat <- x@mat
+  ymat <- y@mat
+  if (addmax)
+    ymat[ymat > 0] <- ymat[ymat > 0] + max(xmat)
   
-  ymat = layRepCol(ymat,y@widths)
-  xmat = layRepCol(xmat,x@widths)
+  ymat <- layRepCol(ymat, y@widths)
+  xmat <- layRepCol(xmat, x@widths)
   
-  colx = ncol(xmat)
-  coly = ncol(ymat)
+  colx <- ncol(xmat)
+  coly <- ncol(ymat)
   # najmniejszy wspolny dzielnik:
-  lcm  = .getSCM(colx, coly)
+  lcm  <- .getSCM(colx, coly)
   
-  xmat = layRepCol(xmat,lcm/colx)
-  ymat = layRepCol(ymat,lcm/coly)
+  xmat <- layRepCol(xmat, lcm / colx)
+  ymat <- layRepCol(ymat, lcm / coly)
   
-  mat = rbind(xmat,ymat)
-  widths = rep(1,ncol(mat))
-  heights = c(x@heights*heights[1]*sum(y@heights), sum(x@heights)*y@heights*heights[2])
-  heights = heights/.multipleGCD(heights)
+  mat <- rbind(xmat, ymat)
+  widths  <- rep(1, ncol(mat))
+  heights <- c(x@heights * heights[1] * sum(y@heights),
+              sum(x@heights) * y@heights * heights[2])
+  heights <- heights / .multipleGCD(heights)
   
-  layout = methods::new("Layout",mat = mat, widths = widths, heights = heights)
+  layout <- methods::new("Layout",
+                        mat = mat,
+                        widths = widths,
+                        heights = heights)
   .cleanLay(layout)
 })
 

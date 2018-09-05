@@ -14,7 +14,7 @@ layRepRow = function(x,fr)
   nr = sum(fr)# ilosc wierszy w nowej macierzy:
   nx = NULL
   if(length(fr)!=nrow(x)) fr = rep(fr,nrow(x))
-  for(i in 1:nrow(x))
+  for(i in seq_len(nrow(x)))
     nx = rbind(nx, apply(x[i,,drop=FALSE],2, rep, fr[i]))
   nx
 }
@@ -35,7 +35,7 @@ layRepCol = function(x,fr)
   nr = sum(fr)# ilosc wierszy w nowej macierzy:
   nx = NULL
   if(length(fr)!=ncol(x)) fr = rep(fr,ncol(x))
-  for(i in 1:ncol(x))
+  for(i in seq_len(ncol(x)))
     for(j in 1:fr[i])
       nx = cbind(nx,x[,i])
   nx
