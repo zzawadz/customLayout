@@ -150,12 +150,36 @@ setMethod("layRowBind", signature=c(x="Layout",y="Layout"),function(x,y, heights
   .cleanLay(layout)
 })
 
+
+#' Use Layout object with grid graphics.
+#'
+#' @param grobs list of grobs.
+#' @param lay a Layout object.
+#' @param ... other parameters passed to \link{\code{grid.arrange}}.
+#'
 #' @export
-layGrid <- function(grobs, cl, ...) {
+#'
+#' @examples
+#' 
+#' library(ggplot2)
+#' 
+#' l1 <- layCreate(matrix(1:2, ncol = 1), heights = c(2, 3))
+#' l2 <- layCreate(matrix(1:2, ncol = 1), heights = c(1, 3))
+#' l3 <- layColBind(l1, l2)
+#' 
+#' pl1 <- qplot(mpg, wt, data = mtcars)
+#' pl2 <- qplot(mpg, gear, data = mtcars)
+#' pl3 <- qplot(cyl, gear, data = mtcars)
+#' pl4 <- qplot(qsec, am, data = mtcars)
+#' 
+#' grobs <- lapply(list(pl1, pl2, pl3, pl4), ggplotGrob)
+#' 
+#' layGrid(grobs, l3)
+#'
+layGrid <- function(grobs, lay, ...) {
   gridExtra::grid.arrange(
     grobs = grobs,
-    layout_matrix = cl@mat,
-    widths = cl@widths,
-    heights = cl@heights, ...)
+    layout_matrix = lay@mat,
+    widths = lay@widths,
+    heights = lay@heights, ...)
 }
-

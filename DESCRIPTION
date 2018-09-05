@@ -10,4 +10,5 @@ License: GPL-3 + file LICENSE
 RoxygenNote: 6.1.0
 Imports: methods, gridExtra, utils, graphics
 Suggests: covr,
-    testthat
+    testthat,
+    ggplot2
