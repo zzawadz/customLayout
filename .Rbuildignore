@@ -5,3 +5,6 @@
 ^codecov\.yml$
 README_cache
 README.Rmd
+_pkgdown.yml
+docs
+README_files
