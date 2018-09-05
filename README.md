@@ -1,6 +1,13 @@
 customLayout
 ============
 
+[![Travis-CI Build
+Status](https://travis-ci.org/zzawadz/customLayout.svg?branch=master)](https://travis-ci.org/zzawadz/customLayout)
+[![AppVeyor Build
+Status](https://ci.appveyor.com/api/projects/status/github/zzawadz/customLayout?branch=master&svg=true)](https://ci.appveyor.com/project/zzawadz/customLayout)
+[![Coverage
+Status](https://img.shields.io/codecov/c/github/zzawadz/customLayout/master.svg)](https://codecov.io/github/zzawadz/customLayout?branch=master)
+
 `customLayout` is a simple extension of basic `layout` function from
 `R`.
 
