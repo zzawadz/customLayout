@@ -7,7 +7,11 @@
 layCreate(mat, widths = NULL, heights = NULL)
 }
 \arguments{
-\item{layout}{object of class Layout.}
+\item{mat}{a matrix specifying the location of the figures. See \code{\link{layout}} for more information.}
+
+\item{widths}{a vector of values for the relative heights of rows in mat.}
+
+\item{heights}{a vector of values for the relative heights of rows in mat.}
 }
 \description{
 Create custom layout.

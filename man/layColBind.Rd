@@ -10,6 +10,13 @@ layColBind(x, y, widths = c(1, 1), addmax = TRUE)
 \item{x}{object of class Layout}
 
 \item{y}{object of class Layout}
+
+\item{widths}{a vector with relative widths used in combining 
+the x and y layouts.}
+
+\item{addmax}{if true (default) the ids of the plots in the second 
+layout will be shifted by the number of plots in 
+the first layout.}
 }
 \description{
 Take two Layout objects and combine by rows.

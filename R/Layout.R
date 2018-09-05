@@ -6,7 +6,9 @@ setClass("Layout", slots=c(mat="matrix",widths = "numeric",heights = "numeric"))
 
 #' Create custom layout.
 #' 
-#' @param layout object of class Layout.
+#' @param mat a matrix specifying the location of the figures. See \code{\link{layout}} for more information.
+#' @param widths a vector of values for the relative heights of rows in mat.
+#' @param heights a vector of values for the relative heights of rows in mat.
 #' 
 #' @export
 #' @examples
@@ -56,6 +58,12 @@ laySet = function(layout)
 #' 
 #' @param x object of class Layout
 #' @param y object of class Layout
+#' @param widths a vector with relative widths used in combining 
+#'                the x and y layouts.
+#' @param addmax if true (default) the ids of the plots in the second 
+#'               layout will be shifted by the number of plots in 
+#'               the first layout.
+#' 
 #' @export
 #' @examples
 #' l1 = layCreate(matrix(c(1:2),ncol = 2),widths=c(4,1))
@@ -95,6 +103,11 @@ setMethod("layColBind", signature=c(x="Layout",y="Layout"),function(x,y, widths 
 #' 
 #' @param x object of class Layout
 #' @param y object of class Layout
+#' @param heights a vector with relative heights used in combining 
+#'                the x and y layouts.
+#' @param addmax if true (default) the ids of the plots in the second 
+#'               layout will be shifted by the number of plots in 
+#'               the first layout.
 #' 
 #' @export
 #' @examples

@@ -8,4 +8,5 @@ Maintainer: Zygmunt Zawadzki <zygmunt@zstat.pl>
 Description: This package provides extended version of base layout. Layouts can be easliy merged to create complicated drawing area. See the project page on github for more information, and examples.
 License: MIT
 RoxygenNote: 6.1.0
-Suggests: covr
+Suggests: covr,
+    testthat
