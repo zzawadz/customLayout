@@ -15,3 +15,5 @@ Suggests: covr,
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+URL: https://www.customlayout.zstat.pl/
+BugReports: https://github.com/zzawadz/customLayout/issues
