@@ -63,6 +63,7 @@
 <div id="customlayout" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#customlayout" class="anchor"></a>customLayout</h1></div>
+
 <p><code>customLayout</code> is a simple extension of basic <code>layout</code> function from <code>R</code>.</p>
 <div id="instalation" class="section level2">
 <h2 class="hasAnchor">
@@ -80,27 +81,27 @@
 <a class="sourceLine" id="cb2-3" data-line-number="3">  <span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">nc =</span> <span class="dv">2</span>),</a>
 <a class="sourceLine" id="cb2-4" data-line-number="4">  <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>),</a>
 <a class="sourceLine" id="cb2-5" data-line-number="5">  <span class="dt">heights =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="kw">layShow</span>(lay)</a></code></pre></div>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="kw"><a href="reference/layShow.html">layShow</a></span>(lay)</a></code></pre></div>
 <p><img src="index_files/figure-html/base-1.png" width="384"></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">lay2 &lt;-<span class="st"> </span><span class="kw"><a href="reference/layCreate.html">layCreate</a></span>(</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">nc =</span> <span class="dv">2</span>),</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>),</a>
 <a class="sourceLine" id="cb3-4" data-line-number="4">  <span class="dt">heights =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>))</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="kw">layShow</span>(lay2)</a></code></pre></div>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="kw"><a href="reference/layShow.html">layShow</a></span>(lay2)</a></code></pre></div>
 <p><img src="index_files/figure-html/base-2.png" width="384"></p>
 <p>But main strength of this package is in combining created layouts with specific ratio:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># lay will be 3 times wider that lay2</span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co"># all ascects in lay and lay2 will be preserved</span></a>
 <a class="sourceLine" id="cb4-3" data-line-number="3">cl =<span class="st"> </span><span class="kw"><a href="reference/layColBind.html">layColBind</a></span>(lay, lay2, <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">layShow</span>(cl)</a></code></pre></div>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw"><a href="reference/layShow.html">layShow</a></span>(cl)</a></code></pre></div>
 <p><img src="index_files/figure-html/combine-1.png" width="384"></p>
 <p>You can also create even more complicated layouts:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">lay3 &lt;-<span class="st"> </span><span class="kw"><a href="reference/layCreate.html">layCreate</a></span>(<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>))</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2">lay4 &lt;-<span class="st"> </span><span class="kw"><a href="reference/layRowBind.html">layRowBind</a></span>(cl, lay3, <span class="dt">heights =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">layShow</span>(lay4)</a></code></pre></div>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw"><a href="reference/layShow.html">layShow</a></span>(lay4)</a></code></pre></div>
 <p><img src="index_files/figure-html/complicated-1.png" width="384"></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">lay5 &lt;-<span class="st"> </span><span class="kw"><a href="reference/layColBind.html">layColBind</a></span>(lay4, lay3, <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">layShow</span>(lay5)</a></code></pre></div>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw"><a href="reference/layShow.html">layShow</a></span>(lay5)</a></code></pre></div>
 <p><img src="index_files/figure-html/complicated-2.png" width="384"></p>
 </div>
 <div id="split-layout" class="section level2">
@@ -112,17 +113,17 @@
 <a class="sourceLine" id="cb7-3" data-line-number="3">  <span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">nc =</span> <span class="dv">2</span>),</a>
 <a class="sourceLine" id="cb7-4" data-line-number="4">  <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>),</a>
 <a class="sourceLine" id="cb7-5" data-line-number="5">  <span class="dt">heights =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="kw">layShow</span>(lay)</a></code></pre></div>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="kw"><a href="reference/layShow.html">layShow</a></span>(lay)</a></code></pre></div>
 <p><img src="index_files/figure-html/split-1.png" width="384"></p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">lay2 &lt;-<span class="st"> </span><span class="kw"><a href="reference/layCreate.html">layCreate</a></span>(</a>
 <a class="sourceLine" id="cb8-2" data-line-number="2">  <span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">nc =</span> <span class="dv">2</span>),</a>
 <a class="sourceLine" id="cb8-3" data-line-number="3">  <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>),</a>
 <a class="sourceLine" id="cb8-4" data-line-number="4">  <span class="dt">heights =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>))</a>
-<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="kw">layShow</span>(lay2)</a></code></pre></div>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="kw"><a href="reference/layShow.html">layShow</a></span>(lay2)</a></code></pre></div>
 <p><img src="index_files/figure-html/split-2.png" width="384"></p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># Split field 4 from lay into lay2:</span></a>
 <a class="sourceLine" id="cb9-2" data-line-number="2">slay &lt;-<span class="st"> </span><span class="kw">laySplitField</span>(lay, lay2, <span class="dt">field =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="kw">layShow</span>(slay)</a></code></pre></div>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="kw"><a href="reference/layShow.html">layShow</a></span>(slay)</a></code></pre></div>
 <p><img src="index_files/figure-html/split-3.png" width="384"></p>
 </div>
 <div id="example-session" class="section level2">
@@ -173,7 +174,15 @@
 </ul>
 </div>
 
-      </div>
+      <div class="dev-status">
+<h2>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://travis-ci.org/zzawadz/customLayout"><img src="https://travis-ci.org/zzawadz/customLayout.svg?branch=master" alt="Travis-CI Build Status"></a></li>
+<li><a href="https://ci.appveyor.com/project/zzawadz/customLayout"><img src="https://ci.appveyor.com/api/projects/status/github/zzawadz/customLayout?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
+<li><a href="https://codecov.io/github/zzawadz/customLayout?branch=master"><img src="https://img.shields.io/codecov/c/github/zzawadz/customLayout/master.svg" alt="Coverage Status"></a></li>
+</ul>
+</div>
+</div>
 
 </div>
 

@@ -3,6 +3,7 @@ reference:
   contents:
   - layCreate
   - laySet
+  - layShow
 - title: Combine layouts
   contents:
   - layColBind

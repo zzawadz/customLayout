@@ -103,7 +103,11 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>layRowBind</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>heights</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>1</span>), <span class='kw'>addmax</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>layRowBind</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>heights</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>1</span>), <span class='kw'>addmax</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+
+<span class='co'># S4 method for Layout,Layout</span>
+<span class='fu'>layRowBind</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>heights</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>1</span>),
+  <span class='kw'>addmax</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -116,6 +120,17 @@
       <th>y</th>
       <td><p>object of class Layout</p></td>
     </tr>
+    <tr>
+      <th>heights</th>
+      <td><p>a vector with relative heights used in combining 
+the x and y layouts.</p></td>
+    </tr>
+    <tr>
+      <th>addmax</th>
+      <td><p>if true (default) the ids of the plots in the second 
+layout will be shifted by the number of plots in 
+the first layout.</p></td>
+    </tr>
     </table>
     
 
@@ -123,7 +138,7 @@
     <pre class="examples"><div class='input'><span class='no'>l1</span> <span class='kw'>=</span> <span class='fu'><a href='layCreate.html'>layCreate</a></span>(<span class='fu'>matrix</span>(<span class='fu'>c</span>(<span class='fl'>1</span>:<span class='fl'>2</span>),<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>),<span class='kw'>widths</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>4</span>,<span class='fl'>1</span>))
 <span class='no'>l2</span> <span class='kw'>=</span> <span class='fu'><a href='layCreate.html'>layCreate</a></span>(<span class='fu'>matrix</span>(<span class='fu'>c</span>(<span class='fl'>1</span>:<span class='fl'>4</span>),<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>),<span class='kw'>widths</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>1</span>,<span class='fl'>1</span>))
 <span class='no'>lb</span> <span class='kw'>=</span> <span class='fu'>layRowBind</span>(<span class='no'>l1</span>,<span class='no'>l2</span>)
-<span class='fu'>layShow</span>(<span class='no'>lb</span>)</div><div class='img'><img src='layRowBind-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='layShow.html'>layShow</a></span>(<span class='no'>lb</span>)</div><div class='img'><img src='layRowBind-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

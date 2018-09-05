@@ -41,7 +41,25 @@ layRepCol = function(x,fr)
   nx
 }
 
+
+#' Print the layout structure to the graphical device.
+#'
+#' @param layout an object of class Layout.
+#'
 #' @export
+#'
+#' @examples
+#' 
+#' l1 <- layCreate(matrix(c(1:2), ncol = 2), widths = c(4, 1))
+#' l2 <- layCreate(matrix(c(1:3), ncol = 3), widths = c(2, 1, 3))
+#' l3 <- layRowBind(l1, l2, heights = c(2, 1))
+#' layShow(l3)
+#' 
+#' l4 <- layCreate(matrix(c(1:2), ncol = 2), widths = c(4, 1))
+#' l5 <- layCreate(matrix(c(1:3), ncol = 1), heights = c(2, 1, 1))
+#' l6 <- layColBind(l4, l5, widths = c(1, 1))
+#' layShow(l6)
+#' 
 layShow = function(layout)
 {
   laySet(layout)
