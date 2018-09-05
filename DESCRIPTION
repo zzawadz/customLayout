@@ -1,14 +1,17 @@
 Package: customLayout
 Type: Package
-Title: Extended version of base layout functionality
+Title: Extended Version of Layout Functionality for Base and Grid Graphics Systems
 Version: 0.1
-Date: 2014-04-23
+Date: 2018-09-05
 Authors@R: c(person("Zygmunt", "Zawadzki", role = c("aut", "cre"), email = "zygmunt@zstat.pl"))
 Maintainer: Zygmunt Zawadzki <zygmunt@zstat.pl>
-Description: This package provides extended version of base layout. Layouts can be easliy merged to create complicated drawing area. See the project page on github for more information, and examples.
+Description: Create complicated drawing areas for multiple plots by combining much simpler layouts. It is an extended version of layout function from the graphics package, but It works with base and grid graphics.
 License: GPL-3 + file LICENSE
 RoxygenNote: 6.1.0
 Imports: methods, gridExtra, utils, graphics
 Suggests: covr,
     testthat,
-    ggplot2
+    ggplot2,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
