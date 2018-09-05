@@ -96,6 +96,8 @@ You can create very complicated layouts by splitting one field:
 Example session:
 ----------------
 
+### Base graphics
+
     library(customLayout)
     par(mar = c(3, 2, 2, 1))
     lay  <- layCreate(
@@ -117,3 +119,34 @@ Example session:
     pie(c(5, 4, 2), col = 2:4 + 6)
 
 ![](README_files/figure-markdown_strict/example-1.png)
+
+Grid graphics (ggplot2 and friends)
+-----------------------------------
+
+    library(customLayout)
+    library(ggplot2)
+    library(gridExtra)
+
+    lay  <- layCreate(
+      matrix(1:2, ncol = 1))
+    lay2 <- layCreate(matrix(1:3))
+    cl   <- layColBind(lay, lay2, widths = c(3, 1))
+
+
+    library(ggplot2)
+    cuts <- sort(unique(diamonds[["cut"]]),
+                decreasing = TRUE)
+
+    make_cut_plot <- function(cut) {
+      dd <- diamonds[diamonds[["cut"]] == cut, ]
+      pl <- ggplot(dd) +
+          geom_point(aes(carat, price)) +
+          facet_wrap("cut")
+      ggplotGrob(pl)
+    }
+
+    grobs <- lapply(cuts, make_cut_plot)
+
+    layGrid(grobs, cl)
+
+![](README_files/figure-markdown_strict/examplegrid-1.png)

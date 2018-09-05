@@ -129,6 +129,9 @@
 <div id="example-session" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example-session" class="anchor"></a>Example session:</h2>
+<div id="base-graphics" class="section level3">
+<h3 class="hasAnchor">
+<a href="#base-graphics" class="anchor"></a>Base graphics</h3>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">library</span>(customLayout)</a>
 <a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>))</a>
 <a class="sourceLine" id="cb10-3" data-line-number="3">lay  &lt;-<span class="st"> </span><span class="kw"><a href="reference/layCreate.html">layCreate</a></span>(</a>
@@ -149,6 +152,37 @@
 <a class="sourceLine" id="cb10-18" data-line-number="18"><span class="kw">pie</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">7</span>), <span class="dt">col =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span>)</a>
 <a class="sourceLine" id="cb10-19" data-line-number="19"><span class="kw">pie</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">2</span>), <span class="dt">col =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">6</span>)</a></code></pre></div>
 <p><img src="index_files/figure-html/example-1.png" width="960"></p>
+</div>
+</div>
+<div id="grid-graphics-ggplot2-and-friends" class="section level2">
+<h2 class="hasAnchor">
+<a href="#grid-graphics-ggplot2-and-friends" class="anchor"></a>Grid graphics (ggplot2 and friends)</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">library</span>(customLayout)</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="kw">library</span>(gridExtra)</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb11-5" data-line-number="5">lay  &lt;-<span class="st"> </span><span class="kw"><a href="reference/layCreate.html">layCreate</a></span>(</a>
+<a class="sourceLine" id="cb11-6" data-line-number="6">  <span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb11-7" data-line-number="7">lay2 &lt;-<span class="st"> </span><span class="kw"><a href="reference/layCreate.html">layCreate</a></span>(<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb11-8" data-line-number="8">cl   &lt;-<span class="st"> </span><span class="kw"><a href="reference/layColBind.html">layColBind</a></span>(lay, lay2, <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb11-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb11-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb11-11" data-line-number="11"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb11-12" data-line-number="12">cuts &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">unique</span>(diamonds[[<span class="st">"cut"</span>]]),</a>
+<a class="sourceLine" id="cb11-13" data-line-number="13">            <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb11-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb11-15" data-line-number="15">make_cut_plot &lt;-<span class="st"> </span><span class="cf">function</span>(cut) {</a>
+<a class="sourceLine" id="cb11-16" data-line-number="16">  dd &lt;-<span class="st"> </span>diamonds[diamonds[[<span class="st">"cut"</span>]] <span class="op">==</span><span class="st"> </span>cut, ]</a>
+<a class="sourceLine" id="cb11-17" data-line-number="17">  pl &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(dd) <span class="op">+</span></a>
+<a class="sourceLine" id="cb11-18" data-line-number="18"><span class="st">      </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(carat, price)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb11-19" data-line-number="19"><span class="st">      </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/facet_wrap">facet_wrap</a></span>(<span class="st">"cut"</span>)</a>
+<a class="sourceLine" id="cb11-20" data-line-number="20">  <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplotGrob">ggplotGrob</a></span>(pl)</a>
+<a class="sourceLine" id="cb11-21" data-line-number="21">}</a>
+<a class="sourceLine" id="cb11-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb11-23" data-line-number="23">grobs &lt;-<span class="st"> </span><span class="kw">lapply</span>(cuts, make_cut_plot)</a>
+<a class="sourceLine" id="cb11-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb11-25" data-line-number="25"><span class="kw"><a href="reference/layGrid.html">layGrid</a></span>(grobs, cl)</a></code></pre></div>
+<p><img src="index_files/figure-html/examplegrid-1.png" width="960"></p>
 </div>
 </div>
   </div>
