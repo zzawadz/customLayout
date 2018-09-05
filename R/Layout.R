@@ -31,6 +31,15 @@ layCreate = function(mat, widths = NULL, heights = NULL)
   if(is.null(widths)) widths = rep(1,ncol(mat))
   if(is.null(heights)) heights = rep(1,nrow(mat))
   
+  if(ncol(mat) != length(widths)) {
+    stop("Number of columns in the 'mat' must match the length of the 'widths' vector.")
+  }
+  
+  if(nrow(mat) != length(heights)) {
+    stop("Number of rows in the 'mat' must match the length of the 'heights' vector.")
+  }
+  
+  
   methods::new("Layout",mat=mat,widths = widths, heights = heights)
 }
 
