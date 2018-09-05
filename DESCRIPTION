@@ -1,6 +1,6 @@
 Package: customLayout
 Type: Package
-Title: Extended version of base layout functionality.
+Title: Extended version of base layout functionality
 Version: 0.1
 Date: 2014-04-23
 Authors@R: c(person("Zygmunt", "Zawadzki", role = c("aut", "cre"), email = "zygmunt@zstat.pl"))

@@ -155,7 +155,7 @@ setMethod("layRowBind", signature=c(x="Layout",y="Layout"),function(x,y, heights
 #'
 #' @param grobs list of grobs.
 #' @param lay a Layout object.
-#' @param ... other parameters passed to \link{\code{grid.arrange}}.
+#' @param ... other parameters passed to \code{\link{grid.arrange}}.
 #'
 #' @export
 #'

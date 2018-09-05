@@ -11,7 +11,7 @@ layGrid(grobs, lay, ...)
 
 \item{lay}{a Layout object.}
 
-\item{...}{other parameters passed to \link{\code{grid.arrange}}.}
+\item{...}{other parameters passed to \code{\link{grid.arrange}}.}
 }
 \description{
 Use Layout object with grid graphics.
