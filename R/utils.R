@@ -45,7 +45,7 @@ layRepCol = function(x,fr)
 layShow = function(layout)
 {
   laySet(layout)
-  layout.show(max(layout@mat))
+  graphics::layout.show(max(layout@mat))
 }
 
 
@@ -108,6 +108,6 @@ layShow = function(layout)
 .multipleGCD = function(x) 
 {
   for(i in 2:length(x)) x[i] = .getGCD(x[i-1],x[i])
-  tail(x,1) 
+  utils::tail(x,1) 
 }
 

@@ -31,7 +31,7 @@ layCreate = function(mat, widths = NULL, heights = NULL)
   if(is.null(widths)) widths = rep(1,ncol(mat))
   if(is.null(heights)) heights = rep(1,nrow(mat))
   
-  new("Layout",mat=mat,widths = widths, heights = heights)
+  methods::new("Layout",mat=mat,widths = widths, heights = heights)
 }
 
 #' Set custom layout.
@@ -63,7 +63,8 @@ laySet = function(layout)
 #' @param addmax if true (default) the ids of the plots in the second 
 #'               layout will be shifted by the number of plots in 
 #'               the first layout.
-#' 
+#'
+#' @rdname layColBind 
 #' @export
 #' @examples
 #' l1 = layCreate(matrix(c(1:2),ncol = 2),widths=c(4,1))
@@ -72,6 +73,8 @@ laySet = function(layout)
 #' layShow(lb)
 #' 
 setGeneric("layColBind",function(x,y, widths = c(1,1), addmax = TRUE) standardGeneric("layColBind"))
+
+#' @rdname layColBind
 setMethod("layColBind", signature=c(x="Layout",y="Layout"),function(x,y, widths = c(1,1), addmax= TRUE)
 {
   #Przesuwanie wszystkich wykresow z drugiej macierzy:
@@ -95,7 +98,7 @@ setMethod("layColBind", signature=c(x="Layout",y="Layout"),function(x,y, widths 
   widths = widths/.multipleGCD(widths)
   heights = rep(1,nrow(mat))
   
-  layout = new("Layout",mat = mat, widths = widths, heights = heights)
+  layout = methods::new("Layout",mat = mat, widths = widths, heights = heights)
   .cleanLay(layout)
 })
 
@@ -109,6 +112,7 @@ setMethod("layColBind", signature=c(x="Layout",y="Layout"),function(x,y, widths 
 #'               layout will be shifted by the number of plots in 
 #'               the first layout.
 #' 
+#' @rdname layRowBind
 #' @export
 #' @examples
 #' l1 = layCreate(matrix(c(1:2),ncol = 2),widths=c(4,1))
@@ -117,6 +121,8 @@ setMethod("layColBind", signature=c(x="Layout",y="Layout"),function(x,y, widths 
 #' layShow(lb)
 #' 
 setGeneric("layRowBind",function(x,y, heights = c(1,1), addmax = TRUE) standardGeneric("layRowBind"))
+
+#' @rdname layRowBind
 setMethod("layRowBind", signature=c(x="Layout",y="Layout"),function(x,y, heights = c(1,1), addmax = TRUE)
 {
   #Przesuwanie wszystkich wykresow z drugiej macierzy:
@@ -140,13 +146,13 @@ setMethod("layRowBind", signature=c(x="Layout",y="Layout"),function(x,y, heights
   heights = c(x@heights*heights[1]*sum(y@heights), sum(x@heights)*y@heights*heights[2])
   heights = heights/.multipleGCD(heights)
   
-  layout = new("Layout",mat = mat, widths = widths, heights = heights)
+  layout = methods::new("Layout",mat = mat, widths = widths, heights = heights)
   .cleanLay(layout)
 })
 
 #' @export
 layGrid <- function(grobs, cl, ...) {
-  grid.arrange(
+  gridExtra::grid.arrange(
     grobs = grobs,
     layout_matrix = cl@mat,
     widths = cl@widths,
