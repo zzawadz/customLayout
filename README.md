@@ -1,12 +1,18 @@
 customLayout
 ============
 
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/customLayout)](https://cran.r-project.org/package=customLayout)
+[![Downloads](https://cranlogs.r-pkg.org/badges/customLayout)](https://cran.rstudio.com/package=customLayout)
+[![](https://cranlogs.r-pkg.org/badges/grand-total/customLayout)](https://cran.rstudio.com/web/packages/customLayout/index.html)
 [![Travis-CI Build
 Status](https://travis-ci.org/zzawadz/customLayout.svg?branch=master)](https://travis-ci.org/zzawadz/customLayout)
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/zzawadz/customLayout?branch=master&svg=true)](https://ci.appveyor.com/project/zzawadz/customLayout)
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/zzawadz/customLayout/master.svg)](https://codecov.io/github/zzawadz/customLayout?branch=master)
+[![Project Status: Active - The project has reached a stable, usable
+state and is being actively
+developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 
 `customLayout` is a simple extension of the basic `layout` function from
 `R`.
