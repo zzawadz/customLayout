@@ -12,7 +12,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/zzawadz/customLayout?
 Status](https://img.shields.io/codecov/c/github/zzawadz/customLayout/master.svg)](https://codecov.io/github/zzawadz/customLayout?branch=master)
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
-developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
 `customLayout` is a simple extension of the basic `layout` function from
 `R`.
