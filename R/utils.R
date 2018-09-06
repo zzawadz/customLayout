@@ -63,12 +63,28 @@ layRepCol <- function(x,fr)
 layShow <- function(layout)
 {
   laySet(layout)
-  graphics::layout.show(max(layout@mat))
+  n <- max(layout@mat)
+  
+  oma.saved <- graphics::par("oma")
+  graphics::par(oma = rep.int(0, 4))
+  graphics::par(oma = oma.saved)
+  o.par <- graphics::par(mar = rep.int(0, 4))
+  on.exit(graphics::par(o.par))
+  
+  colors <- RColorBrewer::brewer.pal(11, "Spectral")[-c(1, 2, 10, 11)]
+  colsIdx <- seq_len(n) %% length(colors)
+  colsIdx[colsIdx == 0] <- length(colors)
+  colors <- colors[colsIdx]
+  
+  for (i in seq_len(n)) {
+    graphics::plot.new()
+    graphics::box(col = colors[i], fg = 1)
+    graphics::rect(-0.04,-0.04,1.04,1.04, col = colors[i])
+    graphics::text(0.5, 0.5, i, cex = 2)
+  }
+  invisible()
+  
 }
-
-
-
-
 
 .cleanCols <- function(lay)
 {
