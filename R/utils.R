@@ -9,13 +9,13 @@
 #' layRepRow(matrix(1:4,ncol=2),c(4,2))
 #' layRepRow(matrix(1:4,ncol=2),2)
 #' 
-layRepRow = function(x,fr)
+layRepRow <- function(x,fr)
 {
-  nr = sum(fr)# ilosc wierszy w nowej macierzy:
-  nx = NULL
-  if(length(fr)!=nrow(x)) fr = rep(fr,nrow(x))
+  nr <- sum(fr)# ilosc wierszy w nowej macierzy:
+  nx <- NULL
+  if(length(fr)!=nrow(x)) fr <- rep(fr,nrow(x))
   for(i in seq_len(nrow(x)))
-    nx = rbind(nx, apply(x[i,,drop=FALSE],2, rep, fr[i]))
+    nx <- rbind(nx, apply(x[i,,drop=FALSE],2, rep, fr[i]))
   nx
 }
 
@@ -30,14 +30,14 @@ layRepRow = function(x,fr)
 #' layRepCol(matrix(1:4,ncol=2),c(4,2))
 #' layRepCol(matrix(1:4,ncol=2),2)
 #' 
-layRepCol = function(x,fr)
+layRepCol <- function(x,fr)
 {
-  nr = sum(fr)# ilosc wierszy w nowej macierzy:
-  nx = NULL
-  if(length(fr)!=ncol(x)) fr = rep(fr,ncol(x))
+  nr <- sum(fr)# ilosc wierszy w nowej macierzy:
+  nx <- NULL
+  if(length(fr)!=ncol(x)) fr <- rep(fr,ncol(x))
   for(i in seq_len(ncol(x)))
     for(j in 1:fr[i])
-      nx = cbind(nx,x[,i])
+      nx <- cbind(nx,x[,i])
   nx
 }
 
@@ -70,62 +70,62 @@ layShow <- function(layout)
 
 
 
-.cleanCols = function(lay)
+.cleanCols <- function(lay)
 {
-  mat = lay@mat
-  widths = lay@widths
-  i = 1
+  mat <- lay@mat
+  widths <- lay@widths
+  i <- 1
   while(i < ncol(mat))
   {
     if(all(mat[,i] == mat[,i+1]))
     {
-      mat = mat[,-(i+1), drop = FALSE]
-      widths[i] = widths[i] + widths[i+1]
-      widths = widths[-(i+1)]
-    } else i = i + 1
+      mat <- mat[,-(i+1), drop = FALSE]
+      widths[i] <- widths[i] + widths[i+1]
+      widths <- widths[-(i+1)]
+    } else i <- i + 1
   }
-  lay@mat = mat
-  lay@widths = widths
+  lay@mat <- mat
+  lay@widths <- widths
   lay
 }
 
 
-.cleanRows = function(lay)
+.cleanRows <- function(lay)
 {
-  mat = lay@mat
-  heights = lay@heights
-  i = 1
+  mat <- lay@mat
+  heights <- lay@heights
+  i <- 1
   while(i < nrow(mat))
   {
     if(all(mat[i,] == mat[i+1,]))
     {
-      mat = mat[-(i+1),, drop = FALSE]
-      heights[i] = heights[i] + heights[i+1]
-      heights = heights[-(i+1)]
-    } else i = i + 1
+      mat <- mat[-(i+1),, drop = FALSE]
+      heights[i] <- heights[i] + heights[i+1]
+      heights <- heights[-(i+1)]
+    } else i <- i + 1
   }
-  lay@mat = mat
-  lay@heights = heights
+  lay@mat <- mat
+  lay@heights <- heights
   lay
 }
 
-.cleanLay = function(lay)
+.cleanLay <- function(lay)
 {
-  lay = .cleanCols(lay)
-  lay = .cleanRows(lay)
+  lay <- .cleanCols(lay)
+  lay <- .cleanRows(lay)
   lay
 }
 
 
-.getGCD = function(a,b) ifelse (b==0, a, .getGCD(b, a %% b)) 
-.getSCM = function(a,b) (a*b)/.getGCD(a,b)
+.getGCD <- function(a,b) ifelse (b==0, a, .getGCD(b, a %% b)) 
+.getSCM <- function(a,b) (a*b)/.getGCD(a,b)
 
 
 
 
-.multipleGCD = function(x) 
+.multipleGCD <- function(x) 
 {
-  for(i in 2:length(x)) x[i] = .getGCD(x[i-1],x[i])
+  for(i in 2:length(x)) x[i] <- .getGCD(x[i-1],x[i])
   utils::tail(x,1) 
 }
 

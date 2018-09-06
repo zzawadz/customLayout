@@ -2,7 +2,6 @@ Package: customLayout
 Type: Package
 Title: Extended Version of Layout Functionality for Base and Grid Graphics Systems
 Version: 0.1
-Date: 2018-09-05
 Authors@R: c(person("Zygmunt", "Zawadzki", role = c("aut", "cre"), email = "zygmunt@zstat.pl"))
 Maintainer: Zygmunt Zawadzki <zygmunt@zstat.pl>
 Description: Create complicated drawing areas for multiple plots by combining much simpler layouts. It is an extended version of layout function from the graphics package, but It works with base and grid graphics.

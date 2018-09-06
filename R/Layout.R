@@ -25,18 +25,24 @@ setClass("Layout", slots=c(mat="matrix",widths = "numeric",heights = "numeric"))
 #' pie(c(3,4,6),col = 2:4)
 #' pie(c(3,2,7),col = 2:4+3)
 #' pie(c(5,4,2),col = 2:4+6)
-layCreate = function(mat, widths = NULL, heights = NULL)
+layCreate <- function(mat, widths = NULL, heights = NULL)
 {
-  if(!is.matrix(mat)) mat = matrix(mat)
-  if(is.null(widths)) widths = rep(1,ncol(mat))
-  if(is.null(heights)) heights = rep(1,nrow(mat))
+  if(!is.matrix(mat)) mat <- matrix(mat)
+  if(is.null(widths)) widths <- rep(1,ncol(mat))
+  if(is.null(heights)) heights <- rep(1,nrow(mat))
   
   if(ncol(mat) != length(widths)) {
-    stop("Number of columns in the 'mat' must match the length of the 'widths' vector.")
+    stop(paste(
+      "Number of columns in the 'mat' must",
+      "match the length of the 'widths' vector.")
+    )
   }
   
   if(nrow(mat) != length(heights)) {
-    stop("Number of rows in the 'mat' must match the length of the 'heights' vector.")
+    stop(paste(
+      "Number of rows in the 'mat' must",
+      "match the length of the 'heights' vector.")
+    )
   }
   
   
@@ -57,7 +63,7 @@ layCreate = function(mat, widths = NULL, heights = NULL)
 #' plot(1:10)
 #' plot(1:10)
 #' plot(1:20)
-laySet = function(layout)
+laySet <- function(layout)
 {
   layout(layout@mat,widths=layout@widths,heights=layout@heights)
 }
@@ -81,10 +87,24 @@ laySet = function(layout)
 #' lb = layColBind(l1,l2)
 #' layShow(lb)
 #' 
-setGeneric("layColBind",function(x,y, widths = c(1,1), addmax = TRUE) standardGeneric("layColBind"))
+setGeneric(
+  "layColBind",
+  function(
+    x, y,
+    widths = c(1, 1),
+    addmax = TRUE)
+    standardGeneric("layColBind")
+)
 
 #' @rdname layColBind
-setMethod("layColBind", signature=c(x="Layout",y="Layout"),function(x,y, widths = c(1,1), addmax= TRUE)
+setMethod(
+  "layColBind",
+  signature = c(x = "Layout", y = "Layout"),
+  function(
+    x, y,
+    widths = c(1, 1),
+    addmax = TRUE
+  )
 {
   #Przesuwanie wszystkich wykresow z drugiej macierzy:
   xmat <- x@mat
@@ -134,10 +154,23 @@ setMethod("layColBind", signature=c(x="Layout",y="Layout"),function(x,y, widths 
 #' lb = layRowBind(l1,l2)
 #' layShow(lb)
 #' 
-setGeneric("layRowBind",function(x,y, heights = c(1,1), addmax = TRUE) standardGeneric("layRowBind"))
+setGeneric(
+  "layRowBind",
+  function(
+    x, y,
+    heights = c(1, 1),
+    addmax = TRUE)
+  standardGeneric("layRowBind"))
 
 #' @rdname layRowBind
-setMethod("layRowBind", signature=c(x="Layout",y="Layout"),function(x,y, heights = c(1,1), addmax = TRUE)
+setMethod(
+  "layRowBind",
+  signature = c(x = "Layout", y = "Layout"),
+  function(x,
+           y,
+           heights = c(1, 1),
+           addmax = TRUE
+  )
 {
   #Przesuwanie wszystkich wykresow z drugiej macierzy:
   xmat <- x@mat
