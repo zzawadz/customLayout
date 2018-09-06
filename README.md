@@ -8,7 +8,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/zzawadz/customLayout?
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/zzawadz/customLayout/master.svg)](https://codecov.io/github/zzawadz/customLayout?branch=master)
 
-`customLayout` is a simple extension of basic `layout` function from
+`customLayout` is a simple extension of the basic `layout` function from
 `R`.
 
 Instalation:
@@ -23,7 +23,8 @@ Instalation:
 Basic functionality:
 --------------------
 
-You can simply create layouts like in base R:
+You can create layouts in the using the same syntax as in the base
+`layout` function:
 
     library(customLayout)
     lay <- layCreate(
@@ -42,8 +43,8 @@ You can simply create layouts like in base R:
 
 ![](README_files/figure-markdown_strict/base-2.png)
 
-But main strength of this package is in combining created layouts with
-specific ratio:
+But the main strength of this package is in combining created layouts
+with specific ratio:
 
     # lay will be 3 times wider that lay2
     # all ascects in lay and lay2 will be preserved
@@ -52,7 +53,7 @@ specific ratio:
 
 ![](README_files/figure-markdown_strict/combine-1.png)
 
-You can also create even more complicated layouts:
+You can create even more complicated layouts:
 
     lay3 <- layCreate(matrix(1:2))
     lay4 <- layRowBind(cl, lay3, heights = c(5, 2))
