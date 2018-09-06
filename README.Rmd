@@ -11,7 +11,7 @@ library(knitr)
 opts_chunk$set()
 ```
 
-`customLayout` is a simple extension of basic `layout` function from `R`.
+`customLayout` is a simple extension of the basic `layout` function from `R`.
 
 ## Instalation:
 
@@ -25,7 +25,7 @@ install_github("customLayout",username="zzawadz")
 
 ## Basic functionality:
 
-You can simply create layouts like in base R:
+You can create layouts in the using the same syntax as in the base `layout` function:
 
 ```{r base, message = FALSE, results = 'hide', fig.width = 4, fig.height = 2, fig.keep = 'all', fig.pos = 'H'}
 library(customLayout)
@@ -42,7 +42,7 @@ lay2 <- layCreate(
 layShow(lay2)
 ```
 
-But main strength of this package is in combining created layouts with specific ratio:
+But the main strength of this package is in combining created layouts with specific ratio:
 
 ```{r combine, message = FALSE, results = 'hide', fig.width = 4, fig.height = 2, tidy = FALSE}
 # lay will be 3 times wider that lay2
@@ -51,7 +51,7 @@ cl = layColBind(lay, lay2, widths = c(3, 1))
 layShow(cl)
 ```
 
-You can also create even more complicated layouts:
+You can create even more complicated layouts:
 
 ```{r complicated, message = FALSE, results = 'hide', fig.width = 4, fig.height = 2}
 lay3 <- layCreate(matrix(1:2))
