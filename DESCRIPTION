@@ -12,7 +12,8 @@ Suggests: covr,
     testthat,
     ggplot2,
     knitr,
-    rmarkdown
+    rmarkdown,
+    vdiffr
 VignetteBuilder: knitr
 URL: https://www.customlayout.zstat.pl/
 BugReports: https://github.com/zzawadz/customLayout/issues
