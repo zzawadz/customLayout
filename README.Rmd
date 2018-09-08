@@ -142,10 +142,10 @@ make_cut_plot <- function(cut) {
   pl <- ggplot(dd) +
       geom_point(aes(carat, price)) +
       facet_wrap("cut")
-  ggplotGrob(pl)
+  pl
 }
 
-grobs <- lapply(cuts, make_cut_plot)
+plots <- lapply(cuts, make_cut_plot)
 
-layGrid(grobs, cl)
+layGrid(plots, cl)
 ```

@@ -177,12 +177,12 @@
 <a class="sourceLine" id="cb11-17" data-line-number="17">  pl &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(dd) <span class="op">+</span></a>
 <a class="sourceLine" id="cb11-18" data-line-number="18"><span class="st">      </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(carat, price)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb11-19" data-line-number="19"><span class="st">      </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/facet_wrap">facet_wrap</a></span>(<span class="st">"cut"</span>)</a>
-<a class="sourceLine" id="cb11-20" data-line-number="20">  <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplotGrob">ggplotGrob</a></span>(pl)</a>
+<a class="sourceLine" id="cb11-20" data-line-number="20">  pl</a>
 <a class="sourceLine" id="cb11-21" data-line-number="21">}</a>
 <a class="sourceLine" id="cb11-22" data-line-number="22"></a>
-<a class="sourceLine" id="cb11-23" data-line-number="23">grobs &lt;-<span class="st"> </span><span class="kw">lapply</span>(cuts, make_cut_plot)</a>
+<a class="sourceLine" id="cb11-23" data-line-number="23">plots &lt;-<span class="st"> </span><span class="kw">lapply</span>(cuts, make_cut_plot)</a>
 <a class="sourceLine" id="cb11-24" data-line-number="24"></a>
-<a class="sourceLine" id="cb11-25" data-line-number="25"><span class="kw"><a href="reference/layGrid.html">layGrid</a></span>(grobs, cl)</a></code></pre></div>
+<a class="sourceLine" id="cb11-25" data-line-number="25"><span class="kw"><a href="reference/layGrid.html">layGrid</a></span>(plots, cl)</a></code></pre></div>
 <p><img src="index_files/figure-html/examplegrid-1.png" width="960"></p>
 </div>
 </div>

@@ -224,11 +224,10 @@ setMethod(
 #' pl3 <- qplot(cyl, gear, data = mtcars)
 #' pl4 <- qplot(qsec, am, data = mtcars)
 #' 
-#' grobs <- lapply(list(pl1, pl2, pl3, pl4), ggplotGrob)
-#' 
-#' layGrid(grobs, l3)
+#' layGrid(list(pl1, pl2, pl3, pl4), l3)
 #'
 layGrid <- function(grobs, lay, ...) {
+
   gridExtra::grid.arrange(
     grobs = grobs,
     layout_matrix = lay@mat,

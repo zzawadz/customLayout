@@ -136,9 +136,7 @@
 <span class='no'>pl3</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/qplot'>qplot</a></span>(<span class='no'>cyl</span>, <span class='no'>gear</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>)
 <span class='no'>pl4</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/qplot'>qplot</a></span>(<span class='no'>qsec</span>, <span class='no'>am</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>)
 
-<span class='no'>grobs</span> <span class='kw'>&lt;-</span> <span class='fu'>lapply</span>(<span class='fu'>list</span>(<span class='no'>pl1</span>, <span class='no'>pl2</span>, <span class='no'>pl3</span>, <span class='no'>pl4</span>), <span class='no'>ggplotGrob</span>)
-
-<span class='fu'>layGrid</span>(<span class='no'>grobs</span>, <span class='no'>l3</span>)</div><div class='img'><img src='layGrid-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>layGrid</span>(<span class='fu'>list</span>(<span class='no'>pl1</span>, <span class='no'>pl2</span>, <span class='no'>pl3</span>, <span class='no'>pl4</span>), <span class='no'>l3</span>)</div><div class='img'><img src='layGrid-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

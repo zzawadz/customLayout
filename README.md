@@ -154,11 +154,11 @@ Grid graphics (ggplot2 and friends)
       pl <- ggplot(dd) +
           geom_point(aes(carat, price)) +
           facet_wrap("cut")
-      ggplotGrob(pl)
+      pl
     }
 
-    grobs <- lapply(cuts, make_cut_plot)
+    plots <- lapply(cuts, make_cut_plot)
 
-    layGrid(grobs, cl)
+    layGrid(plots, cl)
 
 ![](README_files/figure-markdown_strict/examplegrid-1.png)
