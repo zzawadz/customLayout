@@ -1,5 +1,19 @@
+---
+output: github_document
+---
+
 customLayout
 ========================================================
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-"
+)
+```
 
 [![GitHub stars](https://img.shields.io/github/stars/zzawadz/customLayout.svg?style=social&label=Stars)](https://github.com/zzawadz/customLayout/stargazers)
 [![GitHub watchers](https://img.shields.io/github/watchers/zzawadz/customLayout.svg?style=social&label=Watch)](https://github.com/zzawadz/customLayout)
@@ -11,13 +25,6 @@ customLayout
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/zzawadz/customLayout?branch=master&svg=true)](https://ci.appveyor.com/project/zzawadz/customLayout)
 [![Coverage Status](https://img.shields.io/codecov/c/github/zzawadz/customLayout/master.svg)](https://codecov.io/github/zzawadz/customLayout?branch=master)
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-
-
-```{r setup, include=FALSE}
-# set global chunk options
-library(knitr)
-opts_chunk$set()
-```
 
 `customLayout` is a simple extension of the basic `layout` function from `R`.
 

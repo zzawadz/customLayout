@@ -1,11 +1,11 @@
 Package: customLayout
 Type: Package
-Title: Extended Version of Layout Functionality for Base and Grid Graphics Systems
+Title: Extended Version of Layout Functionality for 'Base' and 'Grid' Graphics Systems
 Version: 0.1
 Authors@R: c(person("Zygmunt", "Zawadzki", role = c("aut", "cre"), email = "zygmunt@zstat.pl"))
 Maintainer: Zygmunt Zawadzki <zygmunt@zstat.pl>
-Description: Create complicated drawing areas for multiple plots by combining much simpler layouts. It is an extended version of layout function from the graphics package, but It works with base and grid graphics.
-License: GPL-3 + file LICENSE
+Description: Create complicated drawing areas for multiple plots by combining much simpler layouts. It is an extended version of layout function from the 'graphics' package, but it also works with 'grid' graphics.
+License: GPL-3
 RoxygenNote: 6.1.0
 Imports: methods, gridExtra, utils, graphics, RColorBrewer
 Suggests: covr,
@@ -15,6 +15,5 @@ Suggests: covr,
     rmarkdown,
     vdiffr,
     gdtools
-VignetteBuilder: knitr
-URL: https://www.customlayout.zstat.pl/
+URL: https://www.customlayout.zstat.pl/, https://github.com/zzawadz/customLayout
 BugReports: https://github.com/zzawadz/customLayout/issues
