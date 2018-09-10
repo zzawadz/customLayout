@@ -1,16 +1,38 @@
 context("Split field")
 
-disp_basic_split_field <- function() {
-  l1 <- layCreate(matrix(c(1:4), ncol = 2), widths = c(4, 1))
-  l2 <- layCreate(matrix(c(1:4), ncol = 2), widths = c(1, 1))
-  l3 <- laySplitField(l1, l2, 2)
-  layShow(l3)
+make_disp_basic_split_field <- function(n = 2) {
+  function() {
+    l1 <- layCreate(
+      matrix(c(1:4), ncol = 2),
+      widths = c(4, 1))
+    l2 <- layCreate(
+      matrix(c(1:4), ncol = 2),
+      widths = c(1, 1))
+    l3 <- laySplitField(l1, l2, n)
+    layShow(l3)
+  }
 }
+
+disp_basic_split_field_1 <- make_disp_basic_split_field(1)
+disp_basic_split_field_2 <- make_disp_basic_split_field(2)
+disp_basic_split_field_3 <- make_disp_basic_split_field(3)
+disp_basic_split_field_4 <- make_disp_basic_split_field(4)
 
 test_that("Basic split field", {
   vdiffr::expect_doppelganger(
-    "basic split field",
-    disp_basic_split_field
+    "basic split field 1",
+    disp_basic_split_field_1
+  )
+  vdiffr::expect_doppelganger(
+    "basic split field 2",
+    disp_basic_split_field_2
+  )
+  vdiffr::expect_doppelganger(
+    "basic split field 3",
+    disp_basic_split_field_3
+  )
+  vdiffr::expect_doppelganger(
+    "basic split field 4",
+    disp_basic_split_field_4
   )
 })
-
