@@ -13,6 +13,9 @@ matrix:
       - R_CODECOV=true
   - r: oldrel
 
+r_packages: devtools
+r_github_packages: lionel-/vdiffr
+
 # environment variables set for all builds
 env:
   global:
