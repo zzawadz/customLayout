@@ -3,6 +3,7 @@
 export(layColBind)
 export(layCreate)
 export(layGrid)
+export(layOfficerLayout)
 export(layRowBind)
 export(laySet)
 export(layShow)
