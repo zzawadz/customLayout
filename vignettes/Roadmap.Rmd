@@ -1,0 +1,41 @@
+---
+title: "Roadmap"
+author: "Zygmunt Zawadzki"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+### v0.2.0 (work in progress)
+- Support for layouts in officer's pptx files.
+
+### v0.3.0
+- Make the package more robust:
+  - add more tests.
+  - add more informative error messages.
+
+
+### v0.4.0
+- Add more examples.
+- Compare the package with others (create vignettes).
+    - patchwork
+    - cowplot
+
+### v?.?.? (experimental):
+- Create layouts for shiny applications.
+
+## Done
+
+### v0.1.0
+
+- Support for base and gird graphics systems.

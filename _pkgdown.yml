@@ -10,3 +10,17 @@ reference:
   - layColBind
   - layRowBind
   - laySplitField
+
+navbar:
+  type: default
+  left:
+  - text: Intro
+    href: index.html
+  - text: Roadmap
+    href: articles/Roadmap.html
+  - text: Reference
+    href: reference/index.html
+  - text: Articles
+    menu:
+      - text: Layouts for officer's PowerPoint documents.
+        href: articles/layouts-for-officer-power-point-document.html

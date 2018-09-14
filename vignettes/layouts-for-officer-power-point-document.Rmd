@@ -1,5 +1,5 @@
 ---
-title: "Layouts for officer's PowerPoint document."
+title: "Layouts for officer's PowerPoint documents."
 author: "Zygmunt Zawadzki"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
