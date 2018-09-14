@@ -4,7 +4,10 @@
 \alias{layOfficerLayout}
 \title{Create layout for the officer PowerPoint slide.}
 \usage{
-layOfficerLayout(cl, slideWidth = 10, slideHeight = 7.5)
+layOfficerLayout(cl, slideWidth = 10, slideHeight = 7.5,
+  margins = c(bottom = 0.25, left = 0.25, top = 0.25, right = 0.25),
+  innerMargins = c(bottom = 0.025, left = 0.025, top = 0.025, right =
+  0.025))
 }
 \arguments{
 \item{cl}{layout object}
@@ -30,7 +33,7 @@ lay = layCreate(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1))
 lay2 = layCreate(matrix(1:3))
 cl = layColBind(lay,lay2, widths=c(3,1))
 
-allPositions <- layOfficerLayout(cl)
+allPositions <- layOfficerLayout(cl, innerMargins = rep(0.1,4))
 
 my_pres <- read_pptx() \%>\% 
   add_slide(master = "Office Theme", layout = "Two Content")

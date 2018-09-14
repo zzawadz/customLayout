@@ -44,8 +44,8 @@ layOfficerLayout <- function(cl, slideWidth = 10, slideHeight = 7.5,
     margins = c(bottom = 0.25, left = 0.25, top = 0.25, right = 0.25),
     innerMargins = c(bottom = 0.025, left = 0.025, top = 0.025, right = 0.025)
     ) {
-  x <- slideWidth  - sum(margins[c(1,3)])
-  y <- slideHeight - sum(margins[c(2,4)])
+  x <- slideWidth  - sum(margins[c(2,4)])
+  y <- slideHeight - sum(margins[c(1,3)])
   
   
   widths <- cl@widths / sum(cl@widths) * x
@@ -82,4 +82,63 @@ layOfficerAddInnerMargins <- function(x, innerMargins) {
   x[3] <- x[3] - sum(innerMargins[c(2,4)])
   x[4] <- x[4] - sum(innerMargins[c(1,3)])
   x
+}
+
+#' @export
+phl_with_gg <- function(x, olay, id, value, ...) {
+  
+  ph_with_gg_at(
+    x,
+    value,
+    width = olay[[id]]["width"],
+    height = olay[[id]]["height"], 
+    left = olay[[id]]["left"],
+    top = olay[[id]]["top"],
+    ...
+  )
+}
+
+#' @export
+phl_with_plot <- function(x, olay, id, plotFnc, ...) {
+  
+  file <- tempfile(fileext = ".png")
+  options(bitmapType = "cairo")
+  png(filename = file,
+      width = olay[[id]]["width"],
+      height = olay[[id]]["height"],
+      units = "in", 
+      res = 300, ...)
+  plotFnc()
+  dev.off()
+  on.exit(unlink(file))
+  
+  ph_with_img_at(
+    x,
+    file,
+    width = olay[[id]]["width"],
+    height = olay[[id]]["height"], 
+    left = olay[[id]]["left"],
+    top = olay[[id]]["top"]
+  )
+}
+
+#' @export
+phl_with_text <- function(x, olay, id, str, type = "title", ...) {
+  
+  sldSum <- slide_summary(x)
+  
+  x <- ph_empty_at(
+    x,
+    width = olay[[id]]["width"],
+    height = olay[[id]]["height"], 
+    left = olay[[id]]["left"],
+    top = olay[[id]]["top"],
+    template_type = type
+  )
+  
+  sldSum2 <- slide_summary(x)
+  index <- as.numeric(sldSum2[["id"]][!sldSum2[["id"]] %in% sldSum[["id"]]])
+  
+  ph_add_par(x, type = type, id_chr = as.character(index))
+  ph_add_text(x, str, type = type, id_chr = as.character(index), ...)
 }
