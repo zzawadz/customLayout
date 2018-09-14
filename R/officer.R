@@ -3,7 +3,7 @@
 #' @param cl layout object
 #' @param slideWidth width of the slide in inches (default 10)
 #' @param slideHeight height of the slide in inches (default 7.5)
-#' @param margins A numerical vector of the form c(bottom, left, top, right)
+#' @param margins A numerical vector of the form c(bottom, left, top, right)f
 #'  which gives the size of margins on the four sides of the layout.
 #'  The default is c(0.25, 0.25, 0.25, 0.25).
 #' @param innerMargins A numerical vector of the form c(bottom, left, top, right)
@@ -27,7 +27,7 @@
 #' lay2 = layCreate(matrix(1:3))
 #' cl = layColBind(lay,lay2, widths=c(3,1))
 #' 
-#' allPositions <- layOfficerLayout(cl, innerMargins = rep(0.1,4))
+#' allPositions <- phl_layout(cl, innerMargins = rep(0.1,4))
 #' 
 #' my_pres <- read_pptx() %>% 
 #'   add_slide(master = "Office Theme", layout = "Two Content")
@@ -90,7 +90,16 @@ layOfficerAddInnerMargins <- function(x, innerMargins) {
   x
 }
 
+#' add ggplot into layout placeholder
+#'
+#' @param x rpptx object
+#' @param olay an OfficerLayout object created using \code{\link{phl_layout}}
+#' @param id an single integer with an id of the placeholder from \code{olay} object.
+#' @param value a ggplot object
+#' @param ... other arguments passed to \code{\link{ph_with_gg_at}}
+#'
 #' @export
+#' 
 phl_with_gg <- function(x, olay, id, value, ...) {
   
   officer::ph_with_gg_at(
@@ -104,7 +113,16 @@ phl_with_gg <- function(x, olay, id, value, ...) {
   )
 }
 
+#' add plot into layout placeholder
+#'
+#' @param x rpptx object
+#' @param olay an OfficerLayout object created using \code{\link{phl_layout}}
+#' @param id an single integer with an id of the placeholder from \code{olay} object.
+#' @param plotFnc a function which creates a plot when called.
+#' @param ... other arguments passed to \code{\link{png}} function.
+#'
 #' @export
+#' 
 phl_with_plot <- function(x, olay, id, plotFnc, ...) {
   
   file <- tempfile(fileext = ".png")
@@ -128,7 +146,18 @@ phl_with_plot <- function(x, olay, id, plotFnc, ...) {
   )
 }
 
+
+#' add text into layout placeholder
+#'
+#' @param x rpptx object
+#' @param olay an OfficerLayout object created using \code{\link{phl_layout}}
+#' @param id an single integer with an id of the placeholder from \code{olay} object.
+#' @param str text to add.
+#' @param type type of the text placeholder. See \code{\link{ph_add_text}} for more details.
+#' @param ... other arguments passed to \code{\link{ph_add_text}}.
+#'
 #' @export
+#'
 phl_with_text <- function(x, olay, id, str, type = "title", ...) {
   
   sldSum <- officer::slide_summary(x)
