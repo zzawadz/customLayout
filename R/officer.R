@@ -21,7 +21,7 @@
 #' lay2 = layCreate(matrix(1:3))
 #' cl = layColBind(lay,lay2, widths=c(3,1))
 #' 
-#' allPositions <- layOfficerLayout(cl)
+#' allPositions <- layOfficerLayout(cl, innerMargins = rep(0.1,4))
 #' 
 #' my_pres <- read_pptx() %>% 
 #'   add_slide(master = "Office Theme", layout = "Two Content")
@@ -40,9 +40,12 @@
 #' if(!dir.exists("tmp")) dir.create("tmp")
 #' print(my_pres, target = "tmp/test-officer-layout.pptx")
 #'
-layOfficerLayout <- function(cl, slideWidth = 10, slideHeight = 7.5) {
-  x <- slideWidth
-  y <- slideHeight
+layOfficerLayout <- function(cl, slideWidth = 10, slideHeight = 7.5,
+    margins = c(bottom = 0.25, left = 0.25, top = 0.25, right = 0.25),
+    innerMargins = c(bottom = 0.025, left = 0.025, top = 0.025, right = 0.025)
+    ) {
+  x <- slideWidth  - sum(margins[c(1,3)])
+  y <- slideHeight - sum(margins[c(2,4)])
   
   
   widths <- cl@widths / sum(cl@widths) * x
@@ -51,7 +54,6 @@ layOfficerLayout <- function(cl, slideWidth = 10, slideHeight = 7.5) {
   ids <- seq_len(max(cl@mat))
   
   mat <- cl@mat
-  id <- 1
   
   startWidths <- c(0, cumsum(widths))
   startHeights <- c(0, cumsum(heights))
@@ -60,14 +62,24 @@ layOfficerLayout <- function(cl, slideWidth = 10, slideHeight = 7.5) {
     yy <- apply(mat, 1, function(x) any(x == id))
     xx <- apply(mat, 2, function(x) any(x == id))
     
-    c(
-      left = startWidths[which(xx)[1]],
-      top = startHeights[which(yy)[1]],
+    res <- c(
+      left = as.numeric(startWidths[which(xx)[1]] + margins[2]),
+      top = as.numeric(startHeights[which(yy)[1]] + margins[3]),
       width = sum(xx * widths),
       height = sum(yy * heights)
     )
+    
+    layOfficerAddInnerMargins(res, innerMargins = innerMargins)
   }
   
   allPositions <- setNames(lapply(ids, getPositions), ids)
   allPositions
+}
+
+layOfficerAddInnerMargins <- function(x, innerMargins) {
+  x[1] <- x[1] + innerMargins[2]
+  x[2] <- x[2] + innerMargins[3]
+  x[3] <- x[3] - sum(innerMargins[c(2,4)])
+  x[4] <- x[4] - sum(innerMargins[c(1,3)])
+  x
 }
