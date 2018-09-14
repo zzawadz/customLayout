@@ -3,7 +3,13 @@
 #' @param cl layout object
 #' @param slideWidth width of the slide in inches (default 10)
 #' @param slideHeight height of the slide in inches (default 7.5)
-#'
+#' @param margins A numerical vector of the form c(bottom, left, top, right)
+#'  which gives the size of margins on the four sides of the layout.
+#'  The default is c(0.25, 0.25, 0.25, 0.25).
+#' @param innerMargins A numerical vector of the form c(bottom, left, top, right)
+#'  which gives the size of margins on the four sides of the each placeholder in the layout.
+#'  The default is c(0.025, 0.025, 0.025, 0.025).
+#'  
 #' @return
 #' 
 #' A list containing the coordinates of the slide segments created from layout scheme.
@@ -29,7 +35,7 @@
 #' p <- qplot(mpg, wt, data = mtcars)
 #' 
 #' for(pos in allPositions) {
-#'   my_pres <- my_pres %>% ph_with_gg_at(
+#'   my_pres <- my_pres %>% officer::ph_with_gg_at(
 #'     p, 
 #'     width = pos["width"],
 #'     height = pos["height"], 
@@ -40,7 +46,7 @@
 #' if(!dir.exists("tmp")) dir.create("tmp")
 #' print(my_pres, target = "tmp/test-officer-layout.pptx")
 #'
-layOfficerLayout <- function(cl, slideWidth = 10, slideHeight = 7.5,
+phl_layout <- function(cl, slideWidth = 10, slideHeight = 7.5,
     margins = c(bottom = 0.25, left = 0.25, top = 0.25, right = 0.25),
     innerMargins = c(bottom = 0.025, left = 0.025, top = 0.025, right = 0.025)
     ) {
@@ -72,7 +78,7 @@ layOfficerLayout <- function(cl, slideWidth = 10, slideHeight = 7.5,
     layOfficerAddInnerMargins(res, innerMargins = innerMargins)
   }
   
-  allPositions <- setNames(lapply(ids, getPositions), ids)
+  allPositions <- stats::setNames(lapply(ids, getPositions), ids)
   allPositions
 }
 
@@ -87,7 +93,7 @@ layOfficerAddInnerMargins <- function(x, innerMargins) {
 #' @export
 phl_with_gg <- function(x, olay, id, value, ...) {
   
-  ph_with_gg_at(
+  officer::ph_with_gg_at(
     x,
     value,
     width = olay[[id]]["width"],
@@ -103,16 +109,16 @@ phl_with_plot <- function(x, olay, id, plotFnc, ...) {
   
   file <- tempfile(fileext = ".png")
   options(bitmapType = "cairo")
-  png(filename = file,
+  grDevices::png(filename = file,
       width = olay[[id]]["width"],
       height = olay[[id]]["height"],
       units = "in", 
       res = 300, ...)
   plotFnc()
-  dev.off()
+  grDevices::dev.off()
   on.exit(unlink(file))
   
-  ph_with_img_at(
+  officer::ph_with_img_at(
     x,
     file,
     width = olay[[id]]["width"],
@@ -125,9 +131,9 @@ phl_with_plot <- function(x, olay, id, plotFnc, ...) {
 #' @export
 phl_with_text <- function(x, olay, id, str, type = "title", ...) {
   
-  sldSum <- slide_summary(x)
+  sldSum <- officer::slide_summary(x)
   
-  x <- ph_empty_at(
+  x <- officer::ph_empty_at(
     x,
     width = olay[[id]]["width"],
     height = olay[[id]]["height"], 
@@ -136,9 +142,9 @@ phl_with_text <- function(x, olay, id, str, type = "title", ...) {
     template_type = type
   )
   
-  sldSum2 <- slide_summary(x)
+  sldSum2 <- officer::slide_summary(x)
   index <- as.numeric(sldSum2[["id"]][!sldSum2[["id"]] %in% sldSum[["id"]]])
   
-  ph_add_par(x, type = type, id_chr = as.character(index))
-  ph_add_text(x, str, type = type, id_chr = as.character(index), ...)
+  officer::ph_add_par(x, type = type, id_chr = as.character(index))
+  officer::ph_add_text(x, str, type = type, id_chr = as.character(index), ...)
 }

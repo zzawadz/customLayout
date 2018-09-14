@@ -14,7 +14,8 @@ Suggests: covr,
     knitr,
     rmarkdown,
     vdiffr,
-    gdtools
+    gdtools,
+    magrittr
 URL: https://www.customlayout.zstat.pl/, https://github.com/zzawadz/customLayout
 BugReports: https://github.com/zzawadz/customLayout/issues
 VignetteBuilder: knitr
