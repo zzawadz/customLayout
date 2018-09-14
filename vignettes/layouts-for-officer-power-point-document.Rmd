@@ -78,5 +78,6 @@ my_pres <- phl_with_text(my_pres, offLayout, 5, "Lorem ipsum", type = "body")
 ```
 
 ```{r, eval=FALSE}
-print(my_pres, "../tmp/officer-test-3.pptx")
+if(!dir.exists("../tmp")) dir.create("../tmp")
+print(my_pres, "../tmp/officer-test.pptx")
 ```
