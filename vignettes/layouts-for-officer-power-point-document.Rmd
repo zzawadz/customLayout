@@ -36,7 +36,7 @@ layShow(layout)
 ```{r}
 
 ## create officer layout
-offLayout <- layOfficerLayout(layout,
+offLayout <- phl_layout(layout,
     margins = c(0.25, 0.25, 0.25, 0.25),
     innerMargins = rep(0.15,4))
 
@@ -74,6 +74,9 @@ my_pres <- phl_with_text(my_pres, offLayout, 1, "Custom Layout")
 my_pres <- phl_with_text(my_pres, offLayout, 3, "Some text", type = "body")
 my_pres <- phl_with_text(my_pres, offLayout, 5, "Lorem ipsum", type = "body")
 
-print(my_pres, "../tmp/officer-test.pptx")
+
 ```
 
+```{r, eval=FALSE}
+print(my_pres, "../tmp/officer-test-3.pptx")
+```
