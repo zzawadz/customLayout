@@ -19,7 +19,7 @@ Set custom layout.
 
 lplots = lay_new(matrix(1:2))
 lpie   = lay_new(1)
-lay = layColBind(lplots,lpie)
+lay = lay_bind_col(lplots,lpie)
 lay_set(lay)
 plot(1:10)
 plot(1:10)

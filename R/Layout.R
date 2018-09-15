@@ -17,8 +17,8 @@ setClass("Layout", slots=c(mat="matrix",widths = "numeric",heights = "numeric"))
 #' par(mar = c(3,2,2,1))
 #' lay  <- lay_new(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1))
 #' lay2 <- lay_new(matrix(1:3))
-#' cl <- layColBind(lay,lay2, widths=c(3,1))
-#' laySet(cl) # initialize drawing area
+#' cl <- lay_bind_col(lay,lay2, widths=c(3,1))
+#' lay_set(cl) # initialize drawing area
 #' plot(1:100 + rnorm(100))
 #' plot(rnorm(100), type = "l")
 #' hist(rnorm(500))
@@ -65,7 +65,7 @@ layCreate <- lay_new
 #' 
 #' lplots = lay_new(matrix(1:2))
 #' lpie   = lay_new(1)
-#' lay = layColBind(lplots,lpie)
+#' lay = lay_bind_col(lplots,lpie)
 #' lay_set(lay)
 #' plot(1:10)
 #' plot(1:10)
@@ -95,7 +95,7 @@ laySet <- lay_set
 #' @examples
 #' l1 = lay_new(matrix(c(1:2),ncol = 2),widths=c(4,1))
 #' l2 = lay_new(matrix(c(1:4),ncol = 2),widths=c(1,1))
-#' lb = layColBind(l1,l2)
+#' lb = lay_bind_col(l1,l2)
 #' lay_show(lb)
 #' 
 lay_bind_col <- function(
@@ -154,7 +154,7 @@ layColBind <- lay_bind_col
 #' @examples
 #' l1 = lay_new(matrix(c(1:2),ncol = 2),widths=c(4,1))
 #' l2 = lay_new(matrix(c(1:4),ncol = 2),widths=c(1,1))
-#' lb = layRowBind(l1,l2)
+#' lb = lay_bind_row(l1,l2)
 #' lay_show(lb)
 #' 
 lay_bind_row <- function(
@@ -213,14 +213,14 @@ layRowBind <- lay_bind_row
 #' 
 #' l1 <- lay_new(matrix(1:2, ncol = 1), heights = c(2, 3))
 #' l2 <- lay_new(matrix(1:2, ncol = 1), heights = c(1, 3))
-#' l3 <- layColBind(l1, l2)
+#' l3 <- lay_bind_col(l1, l2)
 #' 
 #' pl1 <- qplot(mpg, wt, data = mtcars)
 #' pl2 <- qplot(mpg, gear, data = mtcars)
 #' pl3 <- qplot(cyl, gear, data = mtcars)
 #' pl4 <- qplot(qsec, am, data = mtcars)
 #' 
-#' layGrid(list(pl1, pl2, pl3, pl4), l3)
+#' lay_grid(list(pl1, pl2, pl3, pl4), l3)
 #'
 lay_grid <- function(grobs, lay, ...) {
 
