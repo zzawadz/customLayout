@@ -16,30 +16,40 @@ knitr::opts_chunk$set(
 )
 ```
 
+This document shows how to work with PowerPoint files in R using customLayout approach.
+
+Let's start by creating a layout. `lay` and `lay2` will be used to store the content of the slide (plots, tables, text), and `titleLay` will serve as a container for the title of the slide. 
+
+It seems that merging the title placeholder in the last step allows to the easy control its ratio to the content of the slide. Note that `titleLay` is merged with `lay3` (combination of `lay` and `lay2`) using a ratio 1:7, so the content of the slide will occupy about 87,5% of the area (`7/(1+7)`). 
+
 ```{r}
 library(customLayout)
 library(officer)
 library(magrittr)
 library(ggplot2)
 
-lay = layCreate(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1))
-lay2 = layCreate(matrix(1:3))
-titleLay <- layCreate(1, widths = 1, heights = 1)
+lay  <- lay_new(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1))
+lay2 <- lay_new(matrix(1:3))
+titleLay <- lay_new(1, widths = 1, heights = 1)
 
-lay3 = layColBind(lay,lay2, widths=c(3,1))
-layout <- layRowBind(titleLay, lay3, heights = c(1,7))
+lay3   <- lay_bind_col(lay,lay2, widths=c(3,1))
+layout <- lay_bind_row(titleLay, lay3, heights = c(1,7))
 
-layShow(layout)
+lay_show(layout)
 ```
 
+In the next step, one needs to create an officer layout from an existing `layout` object. It is done by calling `phl_layout`, which allows specifying the target size of the slide and margins.
 
 ```{r}
-
 ## create officer layout
 offLayout <- phl_layout(layout,
     margins = c(0.25, 0.25, 0.25, 0.25),
     innerMargins = rep(0.15,4))
+```
 
+Then, the elements of the slide are added using functions with `phl_*` prefix. The code below adds two ggplot plots into the slide using `phl_with_gg`.
+
+```{r}
 my_pres <- read_pptx() %>%
   add_slide(master = "Office Theme", layout = "Title and Content")
 
@@ -49,7 +59,11 @@ plot1 <- qplot(mpg, wt, data = mtcars)
 plot3 <- qplot(mpg, qsec, data = mtcars)
 my_pres <- phl_with_gg(my_pres, offLayout, 2, plot1)
 my_pres <- phl_with_gg(my_pres, offLayout, 4, plot3)
+```
 
+It is also worth to note that pptx files allow intermixing base graphics with grid graphics (ggplot2 and friends). The example below adds a few pie charts (note from the author - I'm not a fan of pie charts. Please don't use them on real slides). In this case `phl_with_plot` requires a function which creates a plot.
+
+```{r}
 pl5 <- function() {
   par(mar = rep(0.1, 4))
   pie(c(3, 4, 6), col = 2:4)
@@ -73,11 +87,9 @@ my_pres <- phl_with_plot(my_pres, offLayout, 8, pl7)
 my_pres <- phl_with_text(my_pres, offLayout, 1, "Custom Layout")
 my_pres <- phl_with_text(my_pres, offLayout, 3, "Some text", type = "body")
 my_pres <- phl_with_text(my_pres, offLayout, 5, "Lorem ipsum", type = "body")
-
-
 ```
 
 ```{r, eval=FALSE}
-if(!dir.exists("../tmp")) dir.create("../tmp")
-print(my_pres, "../tmp/officer-test.pptx")
+file <- tempfile(fileext = ".pptx")
+print(my_pres, file)
 ```
