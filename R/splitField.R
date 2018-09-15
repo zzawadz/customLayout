@@ -6,15 +6,15 @@
 #' @param field id of a field from \code{lay}.
 #'
 #' @export
-#'
+#' @rdname lay_split_field
 #' @examples
 #' 
-#' l1 <- layCreate(matrix(c(1:4), ncol = 2), widths = c(4, 1))
-#' l2 <- layCreate(matrix(c(1:4), ncol = 2), widths = c(1, 1))
-#' l3 <- laySplitField(l1, l2, 2)
-#' layShow(l3)
+#' l1 <- lay_new(matrix(c(1:4), ncol = 2), widths = c(4, 1))
+#' l2 <- lay_new(matrix(c(1:4), ncol = 2), widths = c(1, 1))
+#' l3 <- lay_split_field(l1, l2, 2)
+#' lay_show(l3)
 #' 
-laySplitField <- function(lay, newlay, field)
+lay_split_field <- function(lay, newlay, field)
 {
 
   n <- field
@@ -100,3 +100,7 @@ laySplitField <- function(lay, newlay, field)
   
   lsnew
 }
+
+#' @export
+#' @rdname lay_split_field
+laySplitField <- lay_split_field
