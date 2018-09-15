@@ -18,6 +18,8 @@ knitr::opts_chunk$set(
 
 ### v0.2.0 (work in progress)
 - Support for layouts in officer's pptx files.
+- Use underscore in function names (change from `laySet` to `lay_set`).
+- Deprecate `camelCase` functions (they will be removed in the 0.4.0 release).
 
 ### v0.3.0
 - Make the package more robust:
