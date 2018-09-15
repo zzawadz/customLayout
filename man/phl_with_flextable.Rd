@@ -2,7 +2,7 @@
 % Please edit documentation in R/flextable.R
 \name{phl_with_flextable}
 \alias{phl_with_flextable}
-\title{Title}
+\title{add flextable into layout placeholder}
 \usage{
 phl_with_flextable(x, olay, id, value)
 }
@@ -17,7 +17,7 @@ phl_with_flextable(x, olay, id, value)
 Possibly the result of the \code{\link{phl_adjust_table}}}
 }
 \description{
-Title
+add flextable into layout placeholder
 }
 \examples{
 
@@ -43,7 +43,9 @@ x2 <- tail(iris, 10)[,c(1,5)]
 xf2 <- phl_adjust_table(x, offLayout, 2)
 pptx <- phl_with_flextable(pptx, offLayout, 2, xf2)
 
+\dontrun{
 file <- tempfile(fileext = ".pptx")
 print(pptx, target = file)
+}
 
 }

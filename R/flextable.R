@@ -62,20 +62,20 @@ phl_adjust_table <- function(x, olay, id) {
   dims <- olay[[id]]
   
   sizes <- phl_calc_fontsize(data = x, height = dims["height"])
-  flTable <- flextable(x, cheight = sizes["height"])
-  flTable <- fontsize(flTable, size = sizes["fs"], part = "all")
+  flTable <- flextable::flextable(x, cheight = sizes["height"])
+  flTable <- flextable::fontsize(flTable, size = sizes["fs"], part = "all")
   
-  widths <- dim_pretty(flTable)$widths
+  widths <- flextable::dim_pretty(flTable)$widths
   if(sum(widths) > dims[["width"]]) {
     warning("Calculated withd exceedes the placeholder width.")
   }
   widths <- widths / sum(widths) * dims[["width"]]
   
-  flTable <- width(flTable, width = widths)
+  flTable <- flextable::width(flTable, width = widths)
   flTable
 }
 
-#' Title
+#' add flextable into layout placeholder
 #'
 #' @param x rpptx object
 #' @param olay an OfficerLayout object created using \code{\link{phl_layout}}.
@@ -83,7 +83,6 @@ phl_adjust_table <- function(x, olay, id) {
 #' @param value a \code{flextable} object. 
 #'    Possibly the result of the \code{\link{phl_adjust_table}}
 #'
-#' @return
 #' @export
 #'
 #' @examples
@@ -110,8 +109,10 @@ phl_adjust_table <- function(x, olay, id) {
 #' xf2 <- phl_adjust_table(x, offLayout, 2)
 #' pptx <- phl_with_flextable(pptx, offLayout, 2, xf2)
 #' 
+#' \dontrun{
 #' file <- tempfile(fileext = ".pptx")
 #' print(pptx, target = file)
+#' }
 #' 
 phl_with_flextable <- function(x, olay, id, value) {
   
