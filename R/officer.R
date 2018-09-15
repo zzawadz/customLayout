@@ -177,3 +177,26 @@ phl_with_text <- function(x, olay, id, str, type = "title", ...) {
   officer::ph_add_par(x, type = type, id_chr = as.character(index))
   officer::ph_add_text(x, str, type = type, id_chr = as.character(index), ...)
 }
+
+#' add table into layout placeholder
+#'
+#' @param x rpptx object
+#' @param olay an OfficerLayout object created using \code{\link{phl_layout}}
+#' @param id an single integer with an id of the placeholder from \code{olay} object.
+#' @param value a data.frame
+#' @param ... other arguments passed to \code{\link{ph_with_table_at}}
+#'
+#' @export
+#' 
+phl_with_table <- function(x, olay, id, value, ...) {
+  
+  officer::ph_with_table_at(
+    x,
+    value,
+    width = olay[[id]]["width"],
+    height = olay[[id]]["height"], 
+    left = olay[[id]]["left"],
+    top = olay[[id]]["top"],
+    ...
+  )
+}
