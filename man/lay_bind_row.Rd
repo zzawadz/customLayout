@@ -25,9 +25,9 @@ the first layout.}
 Take two Layout objects and combine by rows.
 }
 \examples{
-l1 = layCreate(matrix(c(1:2),ncol = 2),widths=c(4,1))
-l2 = layCreate(matrix(c(1:4),ncol = 2),widths=c(1,1))
+l1 = lay_new(matrix(c(1:2),ncol = 2),widths=c(4,1))
+l2 = lay_new(matrix(c(1:4),ncol = 2),widths=c(1,1))
 lb = layRowBind(l1,l2)
-layShow(lb)
+lay_show(lb)
 
 }

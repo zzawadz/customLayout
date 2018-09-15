@@ -22,9 +22,9 @@ add flextable into layout placeholder
 \examples{
 
 library(officer)
-lay <- layCreate(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1))
-lay2 <- layCreate(matrix(1:3))
-lay3 <- layColBind(lay,lay2, widths=c(3,1))
+lay <-  lay_new(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1))
+lay2 <- lay_new(matrix(1:3))
+lay3 <- lay_bind_col(lay,lay2, widths=c(3,1))
 offLayout <- phl_layout(lay3)
 
 pptx <- read_pptx()

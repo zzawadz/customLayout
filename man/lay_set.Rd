@@ -17,8 +17,8 @@ Set custom layout.
 }
 \examples{
 
-lplots = layCreate(matrix(1:2))
-lpie   = layCreate(1)
+lplots = lay_new(matrix(1:2))
+lpie   = lay_new(1)
 lay = layColBind(lplots,lpie)
 lay_set(lay)
 plot(1:10)

@@ -63,8 +63,8 @@ layCreate <- lay_new
 #' @rdname lay_set
 #' @examples
 #' 
-#' lplots = layCreate(matrix(1:2))
-#' lpie   = layCreate(1)
+#' lplots = lay_new(matrix(1:2))
+#' lpie   = lay_new(1)
 #' lay = layColBind(lplots,lpie)
 #' lay_set(lay)
 #' plot(1:10)
@@ -93,10 +93,10 @@ laySet <- lay_set
 #' @rdname lay_bind_col
 #' @export
 #' @examples
-#' l1 = layCreate(matrix(c(1:2),ncol = 2),widths=c(4,1))
-#' l2 = layCreate(matrix(c(1:4),ncol = 2),widths=c(1,1))
+#' l1 = lay_new(matrix(c(1:2),ncol = 2),widths=c(4,1))
+#' l2 = lay_new(matrix(c(1:4),ncol = 2),widths=c(1,1))
 #' lb = layColBind(l1,l2)
-#' layShow(lb)
+#' lay_show(lb)
 #' 
 lay_bind_col <- function(
     x, y,
@@ -152,10 +152,10 @@ layColBind <- lay_bind_col
 #' @rdname lay_bind_row
 #' @export
 #' @examples
-#' l1 = layCreate(matrix(c(1:2),ncol = 2),widths=c(4,1))
-#' l2 = layCreate(matrix(c(1:4),ncol = 2),widths=c(1,1))
+#' l1 = lay_new(matrix(c(1:2),ncol = 2),widths=c(4,1))
+#' l2 = lay_new(matrix(c(1:4),ncol = 2),widths=c(1,1))
 #' lb = layRowBind(l1,l2)
-#' layShow(lb)
+#' lay_show(lb)
 #' 
 lay_bind_row <- function(
    x,
@@ -211,8 +211,8 @@ layRowBind <- lay_bind_row
 #' 
 #' library(ggplot2)
 #' 
-#' l1 <- layCreate(matrix(1:2, ncol = 1), heights = c(2, 3))
-#' l2 <- layCreate(matrix(1:2, ncol = 1), heights = c(1, 3))
+#' l1 <- lay_new(matrix(1:2, ncol = 1), heights = c(2, 3))
+#' l2 <- lay_new(matrix(1:2, ncol = 1), heights = c(1, 3))
 #' l3 <- layColBind(l1, l2)
 #' 
 #' pl1 <- qplot(mpg, wt, data = mtcars)

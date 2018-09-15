@@ -48,13 +48,13 @@ lay <- layCreate(
   matrix(1:4, nc = 2),
   widths = c(3, 2),
   heights = c(2, 1))
-layShow(lay)
+lay_show(lay)
 
 lay2 <- layCreate(
   matrix(1:4, nc = 2),
   widths = c(3, 5),
   heights = c(2, 4))
-layShow(lay2)
+lay_show(lay2)
 ```
 
 But the main strength of this package is in combining created layouts with specific ratio:
@@ -63,7 +63,7 @@ But the main strength of this package is in combining created layouts with speci
 # lay will be 3 times wider that lay2
 # all ascects in lay and lay2 will be preserved
 cl = layColBind(lay, lay2, widths = c(3, 1))
-layShow(cl)
+lay_show(cl)
 ```
 
 You can create even more complicated layouts:
@@ -71,10 +71,10 @@ You can create even more complicated layouts:
 ```{r complicated, message = FALSE, results = 'hide', fig.width = 4, fig.height = 2}
 lay3 <- layCreate(matrix(1:2))
 lay4 <- layRowBind(cl, lay3, heights = c(5, 2))
-layShow(lay4)
+lay_show(lay4)
 
 lay5 <- layColBind(lay4, lay3, widths = c(5, 2))
-layShow(lay5)
+lay_show(lay5)
 ```
 
 
@@ -88,16 +88,16 @@ lay <- layCreate(
   matrix(1:4, nc = 2),
   widths = c(3, 2),
   heights = c(2, 1))
-layShow(lay)
+lay_show(lay)
 lay2 <- layCreate(
   matrix(1:4, nc = 2),
   widths = c(3, 5),
   heights = c(2, 4))
-layShow(lay2)
+lay_show(lay2)
 
 # Split field 4 from lay into lay2:
 slay <- laySplitField(lay, lay2, field = 4)
-layShow(slay)
+lay_show(slay)
 ```
 
 

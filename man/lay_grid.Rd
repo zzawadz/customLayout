@@ -23,8 +23,8 @@ Use Layout object with grid graphics.
 
 library(ggplot2)
 
-l1 <- layCreate(matrix(1:2, ncol = 1), heights = c(2, 3))
-l2 <- layCreate(matrix(1:2, ncol = 1), heights = c(1, 3))
+l1 <- lay_new(matrix(1:2, ncol = 1), heights = c(2, 3))
+l2 <- lay_new(matrix(1:2, ncol = 1), heights = c(1, 3))
 l3 <- layColBind(l1, l2)
 
 pl1 <- qplot(mpg, wt, data = mtcars)
