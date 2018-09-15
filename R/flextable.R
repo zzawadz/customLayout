@@ -75,7 +75,45 @@ phl_adjust_table <- function(x, olay, id) {
   flTable
 }
 
-phl_with_flextable <- function(x, value, olay, id) {
+#' Title
+#'
+#' @param x rpptx object
+#' @param olay an OfficerLayout object created using \code{\link{phl_layout}}.
+#' @param id an single integer with an id of the placeholder from olay object.
+#' @param value a \code{flextable} object. 
+#'    Possibly the result of the \code{\link{phl_adjust_table}}
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' 
+#' library(officer)
+#' lay <- layCreate(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1))
+#' lay2 <- layCreate(matrix(1:3))
+#' lay3 <- layColBind(lay,lay2, widths=c(3,1))
+#' offLayout <- phl_layout(lay3)
+#' 
+#' pptx <- read_pptx()
+#' pptx <- add_slide(
+#'   pptx, 
+#'   master = "Office Theme",
+#'   layout = "Title and Content"
+#' )
+#' 
+#' # add table to pptx file
+#' x <- tail(iris, 10)[,c(1,5)]
+#' xf <- phl_adjust_table(x, offLayout, 1)
+#' pptx <- phl_with_flextable(pptx, offLayout, 1, xf)
+#' 
+#' x2 <- tail(iris, 10)[,c(1,5)]
+#' xf2 <- phl_adjust_table(x, offLayout, 2)
+#' pptx <- phl_with_flextable(pptx, offLayout, 2, xf2)
+#' 
+#' file <- tempfile(fileext = ".pptx")
+#' print(pptx, target = file)
+#' 
+phl_with_flextable <- function(x, olay, id, value) {
   
   tableWidths <- vapply(value[c("header", "body", "footer")],
          function(x) sum(x$colwidths), FUN.VALUE = c(0.0))
