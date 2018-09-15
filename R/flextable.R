@@ -26,13 +26,37 @@ phl_calc_fontsize <- function(data, height) {
   res
 }
 
-# lay <- layCreate(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1))
-# lay2 <- layCreate(matrix(1:3))
-# lay3 <- layColBind(lay,lay2, widths=c(3,1))
-# offLayout <- phl_layout(lay3)
-# 
-# 
-
+#' Create flextable for layout's placeholder.
+#' 
+#' @description 
+#' 
+#' Create flextable from data.frame and try to fit the result into layout's placeholder.
+#' 
+#' @param x data.frame.
+#' @param olay officer layout created using \code{\link{phl_layout}}.
+#' @param id of placeholder in \code{olay}.
+#'
+#' @return
+#' 
+#' A \code{flextable} object, which should 
+#' fit into the layout's placeholder.
+#' 
+#' The result should be ready to pass it 
+#' into \code{\link{phl_with_flextable}}.
+#' 
+#' @export
+#'
+#' @examples
+#' 
+#' lay <- layCreate(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1))
+#' lay2 <- layCreate(matrix(1:3))
+#' lay3 <- layColBind(lay,lay2, widths=c(3,1))
+#' offLayout <- phl_layout(lay3)
+#' 
+#' x <- tail(iris, 10)[,c(1,5)]
+#' phl_adjust_table(x, offLayout, 1)
+#' phl_adjust_table(x, offLayout, 2)
+#' 
 phl_adjust_table <- function(x, olay, id) {
   
   dims <- olay[[id]]
