@@ -1,3 +1,23 @@
+#' Calculate optimal fontsize and height of the cell for given height for flextable.
+#'
+#' @param data data.frame.
+#' @param height single numeric value with desired height.
+#'
+#' @return 
+#' 
+#' A named numeric vector containing two elements:
+#' \itemize{
+#'   \item \code{fs} font size
+#'   \item \code{height} of the single cell.
+#' }
+#' 
+#' @export
+#'
+#' @examples
+#' 
+#' x <- tail(iris, 10)[,c(1,5)]
+#' phl_calc_fontsize(x, 5)
+#' 
 phl_calc_fontsize <- function(data, height) {
   nrows <- nrow(data) + 1 # add header
   const <- 0.01862963
@@ -11,7 +31,7 @@ phl_calc_fontsize <- function(data, height) {
 # lay3 <- layColBind(lay,lay2, widths=c(3,1))
 # offLayout <- phl_layout(lay3)
 # 
-# x <- tail(iris, 10)[,c(1,5)]
+# 
 
 phl_adjust_table <- function(x, olay, id) {
   
