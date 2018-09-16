@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">customLayout</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -165,9 +165,9 @@ The default is c(0.025, 0.025, 0.025, 0.025).</p></td>
 <span class='fu'>library</span>(<span class='no'>magrittr</span>)
 <span class='fu'>library</span>(<span class='no'>ggplot2</span>)
 
-<span class='no'>lay</span> <span class='kw'>=</span> <span class='fu'><a href='layCreate.html'>layCreate</a></span>(<span class='fu'>matrix</span>(<span class='fl'>1</span>:<span class='fl'>4</span>,<span class='kw'>nc</span><span class='kw'>=</span><span class='fl'>2</span>),<span class='kw'>widths</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>3</span>,<span class='fl'>2</span>),<span class='kw'>heights</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>2</span>,<span class='fl'>1</span>))
-<span class='no'>lay2</span> <span class='kw'>=</span> <span class='fu'><a href='layCreate.html'>layCreate</a></span>(<span class='fu'>matrix</span>(<span class='fl'>1</span>:<span class='fl'>3</span>))
-<span class='no'>cl</span> <span class='kw'>=</span> <span class='fu'><a href='layColBind.html'>layColBind</a></span>(<span class='no'>lay</span>,<span class='no'>lay2</span>, <span class='kw'>widths</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>3</span>,<span class='fl'>1</span>))
+<span class='no'>lay</span> <span class='kw'>=</span> <span class='fu'><a href='lay_new.html'>lay_new</a></span>(<span class='fu'>matrix</span>(<span class='fl'>1</span>:<span class='fl'>4</span>,<span class='kw'>nc</span><span class='kw'>=</span><span class='fl'>2</span>),<span class='kw'>widths</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>3</span>,<span class='fl'>2</span>),<span class='kw'>heights</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>2</span>,<span class='fl'>1</span>))
+<span class='no'>lay2</span> <span class='kw'>=</span> <span class='fu'><a href='lay_new.html'>lay_new</a></span>(<span class='fu'>matrix</span>(<span class='fl'>1</span>:<span class='fl'>3</span>))
+<span class='no'>cl</span> <span class='kw'>=</span> <span class='fu'><a href='lay_bind_col.html'>lay_bind_col</a></span>(<span class='no'>lay</span>,<span class='no'>lay2</span>, <span class='kw'>widths</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>3</span>,<span class='fl'>1</span>))
 
 <span class='no'>allPositions</span> <span class='kw'>&lt;-</span> <span class='fu'>phl_layout</span>(<span class='no'>cl</span>, <span class='kw'>innerMargins</span> <span class='kw'>=</span> <span class='fu'>rep</span>(<span class='fl'>0.1</span>,<span class='fl'>4</span>))
 

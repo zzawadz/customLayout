@@ -16,6 +16,8 @@ knitr::opts_chunk$set(
 )
 ```
 
+## Introduction
+
 This document shows how to work with PowerPoint files in R using customLayout approach.
 
 Let's start by creating a layout. `lay` and `lay2` will be used to store the content of the slide (plots, tables, text), and `titleLay` will serve as a container for the title of the slide. 
@@ -47,6 +49,8 @@ offLayout <- phl_layout(layout,
     innerMargins = rep(0.15,4))
 ```
 
+## `ggplot2`
+
 Then, the elements of the slide are added using functions with `phl_*` prefix. The code below adds two ggplot plots into the slide using `phl_with_gg`.
 
 ```{r}
@@ -60,6 +64,8 @@ plot3 <- qplot(mpg, qsec, data = mtcars)
 my_pres <- phl_with_gg(my_pres, offLayout, 2, plot1)
 my_pres <- phl_with_gg(my_pres, offLayout, 4, plot3)
 ```
+
+## Base graphics
 
 It is also worth to note that pptx files allow intermixing base graphics with grid graphics (ggplot2 and friends). The example below adds a few pie charts (note from the author - I'm not a fan of pie charts. Please don't use them on real slides). In this case `phl_with_plot` requires a function which creates a plot.
 
@@ -83,9 +89,16 @@ my_pres <- phl_with_plot(my_pres, offLayout, 8, pl7)
 
 ```
 
+## Basic tables
+
+```{r}
+my_pres <- phl_with_table(my_pres, offLayout, 3, head(iris, 1))
+```
+
+## Text
+
 ```{r}
 my_pres <- phl_with_text(my_pres, offLayout, 1, "Custom Layout")
-my_pres <- phl_with_text(my_pres, offLayout, 3, "Some text", type = "body")
 my_pres <- phl_with_text(my_pres, offLayout, 5, "Lorem ipsum", type = "body")
 ```
 
@@ -93,3 +106,5 @@ my_pres <- phl_with_text(my_pres, offLayout, 5, "Lorem ipsum", type = "body")
 file <- tempfile(fileext = ".pptx")
 print(my_pres, file)
 ```
+
+## `flextable`s

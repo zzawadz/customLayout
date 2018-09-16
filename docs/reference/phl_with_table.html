@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>add text into layout placeholder — phl_with_text • customLayout</title>
+<title>add table into layout placeholder — phl_with_table • customLayout</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="add text into layout placeholder — phl_with_text" />
+<meta property="og:title" content="add table into layout placeholder — phl_with_table" />
 
-<meta property="og:description" content="add text into layout placeholder" />
+<meta property="og:description" content="add table into layout placeholder" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -109,18 +109,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>add text into layout placeholder</h1>
+    <h1>add table into layout placeholder</h1>
     <small class="dont-index">Source: <a href='https://github.com/zzawadz/customLayout/blob/master/R/officer.R'><code>R/officer.R</code></a></small>
-    <div class="hidden name"><code>phl_with_text.Rd</code></div>
+    <div class="hidden name"><code>phl_with_table.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>add text into layout placeholder</p>
+    <p>add table into layout placeholder</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>phl_with_text</span>(<span class='no'>x</span>, <span class='no'>olay</span>, <span class='no'>id</span>, <span class='no'>str</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"title"</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>phl_with_table</span>(<span class='no'>x</span>, <span class='no'>olay</span>, <span class='no'>id</span>, <span class='no'>value</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -138,16 +138,12 @@
       <td><p>an single integer with an id of the placeholder from <code>olay</code> object.</p></td>
     </tr>
     <tr>
-      <th>str</th>
-      <td><p>text to add.</p></td>
-    </tr>
-    <tr>
-      <th>type</th>
-      <td><p>type of the text placeholder. See <code>ph_add_text</code> for more details.</p></td>
+      <th>value</th>
+      <td><p>a data.frame</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>other arguments passed to <code>ph_add_text</code>.</p></td>
+      <td><p>other arguments passed to <code>ph_with_table_at</code></p></td>
     </tr>
     </table>
     
