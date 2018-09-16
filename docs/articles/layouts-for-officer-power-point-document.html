@@ -119,15 +119,16 @@
 <a href="#ggplot2" class="anchor"></a><code>ggplot2</code>
 </h2>
 <p>Then, the elements of the slide are added using functions with <code>phl_*</code> prefix. The code below adds two ggplot plots into the slide using <code>phl_with_gg</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">my_pres &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/officer/topics/read_pptx">read_pptx</a></span>() <span class="op">%&gt;%</span></a>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">pptx &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/officer/topics/read_pptx">read_pptx</a></span>() <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/officer/topics/add_slide">add_slide</a></span>(<span class="dt">master =</span> <span class="st">"Office Theme"</span>, <span class="dt">layout =</span> <span class="st">"Title and Content"</span>)</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb3-4" data-line-number="4">### fill first placeholder</a>
 <a class="sourceLine" id="cb3-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb3-6" data-line-number="6">plot1 &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/qplot">qplot</a></span>(mpg, wt, <span class="dt">data =</span> mtcars)</a>
 <a class="sourceLine" id="cb3-7" data-line-number="7">plot3 &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/qplot">qplot</a></span>(mpg, qsec, <span class="dt">data =</span> mtcars)</a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">my_pres &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_with_gg.html">phl_with_gg</a></span>(my_pres, offLayout, <span class="dv">2</span>, plot1)</a>
-<a class="sourceLine" id="cb3-9" data-line-number="9">my_pres &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_with_gg.html">phl_with_gg</a></span>(my_pres, offLayout, <span class="dv">4</span>, plot3)</a></code></pre></div>
+<a class="sourceLine" id="cb3-8" data-line-number="8">pptx &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_with_gg.html">phl_with_gg</a></span>(pptx, offLayout, <span class="dv">2</span>, plot1)</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">pptx &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_with_gg.html">phl_with_gg</a></span>(pptx, offLayout, <span class="dv">4</span>, plot3)</a></code></pre></div>
+<p><img src="power-point/officer-gg.png"></p>
 </div>
 <div id="base-graphics" class="section level2">
 <h2 class="hasAnchor">
@@ -146,22 +147,35 @@
 <a class="sourceLine" id="cb4-11" data-line-number="11">  <span class="kw">pie</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">2</span>), <span class="dt">col =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">6</span>)</a>
 <a class="sourceLine" id="cb4-12" data-line-number="12">}</a>
 <a class="sourceLine" id="cb4-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb4-14" data-line-number="14">my_pres &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_with_plot.html">phl_with_plot</a></span>(my_pres, offLayout, <span class="dv">6</span>, pl5)</a>
-<a class="sourceLine" id="cb4-15" data-line-number="15">my_pres &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_with_plot.html">phl_with_plot</a></span>(my_pres, offLayout, <span class="dv">7</span>, pl6)</a>
-<a class="sourceLine" id="cb4-16" data-line-number="16">my_pres &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_with_plot.html">phl_with_plot</a></span>(my_pres, offLayout, <span class="dv">8</span>, pl7)</a></code></pre></div>
+<a class="sourceLine" id="cb4-14" data-line-number="14">pptx &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_with_plot.html">phl_with_plot</a></span>(pptx, offLayout, <span class="dv">6</span>, pl5)</a>
+<a class="sourceLine" id="cb4-15" data-line-number="15">pptx &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_with_plot.html">phl_with_plot</a></span>(pptx, offLayout, <span class="dv">7</span>, pl6)</a>
+<a class="sourceLine" id="cb4-16" data-line-number="16">pptx &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_with_plot.html">phl_with_plot</a></span>(pptx, offLayout, <span class="dv">8</span>, pl7)</a></code></pre></div>
+<p><img src="power-point/officer-plots.png"></p>
 </div>
 <div id="basic-tables" class="section level2">
 <h2 class="hasAnchor">
 <a href="#basic-tables" class="anchor"></a>Basic tables</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">my_pres &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_with_table.html">phl_with_table</a></span>(my_pres, offLayout, <span class="dv">3</span>, <span class="kw">head</span>(iris, <span class="dv">1</span>))</a></code></pre></div>
+<p>To export data.frame to the slide, one needs to use <code>phl_with_table</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">pptx &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_with_table.html">phl_with_table</a></span>(pptx, offLayout, <span class="dv">3</span>, <span class="kw">head</span>(iris, <span class="dv">2</span>))</a></code></pre></div>
+<p>Note, that in the current version <code>customLayout</code> is not able to fit the table perfectly to your slide. The desired width will be matched at the expense of the table height and text-wrapping. See the output slide created from the code above. As you can see, the table is a bit too tall, and the texts in cells are inelegantly wrapped.</p>
+<p><img src="power-point/officer-table.png"></p>
 </div>
 <div id="text" class="section level2">
 <h2 class="hasAnchor">
 <a href="#text" class="anchor"></a>Text</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">my_pres &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_with_text.html">phl_with_text</a></span>(my_pres, offLayout, <span class="dv">1</span>, <span class="st">"Custom Layout"</span>)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">my_pres &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_with_text.html">phl_with_text</a></span>(my_pres, offLayout, <span class="dv">5</span>, <span class="st">"Lorem ipsum"</span>, <span class="dt">type =</span> <span class="st">"body"</span>)</a></code></pre></div>
+<p>Inserting the text works in a very similar fashion to the officer package, just use the <code>phl_with_text</code> function. To add the formatting to the text use the <code>style</code> argument as in the example below (<code>phl_with_text</code> internally uses <code><a href="http://www.rdocumentation.org/packages/officer/topics/ph_add_text">officer::ph_add_text</a></code>).</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">pptx &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_with_text.html">phl_with_text</a></span>(pptx, offLayout, <span class="dv">1</span>, <span class="st">"Custom Layout"</span>)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">style &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/officer/topics/fp_text">fp_text</a></span>(<span class="dt">font.size =</span> <span class="dv">24</span>, <span class="dt">color =</span> <span class="st">"red"</span>)</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">pptx  &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_with_text.html">phl_with_text</a></span>(pptx, offLayout, <span class="dv">5</span>, </a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">          <span class="st">"Lorem ipsum"</span>, <span class="dt">type =</span> <span class="st">"body"</span>, <span class="dt">style =</span> style)</a></code></pre></div>
+<p><img src="power-point/officer-text.png"></p>
+</div>
+<div id="render-document" class="section level2">
+<h2 class="hasAnchor">
+<a href="#render-document" class="anchor"></a>Render document</h2>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">file &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">".pptx"</span>)</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">print</span>(my_pres, file)</a></code></pre></div>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">print</span>(pptx, file)</a></code></pre></div>
 </div>
 <div id="flextables" class="section level2">
 <h2 class="hasAnchor">
@@ -179,6 +193,7 @@
       <li><a href="#base-graphics">Base graphics</a></li>
       <li><a href="#basic-tables">Basic tables</a></li>
       <li><a href="#text">Text</a></li>
+      <li><a href="#render-document">Render document</a></li>
       <li><a href="#flextables"><code>flextable</code>s</a></li>
       </ul>
 </div>

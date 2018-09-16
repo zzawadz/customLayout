@@ -54,16 +54,18 @@ offLayout <- phl_layout(layout,
 Then, the elements of the slide are added using functions with `phl_*` prefix. The code below adds two ggplot plots into the slide using `phl_with_gg`.
 
 ```{r}
-my_pres <- read_pptx() %>%
+pptx <- read_pptx() %>%
   add_slide(master = "Office Theme", layout = "Title and Content")
 
 ### fill first placeholder
 
 plot1 <- qplot(mpg, wt, data = mtcars)
 plot3 <- qplot(mpg, qsec, data = mtcars)
-my_pres <- phl_with_gg(my_pres, offLayout, 2, plot1)
-my_pres <- phl_with_gg(my_pres, offLayout, 4, plot3)
+pptx <- phl_with_gg(pptx, offLayout, 2, plot1)
+pptx <- phl_with_gg(pptx, offLayout, 4, plot3)
 ```
+
+![](power-point/officer-gg.png)
 
 ## Base graphics
 
@@ -83,28 +85,44 @@ pl7 <- function() {
   pie(c(5, 4, 2), col = 2:4 + 6)
 }
 
-my_pres <- phl_with_plot(my_pres, offLayout, 6, pl5)
-my_pres <- phl_with_plot(my_pres, offLayout, 7, pl6)
-my_pres <- phl_with_plot(my_pres, offLayout, 8, pl7)
-
+pptx <- phl_with_plot(pptx, offLayout, 6, pl5)
+pptx <- phl_with_plot(pptx, offLayout, 7, pl6)
+pptx <- phl_with_plot(pptx, offLayout, 8, pl7)
 ```
+
+![](power-point/officer-plots.png)
 
 ## Basic tables
 
+To export data.frame to the slide, one needs to use `phl_with_table`. 
+
 ```{r}
-my_pres <- phl_with_table(my_pres, offLayout, 3, head(iris, 1))
+pptx <- phl_with_table(pptx, offLayout, 3, head(iris, 2))
 ```
+
+Note, that in the current version `customLayout` is not able to fit the table perfectly to your slide. The desired width will be matched at the expense of the table height and text-wrapping. See the output slide created from the code above. As you can see, the table is a bit too tall, and the texts in cells are inelegantly wrapped.
+
+![](power-point/officer-table.png)
 
 ## Text
 
+Inserting the text works in a very similar fashion to the officer package, just use the `phl_with_text` function. To add the formatting to the text use the `style` argument as in the example below (`phl_with_text` internally uses `officer::ph_add_text`).
+
 ```{r}
-my_pres <- phl_with_text(my_pres, offLayout, 1, "Custom Layout")
-my_pres <- phl_with_text(my_pres, offLayout, 5, "Lorem ipsum", type = "body")
+pptx <- phl_with_text(pptx, offLayout, 1, "Custom Layout")
+
+style <- fp_text(font.size = 24, color = "red")
+pptx  <- phl_with_text(pptx, offLayout, 5, 
+          "Lorem ipsum", type = "body", style = style)
 ```
+
+![](power-point/officer-text.png)
+
+## Render document
 
 ```{r, eval=FALSE}
 file <- tempfile(fileext = ".pptx")
-print(my_pres, file)
+print(pptx, file)
 ```
 
 ## `flextable`s
