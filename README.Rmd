@@ -34,7 +34,7 @@ knitr::opts_chunk$set(
 
 ```{r, eval=FALSE}
 require(devtools)
-install_github("customLayout",username="zzawadz")
+install_github("zzawadz/customLayout", ref = "dev-officer")
 ```
 
 

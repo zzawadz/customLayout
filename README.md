@@ -31,7 +31,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 ``` r
 require(devtools)
-install_github("customLayout",username="zzawadz")
+install_github("zzawadz/customLayout", ref = "dev-officer")
 ```
 
 ## Basic functionality:
