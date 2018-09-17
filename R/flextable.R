@@ -145,13 +145,13 @@ phl_with_flextable <- function(x, olay, id, value) {
   lheight <- olay[[id]][["height"]]
   lwidth  <- olay[[id]][["width"]]
   
-  if(tableWidths > lwidth + 0.00001) {
+  if(tableWidths > lwidth + 0.001) {
     warning("Table total width is larger than placeholder size.\n",
       "Table width:       ", round(tableWidths, 3),
       "\nPlaceholder width: ", round(lwidth, 3))
   }
   
-  if(tableHeights > lheight + 0.00001) {
+  if(tableHeights > lheight + 0.001) {
     warning("Table total height is larger than placeholder size.\n",
       "Table height:       ", round(tableHeights, 3),
       "\nPlaceholder height: ", round(lheight, 3))
