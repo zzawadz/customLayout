@@ -35,6 +35,8 @@ phl_calc_fontsize <- function(data, height) {
 #' @param x data.frame.
 #' @param olay officer layout created using \code{\link{phl_layout}}.
 #' @param id of placeholder in \code{olay}.
+#' @param method if 'all' (default) fits both the width and height. If 'height'
+#'   fits only height.
 #'
 #' @return
 #' 
@@ -57,8 +59,9 @@ phl_calc_fontsize <- function(data, height) {
 #' phl_adjust_table(x, offLayout, 1)
 #' phl_adjust_table(x, offLayout, 2)
 #' 
-phl_adjust_table <- function(x, olay, id) {
+phl_adjust_table <- function(x, olay, id, method = c("all", "height")) {
   
+  method <- match.arg(method, choices = c("all", "height"))
   dims <- olay[[id]]
   
   sizes <- phl_calc_fontsize(data = x, height = dims["height"])
@@ -67,7 +70,22 @@ phl_adjust_table <- function(x, olay, id) {
   
   widths <- flextable::dim_pretty(flTable)$widths
   if(sum(widths) > dims[["width"]]) {
-    warning("Calculated withd exceedes the placeholder width.")
+    if(method == "height") {
+      warning("Calculated width exceedes the placeholder width.")
+    } else {
+      
+      for(fs in sizes["fs"]:1) {
+        flTable <- flextable::fontsize(flTable, size = fs, part = "all")
+        widths <- flextable::dim_pretty(flTable)$widths
+        if(sum(widths) < dims[["width"]]) {
+          break;
+        }
+      }
+      
+      height <- flextable::dim_pretty(flTable)$height
+      height <- max(height)
+      flTable <- flextable::height_all(flTable, height = height)
+    }
   }
   widths <- widths / sum(widths) * dims[["width"]]
   
