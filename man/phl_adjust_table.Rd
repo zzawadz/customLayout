@@ -4,7 +4,7 @@
 \alias{phl_adjust_table}
 \title{Create flextable for layout's placeholder.}
 \usage{
-phl_adjust_table(x, olay, id)
+phl_adjust_table(x, olay, id, method = c("all", "height"))
 }
 \arguments{
 \item{x}{data.frame.}
@@ -12,6 +12,9 @@ phl_adjust_table(x, olay, id)
 \item{olay}{officer layout created using \code{\link{phl_layout}}.}
 
 \item{id}{of placeholder in \code{olay}.}
+
+\item{method}{if 'all' (default) fits both the width and height. If 'height'
+fits only height.}
 }
 \value{
 A \code{flextable} object, which should 

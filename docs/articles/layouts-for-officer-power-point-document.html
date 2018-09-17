@@ -79,7 +79,7 @@
       <h1>Layouts for officer’s PowerPoint documents.</h1>
                         <h4 class="author">Zygmunt Zawadzki</h4>
             
-            <h4 class="date">2018-09-16</h4>
+            <h4 class="date">2018-09-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/zzawadz/customLayout/blob/master/vignettes/layouts-for-officer-power-point-document.Rmd"><code>vignettes/layouts-for-officer-power-point-document.Rmd</code></a></small>
       <div class="hidden name"><code>layouts-for-officer-power-point-document.Rmd</code></div>
@@ -174,12 +174,132 @@
 <div id="render-document" class="section level2">
 <h2 class="hasAnchor">
 <a href="#render-document" class="anchor"></a>Render document</h2>
+<p>To render document use the standard <code>print</code> function from <code>officer</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">file &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">".pptx"</span>)</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">print</span>(pptx, file)</a></code></pre></div>
 </div>
 <div id="flextables" class="section level2">
 <h2 class="hasAnchor">
 <a href="#flextables" class="anchor"></a><code>flextable</code>s</h2>
+<div id="getting-started" class="section level3">
+<h3 class="hasAnchor">
+<a href="#getting-started" class="anchor"></a>Getting started</h3>
+<p>To get more control over created tables, one can use the <code>flextable</code> package (<a href="https://davidgohel.github.io/flextable/index.html" class="uri">https://davidgohel.github.io/flextable/index.html</a>), which is also supported by the <code>customLayout</code> by the <code>phl_with_flextable</code> function.</p>
+<p>Let’s start with preparing the layout and sample data.frame for further examples:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">library</span>(customLayout)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">library</span>(flextable)</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="co">#&gt; Attaching package: 'dplyr'</span></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="co">#&gt; The following objects are masked from 'package:stats':</span></a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="co">#&gt;     filter, lag</span></a>
+<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co">#&gt; The following objects are masked from 'package:base':</span></a>
+<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="co">#&gt;     intersect, setdiff, setequal, union</span></a>
+<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="kw">library</span>(officer)</a>
+<a class="sourceLine" id="cb8-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb8-14" data-line-number="14">lay  &lt;-<span class="st"> </span><span class="kw"><a href="../reference/lay_new.html">lay_new</a></span>(<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,<span class="dt">nc=</span><span class="dv">2</span>),<span class="dt">widths=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">2</span>),<span class="dt">heights=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb8-15" data-line-number="15">lay2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/lay_new.html">lay_new</a></span>(<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb8-16" data-line-number="16">layout   &lt;-<span class="st"> </span><span class="kw"><a href="../reference/lay_bind_col.html">lay_bind_col</a></span>(lay,lay2, <span class="dt">widths=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb8-17" data-line-number="17"><span class="kw"><a href="../reference/lay_show.html">lay_show</a></span>(layout)</a></code></pre></div>
+<p><img src="layouts-for-officer-power-point-document_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">offLayout &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_layout.html">phl_layout</a></span>(layout,</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">    <span class="dt">margins =</span> <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>),</a>
+<a class="sourceLine" id="cb9-5" data-line-number="5">    <span class="dt">innerMargins =</span> <span class="kw">rep</span>(<span class="fl">0.15</span>,<span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb9-7" data-line-number="7">pptx &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/officer/topics/read_pptx">read_pptx</a></span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb9-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/officer/topics/add_slide">add_slide</a></span>(<span class="dt">master =</span> <span class="st">"Office Theme"</span>, <span class="dt">layout =</span> <span class="st">"Title and Content"</span>)</a>
+<a class="sourceLine" id="cb9-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb9-10" data-line-number="10">table &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb9-11" data-line-number="11"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(cyl) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb9-12" data-line-number="12"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(<span class="dt">Mean =</span><span class="kw">round</span>(<span class="kw">mean</span>(qsec), <span class="dv">2</span>))</a></code></pre></div>
+</div>
+<div id="simple-flextable" class="section level3">
+<h3 class="hasAnchor">
+<a href="#simple-flextable" class="anchor"></a>Simple <code>flextable</code>
+</h3>
+<p>To add the <code>flextable</code> to the slide, one needs to convert the data. frame to the <code>flextable</code> object. Then the function <code>phl_with_flextable</code> can be used:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">pptx &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/officer/topics/read_pptx">read_pptx</a></span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/officer/topics/add_slide">add_slide</a></span>(</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">    <span class="dt">master =</span> <span class="st">"Office Theme"</span>,</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4">    <span class="dt">layout =</span> <span class="st">"Title and Content"</span>)</a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb10-6" data-line-number="6">flTableRaw &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/flextable/topics/flextable">flextable</a></span>(table)</a>
+<a class="sourceLine" id="cb10-7" data-line-number="7">pptx &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_with_flextable.html">phl_with_flextable</a></span>(pptx, </a>
+<a class="sourceLine" id="cb10-8" data-line-number="8">      <span class="dt">olay =</span> offLayout, <span class="dv">1</span>, flTableRaw)</a></code></pre></div>
+<p><img src="power-point/officer-flraw.png"></p>
+</div>
+<div id="fit-the-table-to-the-placeholder" class="section level3">
+<h3 class="hasAnchor">
+<a href="#fit-the-table-to-the-placeholder" class="anchor"></a>Fit the table to the placeholder</h3>
+<p>However, the <code>phl_with_flextable</code> does not modify any parameters of the table and writes it to the pptx as is. It means that the user needs to specify the correct font size, the widths, and heights for columns and rows. It might be quite hard to do, but the <code>customLayout</code> provides the <code>phl_adjust_table</code> function which takes a data.frame as an argument and tries to find as large font size, widths and heights as possible for given placeholder in the layout. Note that this function uses some simple heuristics, and might not always work as expected, and some manual tuning will be required.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">pptx &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/officer/topics/read_pptx">read_pptx</a></span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/officer/topics/add_slide">add_slide</a></span>(</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">    <span class="dt">master =</span> <span class="st">"Office Theme"</span>,</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">    <span class="dt">layout =</span> <span class="st">"Title and Content"</span>)</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb11-6" data-line-number="6">flTable &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_adjust_table.html">phl_adjust_table</a></span>(table, <span class="dt">olay =</span> offLayout, <span class="dt">id =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">#&gt; Warning in phl_adjust_table(table, olay = offLayout, id = 1): Calculated</span></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#&gt; withd exceedes the placeholder width.</span></a>
+<a class="sourceLine" id="cb11-9" data-line-number="9">pptx &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_with_flextable.html">phl_with_flextable</a></span>(pptx, </a>
+<a class="sourceLine" id="cb11-10" data-line-number="10">      <span class="dt">olay =</span> offLayout, <span class="dv">1</span>, flTable)</a></code></pre></div>
+<p><img src="power-point/officer-fltable.png"></p>
+</div>
+<div id="formatted-flextable" class="section level3">
+<h3 class="hasAnchor">
+<a href="#formatted-flextable" class="anchor"></a>Formatted <code>flextable</code>
+</h3>
+<p>After calling the <code>phl_adjust_table</code> one can modify the table in any way. Go to the <a href="https://davidgohel.github.io/flextable/articles/overview.html" class="uri">https://davidgohel.github.io/flextable/articles/overview.html</a> for more examples.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">pptx &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/officer/topics/read_pptx">read_pptx</a></span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/officer/topics/add_slide">add_slide</a></span>(</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3">    <span class="dt">master =</span> <span class="st">"Office Theme"</span>,</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4">    <span class="dt">layout =</span> <span class="st">"Title and Content"</span>)</a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb12-6" data-line-number="6">flTable &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_adjust_table.html">phl_adjust_table</a></span>(table, <span class="dt">olay =</span> offLayout, <span class="dt">id =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co">#&gt; Warning in phl_adjust_table(table, olay = offLayout, id = 1): Calculated</span></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="co">#&gt; withd exceedes the placeholder width.</span></a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb12-10" data-line-number="10">flTable &lt;-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/flextable/topics/bg">bg</a></span>(flTable, <span class="dt">bg =</span> <span class="st">"#E4C994"</span>, <span class="dt">part =</span> <span class="st">"header"</span>)</a>
+<a class="sourceLine" id="cb12-11" data-line-number="11">flTable &lt;-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/flextable/topics/bg">bg</a></span>(flTable, <span class="dt">bg =</span> <span class="st">"#333333"</span>, <span class="dt">part =</span> <span class="st">"body"</span>)</a>
+<a class="sourceLine" id="cb12-12" data-line-number="12">flTable &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/flextable/topics/color">color</a></span>(flTable, <span class="dt">color =</span> <span class="st">"#E4C994"</span>)</a>
+<a class="sourceLine" id="cb12-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb12-14" data-line-number="14">pptx &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_with_flextable.html">phl_with_flextable</a></span>(pptx, </a>
+<a class="sourceLine" id="cb12-15" data-line-number="15">      <span class="dt">olay =</span> offLayout, <span class="dv">1</span>, flTable)</a></code></pre></div>
+<p><img src="power-point/officer-flff.png"></p>
+</div>
+<div id="fit-the-table-to-the-placeholder---part-ii" class="section level3">
+<h3 class="hasAnchor">
+<a href="#fit-the-table-to-the-placeholder---part-ii" class="anchor"></a>Fit the table to the placeholder - part II</h3>
+<p>The example below shows the appearance of the table in each placeholder of the layout. It seems that it works reasonably well.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">pptx &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/officer/topics/read_pptx">read_pptx</a></span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/officer/topics/add_slide">add_slide</a></span>(</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">    <span class="dt">master =</span> <span class="st">"Office Theme"</span>,</a>
+<a class="sourceLine" id="cb13-4" data-line-number="4">    <span class="dt">layout =</span> <span class="st">"Title and Content"</span>)</a>
+<a class="sourceLine" id="cb13-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="kw">lapply</span>(<span class="kw">seq_len</span>(<span class="kw">length</span>(offLayout)), <span class="cf">function</span>(i) {</a>
+<a class="sourceLine" id="cb13-7" data-line-number="7">  tbl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_adjust_table.html">phl_adjust_table</a></span>(table, offLayout, i)  </a>
+<a class="sourceLine" id="cb13-8" data-line-number="8">  <span class="kw"><a href="../reference/phl_with_flextable.html">phl_with_flextable</a></span>(pptx, <span class="dt">olay =</span> offLayout, i, tbl)</a>
+<a class="sourceLine" id="cb13-9" data-line-number="9">  <span class="kw">invisible</span>()</a>
+<a class="sourceLine" id="cb13-10" data-line-number="10">})</a>
+<a class="sourceLine" id="cb13-11" data-line-number="11"><span class="co">#&gt; Warning in phl_adjust_table(table, offLayout, i): Calculated withd exceedes</span></a>
+<a class="sourceLine" id="cb13-12" data-line-number="12"><span class="co">#&gt; the placeholder width.</span></a>
+<a class="sourceLine" id="cb13-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb13-14" data-line-number="14"><span class="co">#&gt; Warning in phl_adjust_table(table, offLayout, i): Calculated withd exceedes</span></a>
+<a class="sourceLine" id="cb13-15" data-line-number="15"><span class="co">#&gt; the placeholder width.</span></a>
+<a class="sourceLine" id="cb13-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb13-17" data-line-number="17"><span class="co">#&gt; Warning in phl_adjust_table(table, offLayout, i): Calculated withd exceedes</span></a>
+<a class="sourceLine" id="cb13-18" data-line-number="18"><span class="co">#&gt; the placeholder width.</span></a>
+<a class="sourceLine" id="cb13-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb13-20" data-line-number="20"><span class="co">#&gt; Warning in phl_adjust_table(table, offLayout, i): Calculated withd exceedes</span></a>
+<a class="sourceLine" id="cb13-21" data-line-number="21"><span class="co">#&gt; the placeholder width.</span></a>
+<a class="sourceLine" id="cb13-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb13-23" data-line-number="23"><span class="co">#&gt; Warning in phl_adjust_table(table, offLayout, i): Calculated withd exceedes</span></a>
+<a class="sourceLine" id="cb13-24" data-line-number="24"><span class="co">#&gt; the placeholder width.</span></a></code></pre></div>
+<p><img src="power-point/officer-flall.png"></p>
+</div>
 </div>
   </div>
 
