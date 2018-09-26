@@ -1,10 +1,10 @@
 Package: customLayout
 Type: Package
-Title: Extended Version of Layout Functionality for 'Base' and 'Grid' Graphics Systems
+Title: Arrange Elements on the R's Drawing Area or Inside the PowerPoint's Slide
 Version: 0.2.0
 Authors@R: c(person("Zygmunt", "Zawadzki", role = c("aut", "cre"), email = "zygmunt@zstat.pl"))
 Maintainer: Zygmunt Zawadzki <zygmunt@zstat.pl>
-Description: Create complicated drawing areas for multiple plots by combining much simpler layouts. It is an extended version of layout function from the 'graphics' package, but it also works with 'grid' graphics.
+Description: Create complicated drawing areas for multiple elements by combining much simpler layouts. It is an extended version of layout function from the 'graphics' package, but it also works with 'grid' graphics. It also supports arranging elements inside 'PowerPoint' slides created using the 'officer' package.
 License: GPL-3
 RoxygenNote: 6.1.0
 Imports: methods, gridExtra, utils, graphics, RColorBrewer, officer, flextable
