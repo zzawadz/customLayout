@@ -22,7 +22,8 @@ state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
 `customLayout` is a simple extension of the basic `layout` function from
-`R`.
+`R` but it works not only with `base` and `grid` graphics systems, but
+also with PowerPoint slides using `officer` package.
 
 ## Instalation:
 
@@ -184,3 +185,16 @@ lay_grid(plots, cl)
 ```
 
 ![](man/figures/README-examplegrid-1.png)<!-- -->
+
+## PowerPoint support
+
+Layouts created using `customLayout` package can be used to arrange
+elements on the PowerPoint slide. For the detailed description please
+refer to [the
+vignette](https://www.customlayout.zstat.pl/articles/layouts-for-officer-power-point-document.html):
+
+``` r
+vignette("layouts-for-officer-power-point-document", package = "customLayout")
+```
+
+![](man/figures/officer-text.png)<!-- -->

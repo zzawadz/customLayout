@@ -43,9 +43,11 @@
 #'     top = pos["top"])
 #' }
 #' 
+#' \dontrun{
 #' if(!dir.exists("tmp")) dir.create("tmp")
 #' print(my_pres, target = "tmp/test-officer-layout.pptx")
-#'
+#' }
+#' 
 phl_layout <- function(cl, slideWidth = 10, slideHeight = 7.5,
     margins = c(bottom = 0.25, left = 0.25, top = 0.25, right = 0.25),
     innerMargins = c(bottom = 0.025, left = 0.025, top = 0.025, right = 0.025)
