@@ -53,7 +53,10 @@ lay_new <- function(mat, widths = NULL, heights = NULL)
 
 #' @export
 #' @rdname lay_new
-layCreate <- lay_new
+layCreate <- function(mat, widths = NULL, heights = NULL) {
+  .Deprecated("lay_new")
+  lay_new(mat, widths, heights)
+}
 
 #' Set custom layout.
 #' 
@@ -78,7 +81,10 @@ lay_set <- function(layout)
 
 #' @export
 #' @rdname lay_set
-laySet <- lay_set
+laySet <- function(layout) {
+  .Deprecated("lay_set")
+  lay_set(layout)
+}
 
 #' Take two Layout objects and combine by rows.
 #' 
@@ -137,7 +143,14 @@ lay_bind_col <- function(
 
 #' @rdname lay_bind_col
 #' @export
-layColBind <- lay_bind_col
+layColBind <- function(
+  x, y,
+  widths = c(1, 1),
+  addmax = TRUE) {
+  
+  .Deprecated("lay_bind_col")  
+  lay_bind_col(x, y, widths, addmax)
+}
 
 #' Take two Layout objects and combine by rows.
 #' 
@@ -196,9 +209,15 @@ lay_bind_row <- function(
 
 #' @export
 #' @rdname lay_bind_row
-layRowBind <- lay_bind_row
-
-
+layRowBind <- function(
+  x,
+  y,
+  heights = c(1, 1),
+  addmax = TRUE
+) {
+  .Deprecated("lay_bind_row")
+  lay_bind_row(x, y, heights, addmax)
+}
 #' Use Layout object with grid graphics.
 #'
 #' @param grobs list of grobs.
@@ -233,4 +252,7 @@ lay_grid <- function(grobs, lay, ...) {
 
 #' @export
 #' @rdname lay_grid
-layGrid <- lay_grid
+layGrid <- function(grobs, lay, ...) {
+  .Deprecated("lay_grid")
+  lay_grid(grobs, lay, ...)
+}

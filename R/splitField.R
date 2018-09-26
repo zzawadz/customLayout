@@ -103,4 +103,7 @@ lay_split_field <- function(lay, newlay, field)
 
 #' @export
 #' @rdname lay_split_field
-laySplitField <- lay_split_field
+laySplitField <- function(lay, newlay, field) {
+  .Deprecated("lay_split_field")
+  lay_split_field(lay, newlay, field)
+}

@@ -89,7 +89,10 @@ lay_show <- function(layout)
 
 #' @export
 #' @rdname lay_show
-layShow <- lay_show
+layShow <- function(layout) {
+  .Deprecated("lay_show")
+  lay_show(layout)
+}
 
 .cleanCols <- function(lay)
 {
