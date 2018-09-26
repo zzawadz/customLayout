@@ -26,7 +26,7 @@ knitr::opts_chunk$set(
 [![Coverage Status](https://img.shields.io/codecov/c/github/zzawadz/customLayout/master.svg)](https://codecov.io/github/zzawadz/customLayout?branch=master)
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
-`customLayout` is a simple extension of the basic `layout` function from `R`.
+`customLayout` is a simple extension of the basic `layout` function from `R` but it works not only with `base` and `grid` graphics systems, but also with PowerPoint slides using `officer` package.
 
 ## Instalation:
 
@@ -156,3 +156,14 @@ plots <- lapply(cuts, make_cut_plot)
 
 lay_grid(plots, cl)
 ```
+
+
+## PowerPoint support
+
+Layouts created using `customLayout` package can be used to arrange elements on the PowerPoint slide. For the detailed description please refer to [the vignette](https://www.customlayout.zstat.pl/articles/layouts-for-officer-power-point-document.html):
+
+```{r, eval=FALSE}
+vignette("layouts-for-officer-power-point-document", package = "customLayout")
+```
+
+![](man/figures/officer-text.png)<!-- -->
