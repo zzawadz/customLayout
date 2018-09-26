@@ -63,7 +63,7 @@ layRepCol <- function(x,fr)
 #' 
 lay_show <- function(layout)
 {
-  laySet(layout)
+  lay_set(layout)
   n <- max(layout@mat)
   
   oma.saved <- graphics::par("oma")

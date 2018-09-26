@@ -2,14 +2,14 @@ context("Split field")
 
 make_disp_basic_split_field <- function(n = 2) {
   function() {
-    l1 <- layCreate(
+    l1 <- lay_new(
       matrix(c(1:4), ncol = 2),
       widths = c(4, 1))
-    l2 <- layCreate(
+    l2 <- lay_new(
       matrix(c(1:4), ncol = 2),
       widths = c(1, 1))
-    l3 <- laySplitField(l1, l2, n)
-    layShow(l3)
+    l3 <- lay_split_field(l1, l2, n)
+    lay_show(l3)
   }
 }
 

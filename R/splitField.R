@@ -41,7 +41,7 @@ lay_split_field <- function(lay, newlay, field)
     east  <- mat[,neast]
     east_width  <- widths[neast]
     east_height <- heights
-    east <- layCreate(east,widths = east_width,heights = east_height)
+    east <- lay_new(east,widths = east_width,heights = east_height)
     east_ratio <- c(sum(widths[-neast]), sum(east_width))
   } else east <- NULL
   
@@ -51,7 +51,7 @@ lay_split_field <- function(lay, newlay, field)
     west  <- mat[,nwest]
     west_width  <- widths[nwest]
     west_height <- heights
-    west <- layCreate(west,widths=west_width,heights=west_height)
+    west <- lay_new(west,widths=west_width,heights=west_height)
     west_ratio <- rev(c(sum(widths[-c(nwest, neast)]), sum(west_width)))
   } else west <- NULL
   
@@ -63,7 +63,7 @@ lay_split_field <- function(lay, newlay, field)
     north <- mat[rownorth,colnorth, drop = FALSE]
     north_width <- widths[colnorth]
     north_height <- heights[rownorth]
-    north <- layCreate(north,widths = north_width,heights = north_height)
+    north <- lay_new(north,widths = north_width,heights = north_height)
     north_ratio <- rev(c(sum(heights[-rownorth]), sum(north_height)))
   } else north <- NULL
   
@@ -74,28 +74,28 @@ lay_split_field <- function(lay, newlay, field)
     south <- mat[rowsouth, colsouth, drop = FALSE]
     south_width  <- widths[colsouth]
     south_height <- heights[rowsouth]
-    south <- layCreate(south,widths = south_width,heights = south_height)
+    south <- lay_new(south,widths = south_width,heights = south_height)
     south_ratio <- c(sum(heights[-c(rowsouth, rownorth)]), sum(south_height)) 
   } else south <- NULL
   
   if(!is.null(south))
   {
-    ls <- layRowBind(newlay, south, heights=south_ratio,addmax=FALSE)
+    ls <- lay_bind_row(newlay, south, heights=south_ratio,addmax=FALSE)
   } else ls <- newlay
   
   if(!is.null(north))
   {
-    lsn <- layRowBind(north, ls,heights=north_ratio, addmax = FALSE)
+    lsn <- lay_bind_row(north, ls,heights=north_ratio, addmax = FALSE)
   } else lsn <- ls
   
   if(!is.null(west))
   {
-    lsne <- layColBind(west ,lsn, widths=west_ratio,addmax = FALSE)
+    lsne <- lay_bind_col(west ,lsn, widths=west_ratio,addmax = FALSE)
   } else lsne <- lsn
   
   if(!is.null(east))
   {
-    lsnew <- layColBind(lsne, east, widths= east_ratio,addmax = FALSE)
+    lsnew <- lay_bind_col(lsne, east, widths= east_ratio,addmax = FALSE)
   } else lsnew <- lsne
   
   lsnew

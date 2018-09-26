@@ -6,12 +6,12 @@ library(magrittr)
 library(ggplot2)
 library(officer)
 
-lay <- layCreate(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1))
-lay2 <- layCreate(matrix(1:3))
-titleLay <- layCreate(1, widths = 1, heights = 1)
+lay <- lay_new(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1))
+lay2 <- lay_new(matrix(1:3))
+titleLay <- lay_new(1, widths = 1, heights = 1)
 
-lay3 <- layColBind(lay,lay2, widths=c(3,1))
-layout <- layRowBind(titleLay, lay3, heights = c(1,7))
+lay3 <- lay_bind_col(lay,lay2, widths=c(3,1))
+layout <- lay_bind_row(titleLay, lay3, heights = c(1,7))
 offLayout <- phl_layout(
   layout,
   margins = c(0.25, 0.25, 0.25, 0.25),
