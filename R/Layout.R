@@ -11,21 +11,23 @@ setClass("Layout", slots=c(mat="matrix",widths = "numeric",heights = "numeric"))
 #' @param heights a vector of values for the relative heights of rows in mat.
 #' 
 #' @export
+#' @rdname lay_new
 #' @examples
 #' library(customLayout)
 #' par(mar = c(3,2,2,1))
-#' lay = layCreate(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1))
-#' lay2 = layCreate(matrix(1:3))
-#' cl = layColBind(lay,lay2, widths=c(3,1))
-#' laySet(cl) # initialize drawing area
-#' plot(1:100+rnorm(100))
+#' lay  <- lay_new(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1))
+#' lay2 <- lay_new(matrix(1:3))
+#' cl <- lay_bind_col(lay,lay2, widths=c(3,1))
+#' lay_set(cl) # initialize drawing area
+#' plot(1:100 + rnorm(100))
 #' plot(rnorm(100), type = "l")
 #' hist(rnorm(500))
 #' acf(rnorm(100))
 #' pie(c(3,4,6),col = 2:4)
 #' pie(c(3,2,7),col = 2:4+3)
 #' pie(c(5,4,2),col = 2:4+6)
-layCreate <- function(mat, widths = NULL, heights = NULL)
+#' 
+lay_new <- function(mat, widths = NULL, heights = NULL)
 {
   if(!is.matrix(mat)) mat <- matrix(mat)
   if(is.null(widths)) widths <- rep(1,ncol(mat))
@@ -49,25 +51,40 @@ layCreate <- function(mat, widths = NULL, heights = NULL)
   methods::new("Layout",mat=mat,widths = widths, heights = heights)
 }
 
+#' @export
+#' @rdname lay_new
+layCreate <- function(mat, widths = NULL, heights = NULL) {
+  .Deprecated("lay_new")
+  lay_new(mat, widths, heights)
+}
+
 #' Set custom layout.
 #' 
 #' @param layout object of class Layout.
 #' 
 #' @export
+#' @rdname lay_set
 #' @examples
 #' 
-#' lplots = layCreate(matrix(1:2))
-#' lpie   = layCreate(1)
-#' lay = layColBind(lplots,lpie)
-#' laySet(lay)
+#' lplots = lay_new(matrix(1:2))
+#' lpie   = lay_new(1)
+#' lay = lay_bind_col(lplots,lpie)
+#' lay_set(lay)
 #' plot(1:10)
 #' plot(1:10)
 #' plot(1:20)
-laySet <- function(layout)
+#' 
+lay_set <- function(layout)
 {
   layout(layout@mat,widths=layout@widths,heights=layout@heights)
 }
 
+#' @export
+#' @rdname lay_set
+laySet <- function(layout) {
+  .Deprecated("lay_set")
+  lay_set(layout)
+}
 
 #' Take two Layout objects and combine by rows.
 #' 
@@ -79,38 +96,26 @@ laySet <- function(layout)
 #'               layout will be shifted by the number of plots in 
 #'               the first layout.
 #'
-#' @rdname layColBind 
+#' @rdname lay_bind_col
 #' @export
 #' @examples
-#' l1 = layCreate(matrix(c(1:2),ncol = 2),widths=c(4,1))
-#' l2 = layCreate(matrix(c(1:4),ncol = 2),widths=c(1,1))
-#' lb = layColBind(l1,l2)
-#' layShow(lb)
+#' l1 = lay_new(matrix(c(1:2),ncol = 2),widths=c(4,1))
+#' l2 = lay_new(matrix(c(1:4),ncol = 2),widths=c(1,1))
+#' lb = lay_bind_col(l1,l2)
+#' lay_show(lb)
 #' 
-setGeneric(
-  "layColBind",
-  function(
+lay_bind_col <- function(
     x, y,
     widths = c(1, 1),
     addmax = TRUE)
-    standardGeneric("layColBind")
-)
-
-#' @rdname layColBind
-setMethod(
-  "layColBind",
-  signature = c(x = "Layout", y = "Layout"),
-  function(
-    x, y,
-    widths = c(1, 1),
-    addmax = TRUE
-  )
 {
-  #Przesuwanie wszystkich wykresow z drugiej macierzy:
   xmat <- x@mat
   ymat <- y@mat
-  if (addmax)
+  
+  # move ids from the second matrix
+  if (addmax) {
     ymat[ymat > 0] <- ymat[ymat > 0] + max(xmat)
+  }
   
   ymat <- layRepRow(ymat, y@heights)
   xmat <- layRepRow(xmat, x@heights)
@@ -134,7 +139,18 @@ setMethod(
                         widths = widths,
                         heights = heights)
   .cleanLay(layout)
-})
+}
+
+#' @rdname lay_bind_col
+#' @export
+layColBind <- function(
+  x, y,
+  widths = c(1, 1),
+  addmax = TRUE) {
+  
+  .Deprecated("lay_bind_col")  
+  lay_bind_col(x, y, widths, addmax)
+}
 
 #' Take two Layout objects and combine by rows.
 #' 
@@ -146,37 +162,26 @@ setMethod(
 #'               layout will be shifted by the number of plots in 
 #'               the first layout.
 #' 
-#' @rdname layRowBind
+#' @rdname lay_bind_row
 #' @export
 #' @examples
-#' l1 = layCreate(matrix(c(1:2),ncol = 2),widths=c(4,1))
-#' l2 = layCreate(matrix(c(1:4),ncol = 2),widths=c(1,1))
-#' lb = layRowBind(l1,l2)
-#' layShow(lb)
+#' l1 = lay_new(matrix(c(1:2),ncol = 2),widths=c(4,1))
+#' l2 = lay_new(matrix(c(1:4),ncol = 2),widths=c(1,1))
+#' lb = lay_bind_row(l1,l2)
+#' lay_show(lb)
 #' 
-setGeneric(
-  "layRowBind",
-  function(
-    x, y,
-    heights = c(1, 1),
-    addmax = TRUE)
-  standardGeneric("layRowBind"))
-
-#' @rdname layRowBind
-setMethod(
-  "layRowBind",
-  signature = c(x = "Layout", y = "Layout"),
-  function(x,
-           y,
-           heights = c(1, 1),
-           addmax = TRUE
-  )
-{
-  #Przesuwanie wszystkich wykresow z drugiej macierzy:
+lay_bind_row <- function(
+   x,
+   y,
+   heights = c(1, 1),
+   addmax = TRUE
+) {
+  
   xmat <- x@mat
   ymat <- y@mat
-  if (addmax)
+  if (addmax) {
     ymat[ymat > 0] <- ymat[ymat > 0] + max(xmat)
+  }
   
   ymat <- layRepCol(ymat, y@widths)
   xmat <- layRepCol(xmat, x@widths)
@@ -200,9 +205,19 @@ setMethod(
                         widths = widths,
                         heights = heights)
   .cleanLay(layout)
-})
+}
 
-
+#' @export
+#' @rdname lay_bind_row
+layRowBind <- function(
+  x,
+  y,
+  heights = c(1, 1),
+  addmax = TRUE
+) {
+  .Deprecated("lay_bind_row")
+  lay_bind_row(x, y, heights, addmax)
+}
 #' Use Layout object with grid graphics.
 #'
 #' @param grobs list of grobs.
@@ -210,27 +225,34 @@ setMethod(
 #' @param ... other parameters passed to \code{\link{grid.arrange}}.
 #'
 #' @export
-#'
+#' @rdname lay_grid
 #' @examples
 #' 
 #' library(ggplot2)
 #' 
-#' l1 <- layCreate(matrix(1:2, ncol = 1), heights = c(2, 3))
-#' l2 <- layCreate(matrix(1:2, ncol = 1), heights = c(1, 3))
-#' l3 <- layColBind(l1, l2)
+#' l1 <- lay_new(matrix(1:2, ncol = 1), heights = c(2, 3))
+#' l2 <- lay_new(matrix(1:2, ncol = 1), heights = c(1, 3))
+#' l3 <- lay_bind_col(l1, l2)
 #' 
 #' pl1 <- qplot(mpg, wt, data = mtcars)
 #' pl2 <- qplot(mpg, gear, data = mtcars)
 #' pl3 <- qplot(cyl, gear, data = mtcars)
 #' pl4 <- qplot(qsec, am, data = mtcars)
 #' 
-#' layGrid(list(pl1, pl2, pl3, pl4), l3)
+#' lay_grid(list(pl1, pl2, pl3, pl4), l3)
 #'
-layGrid <- function(grobs, lay, ...) {
+lay_grid <- function(grobs, lay, ...) {
 
   gridExtra::grid.arrange(
     grobs = grobs,
     layout_matrix = lay@mat,
     widths = lay@widths,
     heights = lay@heights, ...)
+}
+
+#' @export
+#' @rdname lay_grid
+layGrid <- function(grobs, lay, ...) {
+  .Deprecated("lay_grid")
+  lay_grid(grobs, lay, ...)
 }

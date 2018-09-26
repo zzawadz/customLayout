@@ -2,7 +2,7 @@ context("Reps functions")
 
 make_rep_test_function <- function(fnc) {
   function() {
-    l1 <- layCreate(
+    l1 <- lay_new(
       matrix(1:4, ncol = 2),
       heights = c(1, 3))
     l2 <- fnc(l1, 3)

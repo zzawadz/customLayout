@@ -11,3 +11,4 @@ README_files
 README.html
 ^README\.Rmd$
 ^README-.*\.png$
+tmp

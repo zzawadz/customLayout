@@ -1,12 +1,38 @@
 reference:
 - title: Basic functions
   contents:
-  - layCreate
-  - layShow
-  - laySet
-  - layGrid
+  - lay_new
+  - lay_show
+  - lay_set
+  - lay_grid
 - title: Combine layouts
   contents:
-  - layColBind
-  - layRowBind
-  - laySplitField
+  - lay_bind_col
+  - lay_bind_row
+  - lay_split_field
+- title: PowerPoint - add elements to slides
+  contents:
+  - phl_layout
+  - phl_with_gg
+  - phl_with_plot
+  - phl_with_text
+  - phl_with_table
+  - phl_with_flextable
+- title: PowerPoint - utils
+  contents:
+  - phl_adjust_table
+  - phl_calc_fontsize
+
+navbar:
+  type: default
+  left:
+  - text: Intro
+    href: index.html
+  - text: Roadmap
+    href: articles/Roadmap.html
+  - text: Reference
+    href: reference/index.html
+  - text: Articles
+    menu:
+      - text: Layouts for officer's PowerPoint documents.
+        href: articles/layouts-for-officer-power-point-document.html

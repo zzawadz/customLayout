@@ -31,7 +31,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 ``` r
 require(devtools)
-install_github("customLayout",username="zzawadz")
+install_github("zzawadz/customLayout", ref = "dev-officer")
 ```
 
 ## Basic functionality:
@@ -41,22 +41,22 @@ You can create layouts in the using the same syntax as in the base
 
 ``` r
 library(customLayout)
-lay <- layCreate(
+lay <- lay_new(
   matrix(1:4, nc = 2),
   widths = c(3, 2),
   heights = c(2, 1))
-layShow(lay)
+lay_show(lay)
 ```
 
 ![](man/figures/README-base-1.png)<!-- -->
 
 ``` r
 
-lay2 <- layCreate(
+lay2 <- lay_new(
   matrix(1:4, nc = 2),
   widths = c(3, 5),
   heights = c(2, 4))
-layShow(lay2)
+lay_show(lay2)
 ```
 
 ![](man/figures/README-base-2.png)<!-- -->
@@ -67,8 +67,8 @@ with specific ratio:
 ``` r
 # lay will be 3 times wider that lay2
 # all ascects in lay and lay2 will be preserved
-cl = layColBind(lay, lay2, widths = c(3, 1))
-layShow(cl)
+cl = lay_bind_col(lay, lay2, widths = c(3, 1))
+lay_show(cl)
 ```
 
 ![](man/figures/README-combine-1.png)<!-- -->
@@ -76,17 +76,17 @@ layShow(cl)
 You can create even more complicated layouts:
 
 ``` r
-lay3 <- layCreate(matrix(1:2))
-lay4 <- layRowBind(cl, lay3, heights = c(5, 2))
-layShow(lay4)
+lay3 <- lay_new(matrix(1:2))
+lay4 <- lay_bind_row(cl, lay3, heights = c(5, 2))
+lay_show(lay4)
 ```
 
 ![](man/figures/README-complicated-1.png)<!-- -->
 
 ``` r
 
-lay5 <- layColBind(lay4, lay3, widths = c(5, 2))
-layShow(lay5)
+lay5 <- lay_bind_col(lay4, lay3, widths = c(5, 2))
+lay_show(lay5)
 ```
 
 ![](man/figures/README-complicated-2.png)<!-- -->
@@ -97,21 +97,21 @@ You can create very complicated layouts by splitting one field:
 
 ``` r
 library(customLayout)
-lay <- layCreate(
+lay <- lay_new(
   matrix(1:4, nc = 2),
   widths = c(3, 2),
   heights = c(2, 1))
-layShow(lay)
+lay_show(lay)
 ```
 
 ![](man/figures/README-split-1.png)<!-- -->
 
 ``` r
-lay2 <- layCreate(
+lay2 <- lay_new(
   matrix(1:4, nc = 2),
   widths = c(3, 5),
   heights = c(2, 4))
-layShow(lay2)
+lay_show(lay2)
 ```
 
 ![](man/figures/README-split-2.png)<!-- -->
@@ -119,8 +119,8 @@ layShow(lay2)
 ``` r
 
 # Split field 4 from lay into lay2:
-slay <- laySplitField(lay, lay2, field = 4)
-layShow(slay)
+slay <- lay_split_field(lay, lay2, field = 4)
+lay_show(slay)
 ```
 
 ![](man/figures/README-split-3.png)<!-- -->
@@ -132,14 +132,14 @@ layShow(slay)
 ``` r
 library(customLayout)
 par(mar = c(3, 2, 2, 1))
-lay  <- layCreate(
+lay  <- lay_new(
   matrix(1:4, nc = 2),
   widths = c(3, 2),
   heights = c(2, 1))
-lay2 <- layCreate(matrix(1:3))
-cl   <- layColBind(lay, lay2, widths = c(3, 1))
+lay2 <- lay_new(matrix(1:3))
+cl   <- lay_bind_col(lay, lay2, widths = c(3, 1))
 
-laySet(cl) # initialize drawing area
+lay_set(cl) # initialize drawing area
 
 set.seed(123)
 plot(1:100 + rnorm(100))
@@ -160,10 +160,10 @@ library(customLayout)
 library(ggplot2)
 library(gridExtra)
 
-lay  <- layCreate(
+lay  <- lay_new(
   matrix(1:2, ncol = 1))
-lay2 <- layCreate(matrix(1:3))
-cl   <- layColBind(lay, lay2, widths = c(3, 1))
+lay2 <- lay_new(matrix(1:3))
+cl   <- lay_bind_col(lay, lay2, widths = c(3, 1))
 
 
 library(ggplot2)
@@ -180,7 +180,7 @@ make_cut_plot <- function(cut) {
 
 plots <- lapply(cuts, make_cut_plot)
 
-layGrid(plots, cl)
+lay_grid(plots, cl)
 ```
 
 ![](man/figures/README-examplegrid-1.png)<!-- -->
