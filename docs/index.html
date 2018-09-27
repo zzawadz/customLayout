@@ -89,65 +89,67 @@
 <div id="instalation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#instalation" class="anchor"></a>Instalation:</h2>
-<p><code>customLayout</code> is available only via GitHub and can be installed using <code>devtools</code>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">require</span>(devtools)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"zzawadz/customLayout"</span>, <span class="dt">ref =</span> <span class="st">"dev-officer"</span>)</a></code></pre></div>
+<p><code>customLayout</code> is available on CRAN:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"customLayout"</span>)</a></code></pre></div>
+<p>The development version can be installed from GitHub using <code>devtools</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(devtools)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"zzawadz/customLayout"</span>)</a></code></pre></div>
 </div>
 <div id="basic-functionality" class="section level2">
 <h2 class="hasAnchor">
 <a href="#basic-functionality" class="anchor"></a>Basic functionality:</h2>
 <p>You can create layouts in the using the same syntax as in the base <code>layout</code> function:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(customLayout)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">lay &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_new.html">lay_new</a></span>(</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">  <span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">nc =</span> <span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">  <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">  <span class="dt">heights =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="kw"><a href="reference/lay_show.html">lay_show</a></span>(lay)</a></code></pre></div>
-<p><img src="reference/figures/README-base-1.png" width="384"></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">lay2 &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_new.html">lay_new</a></span>(</a>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(customLayout)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">lay &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_new.html">lay_new</a></span>(</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">nc =</span> <span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">  <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>),</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="dt">heights =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>))</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw"><a href="reference/lay_show.html">lay_show</a></span>(lay2)</a></code></pre></div>
+<a class="sourceLine" id="cb3-4" data-line-number="4">  <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="dt">heights =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw"><a href="reference/lay_show.html">lay_show</a></span>(lay)</a></code></pre></div>
+<p><img src="reference/figures/README-base-1.png" width="384"></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">lay2 &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_new.html">lay_new</a></span>(</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">  <span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">nc =</span> <span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">  <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">  <span class="dt">heights =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="kw"><a href="reference/lay_show.html">lay_show</a></span>(lay2)</a></code></pre></div>
 <p><img src="reference/figures/README-base-2.png" width="384"></p>
 <p>But the main strength of this package is in combining created layouts with specific ratio:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># lay will be 3 times wider that lay2</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co"># all ascects in lay and lay2 will be preserved</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">cl =<span class="st"> </span><span class="kw"><a href="reference/lay_bind_col.html">lay_bind_col</a></span>(lay, lay2, <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw"><a href="reference/lay_show.html">lay_show</a></span>(cl)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># lay will be 3 times wider that lay2</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co"># all ascects in lay and lay2 will be preserved</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">cl =<span class="st"> </span><span class="kw"><a href="reference/lay_bind_col.html">lay_bind_col</a></span>(lay, lay2, <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw"><a href="reference/lay_show.html">lay_show</a></span>(cl)</a></code></pre></div>
 <p><img src="reference/figures/README-combine-1.png" width="384"></p>
 <p>You can create even more complicated layouts:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">lay3 &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_new.html">lay_new</a></span>(<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">lay4 &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_bind_row.html">lay_bind_row</a></span>(cl, lay3, <span class="dt">heights =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw"><a href="reference/lay_show.html">lay_show</a></span>(lay4)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">lay3 &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_new.html">lay_new</a></span>(<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">lay4 &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_bind_row.html">lay_bind_row</a></span>(cl, lay3, <span class="dt">heights =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw"><a href="reference/lay_show.html">lay_show</a></span>(lay4)</a></code></pre></div>
 <p><img src="reference/figures/README-complicated-1.png" width="384"></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">lay5 &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_bind_col.html">lay_bind_col</a></span>(lay4, lay3, <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw"><a href="reference/lay_show.html">lay_show</a></span>(lay5)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">lay5 &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_bind_col.html">lay_bind_col</a></span>(lay4, lay3, <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="kw"><a href="reference/lay_show.html">lay_show</a></span>(lay5)</a></code></pre></div>
 <p><img src="reference/figures/README-complicated-2.png" width="384"></p>
 </div>
 <div id="split-layout" class="section level2">
 <h2 class="hasAnchor">
 <a href="#split-layout" class="anchor"></a>Split layout</h2>
 <p>You can create very complicated layouts by splitting one field:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">library</span>(customLayout)</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">lay &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_new.html">lay_new</a></span>(</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3">  <span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">nc =</span> <span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">  <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb7-5" data-line-number="5">  <span class="dt">heights =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="kw"><a href="reference/lay_show.html">lay_show</a></span>(lay)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">library</span>(customLayout)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">lay &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_new.html">lay_new</a></span>(</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">  <span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">nc =</span> <span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">  <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">  <span class="dt">heights =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="kw"><a href="reference/lay_show.html">lay_show</a></span>(lay)</a></code></pre></div>
 <p><img src="reference/figures/README-split-1.png" width="384"></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">lay2 &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_new.html">lay_new</a></span>(</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">  <span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">nc =</span> <span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3">  <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>),</a>
-<a class="sourceLine" id="cb8-4" data-line-number="4">  <span class="dt">heights =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>))</a>
-<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="kw"><a href="reference/lay_show.html">lay_show</a></span>(lay2)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">lay2 &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_new.html">lay_new</a></span>(</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">  <span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">nc =</span> <span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">  <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">  <span class="dt">heights =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="kw"><a href="reference/lay_show.html">lay_show</a></span>(lay2)</a></code></pre></div>
 <p><img src="reference/figures/README-split-2.png" width="384"></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="co"># Split field 4 from lay into lay2:</span></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3">slay &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_split_field.html">lay_split_field</a></span>(lay, lay2, <span class="dt">field =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="kw"><a href="reference/lay_show.html">lay_show</a></span>(slay)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co"># Split field 4 from lay into lay2:</span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">slay &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_split_field.html">lay_split_field</a></span>(lay, lay2, <span class="dt">field =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="kw"><a href="reference/lay_show.html">lay_show</a></span>(slay)</a></code></pre></div>
 <p><img src="reference/figures/README-split-3.png" width="384"></p>
 </div>
 <div id="example-session" class="section level2">
@@ -156,63 +158,63 @@
 <div id="base-graphics" class="section level3">
 <h3 class="hasAnchor">
 <a href="#base-graphics" class="anchor"></a>Base graphics</h3>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">library</span>(customLayout)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3">lay  &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_new.html">lay_new</a></span>(</a>
-<a class="sourceLine" id="cb10-4" data-line-number="4">  <span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">nc =</span> <span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb10-5" data-line-number="5">  <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb10-6" data-line-number="6">  <span class="dt">heights =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb10-7" data-line-number="7">lay2 &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_new.html">lay_new</a></span>(<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>))</a>
-<a class="sourceLine" id="cb10-8" data-line-number="8">cl   &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_bind_col.html">lay_bind_col</a></span>(lay, lay2, <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb10-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb10-10" data-line-number="10"><span class="kw"><a href="reference/lay_set.html">lay_set</a></span>(cl) <span class="co"># initialize drawing area</span></a>
-<a class="sourceLine" id="cb10-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb10-12" data-line-number="12"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb10-13" data-line-number="13"><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>))</a>
-<a class="sourceLine" id="cb10-14" data-line-number="14"><span class="kw">plot</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>), <span class="dt">type =</span> <span class="st">"l"</span>)</a>
-<a class="sourceLine" id="cb10-15" data-line-number="15"><span class="kw">hist</span>(<span class="kw">rnorm</span>(<span class="dv">500</span>))</a>
-<a class="sourceLine" id="cb10-16" data-line-number="16"><span class="kw">acf</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>))</a>
-<a class="sourceLine" id="cb10-17" data-line-number="17"><span class="kw">pie</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">6</span>), <span class="dt">col =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb10-18" data-line-number="18"><span class="kw">pie</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">7</span>), <span class="dt">col =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb10-19" data-line-number="19"><span class="kw">pie</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">2</span>), <span class="dt">col =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">6</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">library</span>(customLayout)</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">lay  &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_new.html">lay_new</a></span>(</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">  <span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">nc =</span> <span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5">  <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb11-6" data-line-number="6">  <span class="dt">heights =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb11-7" data-line-number="7">lay2 &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_new.html">lay_new</a></span>(<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb11-8" data-line-number="8">cl   &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_bind_col.html">lay_bind_col</a></span>(lay, lay2, <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb11-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb11-10" data-line-number="10"><span class="kw"><a href="reference/lay_set.html">lay_set</a></span>(cl) <span class="co"># initialize drawing area</span></a>
+<a class="sourceLine" id="cb11-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb11-12" data-line-number="12"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb11-13" data-line-number="13"><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>))</a>
+<a class="sourceLine" id="cb11-14" data-line-number="14"><span class="kw">plot</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>), <span class="dt">type =</span> <span class="st">"l"</span>)</a>
+<a class="sourceLine" id="cb11-15" data-line-number="15"><span class="kw">hist</span>(<span class="kw">rnorm</span>(<span class="dv">500</span>))</a>
+<a class="sourceLine" id="cb11-16" data-line-number="16"><span class="kw">acf</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>))</a>
+<a class="sourceLine" id="cb11-17" data-line-number="17"><span class="kw">pie</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">6</span>), <span class="dt">col =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb11-18" data-line-number="18"><span class="kw">pie</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">7</span>), <span class="dt">col =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb11-19" data-line-number="19"><span class="kw">pie</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">2</span>), <span class="dt">col =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">6</span>)</a></code></pre></div>
 <p><img src="reference/figures/README-example-1.png" width="960"></p>
 </div>
 </div>
 <div id="grid-graphics-ggplot2-and-friends" class="section level2">
 <h2 class="hasAnchor">
 <a href="#grid-graphics-ggplot2-and-friends" class="anchor"></a>Grid graphics (ggplot2 and friends)</h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">library</span>(customLayout)</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="kw">library</span>(gridExtra)</a>
-<a class="sourceLine" id="cb11-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5">lay  &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_new.html">lay_new</a></span>(</a>
-<a class="sourceLine" id="cb11-6" data-line-number="6">  <span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb11-7" data-line-number="7">lay2 &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_new.html">lay_new</a></span>(<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>))</a>
-<a class="sourceLine" id="cb11-8" data-line-number="8">cl   &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_bind_col.html">lay_bind_col</a></span>(lay, lay2, <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb11-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb11-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb11-11" data-line-number="11"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb11-12" data-line-number="12">cuts &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">unique</span>(diamonds[[<span class="st">"cut"</span>]]),</a>
-<a class="sourceLine" id="cb11-13" data-line-number="13">            <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb11-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb11-15" data-line-number="15">make_cut_plot &lt;-<span class="st"> </span><span class="cf">function</span>(cut) {</a>
-<a class="sourceLine" id="cb11-16" data-line-number="16">  dd &lt;-<span class="st"> </span>diamonds[diamonds[[<span class="st">"cut"</span>]] <span class="op">==</span><span class="st"> </span>cut, ]</a>
-<a class="sourceLine" id="cb11-17" data-line-number="17">  pl &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(dd) <span class="op">+</span></a>
-<a class="sourceLine" id="cb11-18" data-line-number="18"><span class="st">      </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(carat, price)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb11-19" data-line-number="19"><span class="st">      </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/facet_wrap">facet_wrap</a></span>(<span class="st">"cut"</span>)</a>
-<a class="sourceLine" id="cb11-20" data-line-number="20">  pl</a>
-<a class="sourceLine" id="cb11-21" data-line-number="21">}</a>
-<a class="sourceLine" id="cb11-22" data-line-number="22"></a>
-<a class="sourceLine" id="cb11-23" data-line-number="23">plots &lt;-<span class="st"> </span><span class="kw">lapply</span>(cuts, make_cut_plot)</a>
-<a class="sourceLine" id="cb11-24" data-line-number="24"></a>
-<a class="sourceLine" id="cb11-25" data-line-number="25"><span class="kw"><a href="reference/lay_grid.html">lay_grid</a></span>(plots, cl)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">library</span>(customLayout)</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="kw">library</span>(gridExtra)</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5">lay  &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_new.html">lay_new</a></span>(</a>
+<a class="sourceLine" id="cb12-6" data-line-number="6">  <span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb12-7" data-line-number="7">lay2 &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_new.html">lay_new</a></span>(<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb12-8" data-line-number="8">cl   &lt;-<span class="st"> </span><span class="kw"><a href="reference/lay_bind_col.html">lay_bind_col</a></span>(lay, lay2, <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb12-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb12-11" data-line-number="11"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb12-12" data-line-number="12">cuts &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">unique</span>(diamonds[[<span class="st">"cut"</span>]]),</a>
+<a class="sourceLine" id="cb12-13" data-line-number="13">            <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb12-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb12-15" data-line-number="15">make_cut_plot &lt;-<span class="st"> </span><span class="cf">function</span>(cut) {</a>
+<a class="sourceLine" id="cb12-16" data-line-number="16">  dd &lt;-<span class="st"> </span>diamonds[diamonds[[<span class="st">"cut"</span>]] <span class="op">==</span><span class="st"> </span>cut, ]</a>
+<a class="sourceLine" id="cb12-17" data-line-number="17">  pl &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(dd) <span class="op">+</span></a>
+<a class="sourceLine" id="cb12-18" data-line-number="18"><span class="st">      </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(carat, price)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb12-19" data-line-number="19"><span class="st">      </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/facet_wrap">facet_wrap</a></span>(<span class="st">"cut"</span>)</a>
+<a class="sourceLine" id="cb12-20" data-line-number="20">  pl</a>
+<a class="sourceLine" id="cb12-21" data-line-number="21">}</a>
+<a class="sourceLine" id="cb12-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb12-23" data-line-number="23">plots &lt;-<span class="st"> </span><span class="kw">lapply</span>(cuts, make_cut_plot)</a>
+<a class="sourceLine" id="cb12-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb12-25" data-line-number="25"><span class="kw"><a href="reference/lay_grid.html">lay_grid</a></span>(plots, cl)</a></code></pre></div>
 <p><img src="reference/figures/README-examplegrid-1.png" width="960"></p>
 </div>
 <div id="powerpoint-support" class="section level2">
 <h2 class="hasAnchor">
 <a href="#powerpoint-support" class="anchor"></a>PowerPoint support</h2>
 <p>Layouts created using <code>customLayout</code> package can be used to arrange elements on the PowerPoint slide. For the detailed description please refer to <a href="https://www.customlayout.zstat.pl/articles/layouts-for-officer-power-point-document.html">the vignette</a>:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">vignette</span>(<span class="st">"layouts-for-officer-power-point-document"</span>, <span class="dt">package =</span> <span class="st">"customLayout"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">vignette</span>(<span class="st">"layouts-for-officer-power-point-document"</span>, <span class="dt">package =</span> <span class="st">"customLayout"</span>)</a></code></pre></div>
 <p><img src="reference/figures/officer-text.png"><!-- --></p>
 </div>
 </div>

@@ -27,12 +27,17 @@ also with PowerPoint slides using `officer` package.
 
 ## Instalation:
 
-`customLayout` is available only via GitHub and can be installed using
-`devtools`:
+`customLayout` is available on CRAN:
+
+``` r
+install.packages("customLayout")
+```
+
+The development version can be installed from GitHub using `devtools`:
 
 ``` r
 require(devtools)
-install_github("zzawadz/customLayout", ref = "dev-officer")
+install_github("zzawadz/customLayout")
 ```
 
 ## Basic functionality:

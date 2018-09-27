@@ -79,7 +79,7 @@
       <h1>Layouts for officer’s PowerPoint documents.</h1>
                         <h4 class="author">Zygmunt Zawadzki</h4>
             
-            <h4 class="date">2018-09-26</h4>
+            <h4 class="date">2018-09-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/zzawadz/customLayout/blob/master/vignettes/layouts-for-officer-power-point-document.Rmd"><code>vignettes/layouts-for-officer-power-point-document.Rmd</code></a></small>
       <div class="hidden name"><code>layouts-for-officer-power-point-document.Rmd</code></div>
@@ -242,8 +242,10 @@
 <a class="sourceLine" id="cb11-4" data-line-number="4">    <span class="dt">layout =</span> <span class="st">"Title and Content"</span>)</a>
 <a class="sourceLine" id="cb11-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb11-6" data-line-number="6">flTable &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_adjust_table.html">phl_adjust_table</a></span>(table, <span class="dt">olay =</span> offLayout, <span class="dt">id =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb11-7" data-line-number="7">pptx &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_with_flextable.html">phl_with_flextable</a></span>(pptx, </a>
-<a class="sourceLine" id="cb11-8" data-line-number="8">      <span class="dt">olay =</span> offLayout, <span class="dv">1</span>, flTable)</a></code></pre></div>
+<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#&gt;  58     49</span></a>
+<a class="sourceLine" id="cb11-9" data-line-number="9">pptx &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_with_flextable.html">phl_with_flextable</a></span>(pptx, </a>
+<a class="sourceLine" id="cb11-10" data-line-number="10">      <span class="dt">olay =</span> offLayout, <span class="dv">1</span>, flTable)</a></code></pre></div>
 <p><img src="power-point/officer-fltable.png"></p>
 </div>
 <div id="formatted-flextable" class="section level3">
@@ -257,13 +259,15 @@
 <a class="sourceLine" id="cb12-4" data-line-number="4">    <span class="dt">layout =</span> <span class="st">"Title and Content"</span>)</a>
 <a class="sourceLine" id="cb12-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb12-6" data-line-number="6">flTable &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_adjust_table.html">phl_adjust_table</a></span>(table, <span class="dt">olay =</span> offLayout, <span class="dt">id =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb12-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb12-8" data-line-number="8">flTable &lt;-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/flextable/topics/bg">bg</a></span>(flTable, <span class="dt">bg =</span> <span class="st">"#E4C994"</span>, <span class="dt">part =</span> <span class="st">"header"</span>)</a>
-<a class="sourceLine" id="cb12-9" data-line-number="9">flTable &lt;-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/flextable/topics/bg">bg</a></span>(flTable, <span class="dt">bg =</span> <span class="st">"#333333"</span>, <span class="dt">part =</span> <span class="st">"body"</span>)</a>
-<a class="sourceLine" id="cb12-10" data-line-number="10">flTable &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/flextable/topics/color">color</a></span>(flTable, <span class="dt">color =</span> <span class="st">"#E4C994"</span>)</a>
-<a class="sourceLine" id="cb12-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb12-12" data-line-number="12">pptx &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_with_flextable.html">phl_with_flextable</a></span>(pptx, </a>
-<a class="sourceLine" id="cb12-13" data-line-number="13">      <span class="dt">olay =</span> offLayout, <span class="dv">1</span>, flTable)</a></code></pre></div>
+<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="co">#&gt;  58     49</span></a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb12-10" data-line-number="10">flTable &lt;-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/flextable/topics/bg">bg</a></span>(flTable, <span class="dt">bg =</span> <span class="st">"#E4C994"</span>, <span class="dt">part =</span> <span class="st">"header"</span>)</a>
+<a class="sourceLine" id="cb12-11" data-line-number="11">flTable &lt;-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/flextable/topics/bg">bg</a></span>(flTable, <span class="dt">bg =</span> <span class="st">"#333333"</span>, <span class="dt">part =</span> <span class="st">"body"</span>)</a>
+<a class="sourceLine" id="cb12-12" data-line-number="12">flTable &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/flextable/topics/color">color</a></span>(flTable, <span class="dt">color =</span> <span class="st">"#E4C994"</span>)</a>
+<a class="sourceLine" id="cb12-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb12-14" data-line-number="14">pptx &lt;-<span class="st"> </span><span class="kw"><a href="../reference/phl_with_flextable.html">phl_with_flextable</a></span>(pptx, </a>
+<a class="sourceLine" id="cb12-15" data-line-number="15">      <span class="dt">olay =</span> offLayout, <span class="dv">1</span>, flTable)</a></code></pre></div>
 <p><img src="power-point/officer-flff.png"></p>
 </div>
 <div id="fit-the-table-to-the-placeholder---part-ii" class="section level3">
