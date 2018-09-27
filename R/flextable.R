@@ -74,14 +74,14 @@ phl_adjust_table <- function(x, olay, id, method = c("all", "height")) {
       warning("Calculated width exceedes the placeholder width.")
     } else {
       
-      for(fs in sizes["fs"]:1) {
-        flTable <- flextable::fontsize(flTable, size = fs, part = "all")
-        widths <- flextable::dim_pretty(flTable)$widths
-        if(sum(widths) < dims[["width"]]) {
-          break;
-        }
-      }
+      fontSize <- floor(sizes["fs"] / (sum(widths) / dims[["width"]]))
       
+      while (TRUE) {
+        flTable <- flextable::fontsize(flTable, size = fontSize, part = "all")
+        widths <- flextable::dim_pretty(flTable)$widths
+        if(sum(widths) < dims[["width"]]) break;
+        fontSize <- floor(fontSize / (sum(widths) / dims[["width"]]))
+      }
       height <- flextable::dim_pretty(flTable)$height
       height <- max(height)
       flTable <- flextable::height_all(flTable, height = height)
