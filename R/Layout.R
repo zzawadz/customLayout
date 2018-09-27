@@ -122,7 +122,6 @@ lay_bind_col <- function(
   
   rowx <- nrow(xmat)
   rowy <- nrow(ymat)
-  # najmniejszy wspolny dzielnik:
   lcm  <- .getSCM(rowx, rowy)
   
   xmat <- layRepRow(xmat, lcm / rowx)
@@ -188,7 +187,6 @@ lay_bind_row <- function(
   
   colx <- ncol(xmat)
   coly <- ncol(ymat)
-  # najmniejszy wspolny dzielnik:
   lcm  <- .getSCM(colx, coly)
   
   xmat <- layRepCol(xmat, lcm / colx)
