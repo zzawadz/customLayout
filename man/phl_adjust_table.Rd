@@ -34,7 +34,8 @@ lay3 <- lay_bind_col(lay,lay2, widths=c(3,1))
 offLayout <- phl_layout(lay3)
 
 x <- tail(iris, 10)[,c(1,5)]
-phl_adjust_table(x, offLayout, 1)
-phl_adjust_table(x, offLayout, 2)
+
+tbl1 <- phl_adjust_table(x, offLayout, 1)
+tbl2 <- phl_adjust_table(x, offLayout, 2)
 
 }

@@ -56,8 +56,9 @@ phl_calc_fontsize <- function(data, height) {
 #' offLayout <- phl_layout(lay3)
 #' 
 #' x <- tail(iris, 10)[,c(1,5)]
-#' phl_adjust_table(x, offLayout, 1)
-#' phl_adjust_table(x, offLayout, 2)
+#' 
+#' tbl1 <- phl_adjust_table(x, offLayout, 1)
+#' tbl2 <- phl_adjust_table(x, offLayout, 2)
 #' 
 phl_adjust_table <- function(x, olay, id, method = c("all", "height")) {
   
