@@ -1,5 +1,5 @@
 is.customlayout <- function(x) {
-  inherits(x, "Layout")
+  inherits(x, "CustomLayout")
 }
 
 assert_layout <- function(x) {
@@ -20,7 +20,7 @@ assert_id_inlayout <- function(id, lay) {
     stop(sprintf("length(%s) != 1", idname))
   }
   
-  if(id < 0 || id > max(lay@mat)) {
-    stop(sprintf("%s is not present in the layout. The max id value is equal to %s.", idname, max(lay@mat)))
+  if(id < 0 || id > max(lay$mat)) {
+    stop(sprintf("%s is not present in the layout. The max id value is equal to %s.", idname, max(lay$mat)))
   }
 }

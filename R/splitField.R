@@ -21,15 +21,15 @@ lay_split_field <- function(lay, newlay, field)
   
   
   n <- field
-  mat     <- lay@mat
-  widths  <- lay@widths
-  heights <- lay@heights
+  mat     <- lay$mat
+  widths  <- lay$widths
+  heights <- lay$heights
   
-  newmat <- newlay@mat
+  newmat <- newlay$mat
   
   maxn <- max(newmat)
   mat[mat > n] <- mat[mat > n] + (maxn - 1)
-  newlay@mat <- newlay@mat + (n - 1)
+  newlay$mat <- newlay$mat + (n - 1)
   
   
   rows <- unique(unlist(apply(mat, 2, function(x)

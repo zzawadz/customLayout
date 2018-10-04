@@ -1,8 +1,17 @@
-#### TODO: Fix problem with zero
-
-
-setClass("Layout", slots=c(mat="matrix",widths = "numeric",heights = "numeric"))
-
+print.CustomLayout <- function(x, ...) {
+  cat("CustomLayout:\n")
+  
+  cat("  Specification:\n")
+  
+  mat <- apply(x$mat, 1, function(x) {
+    paste(sprintf("% 3i", x), collapse = "  ")
+  })
+  
+  mat <- paste("  ", x$heights, mat)
+  head <- paste("      ", paste(x$widths, collapse = "    "))
+  cat(c(head, mat), sep = "\n")
+  
+}
 
 #' Create custom layout.
 #' 
@@ -53,7 +62,9 @@ lay_new <- function(mat, widths = NULL, heights = NULL)
     )
   }
   
-  methods::new("Layout",mat=mat,widths = widths, heights = heights)
+  res <- list(mat = mat, widths = widths, heights = heights)
+  class(res) <- "CustomLayout"
+  res
 }
 
 #' @export
@@ -82,7 +93,11 @@ layCreate <- function(mat, widths = NULL, heights = NULL) {
 lay_set <- function(layout)
 {
   assert_layout(layout)
-  layout(layout@mat,widths=layout@widths,heights=layout@heights)
+  layout(
+    layout$mat,
+    widths = layout$widths,
+    heights = layout$heights
+  )
 }
 
 #' @export
@@ -119,16 +134,16 @@ lay_bind_col <- function(
   assert_layout(y)
   assertthat::assert_that(length(widths) == 2)
   
-  xmat <- x@mat
-  ymat <- y@mat
+  xmat <- x$mat
+  ymat <- y$mat
   
   # move ids from the second matrix
   if (addmax) {
     ymat[ymat > 0] <- ymat[ymat > 0] + max(xmat)
   }
   
-  ymat <- layRepRow(ymat, y@heights)
-  xmat <- layRepRow(xmat, x@heights)
+  ymat <- layRepRow(ymat, y$heights)
+  xmat <- layRepRow(xmat, x$heights)
   
   rowx <- nrow(xmat)
   rowy <- nrow(ymat)
@@ -138,15 +153,15 @@ lay_bind_col <- function(
   ymat <- layRepRow(ymat, lcm / rowy)
   
   mat <- cbind(xmat, ymat)
-  widths <- c(x@widths * widths[1] * sum(y@widths),
-             y@widths * widths[2] * sum(x@widths))
+  widths <- c(x$widths * widths[1] * sum(y$widths),
+             y$widths * widths[2] * sum(x$widths))
   widths  <- widths / .multipleGCD(widths)
   heights <- rep(1, nrow(mat))
   
-  layout <- methods::new("Layout",
-                        mat = mat,
-                        widths = widths,
-                        heights = heights)
+  layout <- lay_new(
+    mat = mat,
+    widths = widths,
+    heights = heights)
   .cleanLay(layout)
 }
 
@@ -190,14 +205,14 @@ lay_bind_row <- function(
   assert_layout(y)
   assertthat::assert_that(length(heights) == 2)
   
-  xmat <- x@mat
-  ymat <- y@mat
+  xmat <- x$mat
+  ymat <- y$mat
   if (addmax) {
     ymat[ymat > 0] <- ymat[ymat > 0] + max(xmat)
   }
   
-  ymat <- layRepCol(ymat, y@widths)
-  xmat <- layRepCol(xmat, x@widths)
+  ymat <- layRepCol(ymat, y$widths)
+  xmat <- layRepCol(xmat, x$widths)
   
   colx <- ncol(xmat)
   coly <- ncol(ymat)
@@ -208,14 +223,14 @@ lay_bind_row <- function(
   
   mat <- rbind(xmat, ymat)
   widths  <- rep(1, ncol(mat))
-  heights <- c(x@heights * heights[1] * sum(y@heights),
-              sum(x@heights) * y@heights * heights[2])
+  heights <- c(x$heights * heights[1] * sum(y$heights),
+              sum(x$heights) * y$heights * heights[2])
   heights <- heights / .multipleGCD(heights)
   
-  layout <- methods::new("Layout",
-                        mat = mat,
-                        widths = widths,
-                        heights = heights)
+  layout <- lay_new(
+    mat = mat,
+    widths = widths,
+    heights = heights)
   .cleanLay(layout)
 }
 
@@ -257,9 +272,9 @@ lay_grid <- function(grobs, lay, ...) {
   assert_layout(lay)
   gridExtra::grid.arrange(
     grobs = grobs,
-    layout_matrix = lay@mat,
-    widths = lay@widths,
-    heights = lay@heights, ...)
+    layout_matrix = lay$mat,
+    widths = lay$widths,
+    heights = lay$heights, ...)
 }
 
 #' @export

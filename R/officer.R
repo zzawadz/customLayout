@@ -56,12 +56,12 @@ phl_layout <- function(cl, slideWidth = 10, slideHeight = 7.5,
   y <- slideHeight - sum(margins[c(1,3)])
   
   
-  widths <- cl@widths / sum(cl@widths) * x
-  heights  <- cl@heights / sum(cl@heights) * y
+  widths <- cl$widths / sum(cl$widths) * x
+  heights  <- cl$heights / sum(cl$heights) * y
   
-  ids <- seq_len(max(cl@mat))
+  ids <- seq_len(max(cl$mat))
   
-  mat <- cl@mat
+  mat <- cl$mat
   
   startWidths <- c(0, cumsum(widths))
   startHeights <- c(0, cumsum(heights))

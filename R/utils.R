@@ -64,7 +64,7 @@ layRepCol <- function(x,fr)
 lay_show <- function(layout)
 {
   lay_set(layout)
-  n <- max(layout@mat)
+  n <- max(layout$mat)
   
   oma.saved <- graphics::par("oma")
   graphics::par(oma = rep.int(0, 4))
@@ -96,8 +96,8 @@ layShow <- function(layout) {
 
 .cleanCols <- function(lay)
 {
-  mat <- lay@mat
-  widths <- lay@widths
+  mat <- lay$mat
+  widths <- lay$widths
   i <- 1
   while(i < ncol(mat))
   {
@@ -108,16 +108,16 @@ layShow <- function(layout) {
       widths <- widths[-(i+1)]
     } else i <- i + 1
   }
-  lay@mat <- mat
-  lay@widths <- widths
+  lay$mat <- mat
+  lay$widths <- widths
   lay
 }
 
 
 .cleanRows <- function(lay)
 {
-  mat <- lay@mat
-  heights <- lay@heights
+  mat <- lay$mat
+  heights <- lay$heights
   i <- 1
   while(i < nrow(mat))
   {
@@ -128,8 +128,8 @@ layShow <- function(layout) {
       heights <- heights[-(i+1)]
     } else i <- i + 1
   }
-  lay@mat <- mat
-  lay@heights <- heights
+  lay$mat <- mat
+  lay$heights <- heights
   lay
 }
 
