@@ -33,6 +33,12 @@ lay_new <- function(mat, widths = NULL, heights = NULL)
   if(is.null(widths)) widths <- rep(1,ncol(mat))
   if(is.null(heights)) heights <- rep(1,nrow(mat))
   
+  assertthat::assert_that(
+    is.matrix(mat),
+    is.numeric(widths),
+    is.numeric(heights)
+  )
+  
   if(ncol(mat) != length(widths)) {
     stop(paste(
       "Number of columns in the 'mat' must",
@@ -46,7 +52,6 @@ lay_new <- function(mat, widths = NULL, heights = NULL)
       "match the length of the 'heights' vector.")
     )
   }
-  
   
   methods::new("Layout",mat=mat,widths = widths, heights = heights)
 }
@@ -76,6 +81,7 @@ layCreate <- function(mat, widths = NULL, heights = NULL) {
 #' 
 lay_set <- function(layout)
 {
+  assert_layout(layout)
   layout(layout@mat,widths=layout@widths,heights=layout@heights)
 }
 
@@ -109,6 +115,10 @@ lay_bind_col <- function(
     widths = c(1, 1),
     addmax = TRUE)
 {
+  assert_layout(x)
+  assert_layout(y)
+  assertthat::assert_that(length(widths) == 2)
+  
   xmat <- x@mat
   ymat <- y@mat
   
@@ -176,6 +186,10 @@ lay_bind_row <- function(
    addmax = TRUE
 ) {
   
+  assert_layout(x)
+  assert_layout(y)
+  assertthat::assert_that(length(heights) == 2)
+  
   xmat <- x@mat
   ymat <- y@mat
   if (addmax) {
@@ -240,7 +254,7 @@ layRowBind <- function(
 #' lay_grid(list(pl1, pl2, pl3, pl4), l3)
 #'
 lay_grid <- function(grobs, lay, ...) {
-
+  assert_layout(lay)
   gridExtra::grid.arrange(
     grobs = grobs,
     layout_matrix = lay@mat,

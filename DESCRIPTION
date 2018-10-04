@@ -7,7 +7,7 @@ Maintainer: Zygmunt Zawadzki <zygmunt@zstat.pl>
 Description: Create complicated drawing areas for multiple elements by combining much simpler layouts. It is an extended version of layout function from the 'graphics' package, but it also works with 'grid' graphics. It also supports arranging elements inside 'PowerPoint' slides created using the 'officer' package.
 License: GPL-3
 RoxygenNote: 6.1.0
-Imports: methods, gridExtra, utils, graphics, RColorBrewer, officer, flextable
+Imports: methods, gridExtra, utils, graphics, RColorBrewer, officer, flextable, assertthat
 Suggests: covr,
     testthat,
     ggplot2,

@@ -19,6 +19,12 @@
 #' phl_calc_fontsize(x, 5)
 #' 
 phl_calc_fontsize <- function(data, height) {
+  
+  assertthat::assert_that(
+    is.data.frame(data),
+    assertthat::is.scalar(height)
+  )
+  
   nrows <- nrow(data) + 1 # add header
   const <- 0.01862963
   res <- c(fs = floor(height / nrows / const), height = height / nrows)
@@ -61,6 +67,8 @@ phl_calc_fontsize <- function(data, height) {
 #' phl_adjust_table(x, offLayout, 2)
 #' 
 phl_adjust_table <- function(x, olay, id, method = c("all", "height")) {
+  
+  assertthat::assert_that(is.data.frame(x))
   
   method <- match.arg(method, choices = c("all", "height"))
   dims <- olay[[id]]

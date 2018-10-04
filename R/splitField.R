@@ -16,7 +16,10 @@
 #' 
 lay_split_field <- function(lay, newlay, field)
 {
-
+  assert_layout(lay)
+  assert_layout(newlay)
+  
+  
   n <- field
   mat     <- lay@mat
   widths  <- lay@widths
