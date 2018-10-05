@@ -52,6 +52,15 @@ phl_layout <- function(cl, slideWidth = 10, slideHeight = 7.5,
     margins = c(bottom = 0.25, left = 0.25, top = 0.25, right = 0.25),
     innerMargins = c(bottom = 0.025, left = 0.025, top = 0.025, right = 0.025)
     ) {
+  
+  assert_layout(cl)
+  assertthat::assert_that(
+    assertthat::is.scalar(slideWidth),
+    assertthat::is.scalar(slideHeight),
+    length(margins) == 4,
+    length(innerMargins) == 4
+  )
+  
   x <- slideWidth  - sum(margins[c(2,4)])
   y <- slideHeight - sum(margins[c(1,3)])
   
@@ -81,6 +90,7 @@ phl_layout <- function(cl, slideWidth = 10, slideHeight = 7.5,
   }
   
   allPositions <- stats::setNames(lapply(ids, getPositions), ids)
+  class(allPositions) <- "OfficerCustomLayout"
   allPositions
 }
 
