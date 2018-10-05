@@ -36,9 +36,9 @@ library(customLayout)
 library(magrittr)
 library(ggplot2)
 
-lay = lay_new(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1))
+lay = lay_new(matrix(1:4,nc = 2),widths=c(3, 2),heights=c(2, 1))
 lay2 = lay_new(matrix(1:3))
-cl = lay_bind_col(lay,lay2, widths=c(3,1))
+cl = lay_bind_col(lay,lay2, widths = c(3,1))
 
 allPositions <- phl_layout(cl, innerMargins = rep(0.1,4))
 

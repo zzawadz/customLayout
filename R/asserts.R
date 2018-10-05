@@ -1,16 +1,20 @@
-is.customlayout <- function(x) {
-  inherits(x, "CustomLayout")
-}
-
-assert_layout <- function(x) {
-  if(!is.customlayout(x)) {
-    call <- deparse(substitute(x))
-    stop(
-      paste(sprintf("%s is not a Layout object.", call),
-      "Did you create it using 'lay_new' function?", sep = "\n")
-    )
+make_assert_function <- function(class, constrName, pr = "a") {
+  
+  function(x) {
+    if(!inherits(x, class)) {
+      call <- deparse(substitute(x))
+      stop(
+        paste(
+          sprintf("%s is not %s %s object.", call, pr, class),
+          sprintf("Did you create it using '%s()' function?", constrName),
+            sep = "\n")
+      )
+    }
   }
 }
+
+assert_layout <- make_assert_function("CustomLayout", "lay_new")
+assert_officerlayout <- make_assert_function("OfficerCustomLayout", "phl_layout", "an")
 
 assert_id_inlayout <- function(id, lay) {
   
