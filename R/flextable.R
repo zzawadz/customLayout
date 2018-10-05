@@ -68,6 +68,7 @@ phl_calc_fontsize <- function(data, height) {
 #' 
 phl_adjust_table <- function(x, olay, id, method = c("all", "height")) {
   
+  assert_id_inlayout(id, olay)
   assertthat::assert_that(is.data.frame(x))
   
   method <- match.arg(method, choices = c("all", "height"))
@@ -143,6 +144,7 @@ phl_adjust_table <- function(x, olay, id, method = c("all", "height")) {
 #' 
 phl_with_flextable <- function(x, olay, id, value) {
   
+  assert_id_inlayout(id, olay)
   tableWidths <- vapply(value[c("header", "body", "footer")],
          function(x) sum(x$colwidths), FUN.VALUE = c(0.0))
   tableWidths <- max(tableWidths)

@@ -163,6 +163,7 @@ layOfficerAddInnerMargins <- function(x, innerMargins) {
 #' 
 phl_with_gg <- function(x, olay, id, value, ...) {
   
+  assert_id_inlayout(id, olay)
   officer::ph_with_gg_at(
     x,
     value,
@@ -186,6 +187,7 @@ phl_with_gg <- function(x, olay, id, value, ...) {
 #' 
 phl_with_plot <- function(x, olay, id, plotFnc, ...) {
   
+  assert_id_inlayout(id, olay)
   file <- tempfile(fileext = ".png")
   options(bitmapType = "cairo")
   grDevices::png(filename = file,
@@ -221,6 +223,7 @@ phl_with_plot <- function(x, olay, id, plotFnc, ...) {
 #'
 phl_with_text <- function(x, olay, id, str, type = "title", ...) {
   
+  assert_id_inlayout(id, olay)
   sldSum <- officer::slide_summary(x)
   
   x <- officer::ph_empty_at(
@@ -250,6 +253,8 @@ phl_with_text <- function(x, olay, id, str, type = "title", ...) {
 #' @export
 #' 
 phl_with_table <- function(x, olay, id, value, ...) {
+  
+  assert_id_inlayout(id, olay)
   
   officer::ph_with_table_at(
     x,

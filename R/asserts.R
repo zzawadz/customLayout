@@ -16,6 +16,18 @@ make_assert_function <- function(class, constrName, pr = "a") {
 assert_layout <- make_assert_function("CustomLayout", "lay_new")
 assert_officerlayout <- make_assert_function("OfficerCustomLayout", "phl_layout", "an")
 
+maxid <- function (x) {
+  UseMethod("maxid", x)
+}
+
+maxid.CustomLayout <- function(x) {
+  max(x$mat)
+}
+
+maxid.OfficerCustomLayout <- function(x) {
+  length(x)
+}
+
 assert_id_inlayout <- function(id, lay) {
   
   idname <- deparse(substitute(id))
@@ -24,7 +36,7 @@ assert_id_inlayout <- function(id, lay) {
     stop(sprintf("length(%s) != 1", idname))
   }
   
-  if(id < 0 || id > max(lay$mat)) {
-    stop(sprintf("%s is not present in the layout. The max id value is equal to %s.", idname, max(lay$mat)))
+  if(id < 0 || id > maxid(lay)) {
+    stop(sprintf("%s is not present in the layout. The max id value is equal to %s.", idname, maxid(lay)))
   }
 }
