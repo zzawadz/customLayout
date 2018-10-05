@@ -1,16 +1,47 @@
+#' Print a CustomLayout object.
+#'
+#' @param x object of class CustomLayout.
+#' @param ... optional arguments to print or plot methods. Not used here.
+#'
+#' @export
+#' 
+#' @seealso lay_new lay_show
+#' 
+#' @examples
+#' 
+#' lay  <- lay_new(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1))
+#' lay2 <- lay_new(matrix(1:3))
+#' cl <- lay_bind_col(lay,lay2, widths=c(3,1))
+#' print(cl)
+#' 
+#' cl2 <- lay_bind_col(cl,cl, c(2,1))
+#' print(cl2)
+#' 
+#' cl3 <- lay_bind_row(cl,cl, c(20,1))
+#' print(cl3) 
+#' 
 print.CustomLayout <- function(x, ...) {
-  cat("CustomLayout:\n")
   
+  xname <- deparse(substitute(x))
+  
+  cat("CustomLayout object:\n")
   cat("  Specification:\n")
   
   mat <- apply(x$mat, 1, function(x) {
     paste(sprintf("% 3i", x), collapse = "  ")
   })
   
-  mat <- paste("  ", x$heights, mat)
-  head <- paste("      ", paste(x$widths, collapse = "    "))
+  mat <- paste("  ", sprintf("%3i", x$heights), mat)
+  head <- paste("      ", 
+      paste(sprintf("%3i", x$widths), collapse = "  "))
   cat(c(head, mat), sep = "\n")
   
+  cat(
+    "\n\n  To print the layout on your graphics device plese use:",
+    sprintf("  lay(%s)", xname), sep = "\n"
+  )
+  
+  invisible(x)
 }
 
 #' Create custom layout.
