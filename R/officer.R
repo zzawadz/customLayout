@@ -1,3 +1,44 @@
+#' Print a OfficerCustomLayout object.
+#'
+#' @param x object of class OfficerCustomLayout
+#' @param ... optional arguments to print or plot methods. Not used here.
+#'
+#' @export
+#' 
+#' @seealso lay_new lay_show phl_layout
+#' 
+#' @examples
+#' 
+#' lay  <- lay_new(matrix(1:4,nc = 2),widths = c(3, 2),heights = c(2, 1))
+#' lay2 <- lay_new(matrix(1:3))
+#' cl <- lay_bind_col(lay,lay2, widths=c(3,1))
+#' ofl <- phl_layout(cl, innerMargins = rep(0.1,4))
+#' print(ofl)
+#' 
+print.OfficerCustomLayout <- function(x, ...) {
+  
+  xname <- deparse(substitute(x))
+  
+  cat("OfficerCustomLayout object:\n")
+  att <- attributes(x)
+  
+  print_attr <- function(att, name) {
+    cat(
+      sprintf(
+        "\n  %s: %s",
+        name, 
+        paste(round(att[[name]], 2), collapse = ", ")
+      )
+    )
+  }
+  
+  cat("  Elements:", length(x))
+  print_attr(att, "slideWidth")
+  print_attr(att, "slideHeight")
+  print_attr(att, "margins")
+  print_attr(att, "innerMargins")
+}
+
 #' Create layout for the officer PowerPoint slide.
 #'
 #' @param cl layout object
@@ -23,9 +64,9 @@
 #' library(magrittr)
 #' library(ggplot2)
 #' 
-#' lay = lay_new(matrix(1:4,nc=2),widths=c(3,2),heights=c(2,1))
+#' lay = lay_new(matrix(1:4,nc = 2),widths=c(3, 2),heights=c(2, 1))
 #' lay2 = lay_new(matrix(1:3))
-#' cl = lay_bind_col(lay,lay2, widths=c(3,1))
+#' cl = lay_bind_col(lay,lay2, widths = c(3,1))
 #' 
 #' allPositions <- phl_layout(cl, innerMargins = rep(0.1,4))
 #' 
