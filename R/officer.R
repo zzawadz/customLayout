@@ -90,7 +90,15 @@ phl_layout <- function(cl, slideWidth = 10, slideHeight = 7.5,
   }
   
   allPositions <- stats::setNames(lapply(ids, getPositions), ids)
+  
+  attr(allPositions, "layout") <- cl
+  attr(allPositions, "slideWidth") <- slideWidth
+  attr(allPositions, "slideHeight") <- slideHeight
+  attr(allPositions, "innerMargins") <- innerMargins
+  attr(allPositions, "margins") <- margins
+  
   class(allPositions) <- "OfficerCustomLayout"
+  
   allPositions
 }
 
