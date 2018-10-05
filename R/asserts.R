@@ -10,11 +10,14 @@ make_assert_function <- function(class, constrName, pr = "a") {
             sep = "\n")
       )
     }
+    
+    return(invisible(TRUE))
   }
 }
 
 assert_layout <- make_assert_function("CustomLayout", "lay_new")
-assert_officerlayout <- make_assert_function("OfficerCustomLayout", "phl_layout", "an")
+assert_officerlayout <- 
+  make_assert_function("OfficerCustomLayout", "phl_layout", "an")
 
 maxid <- function (x) {
   UseMethod("maxid", x)
@@ -36,7 +39,15 @@ assert_id_inlayout <- function(id, lay) {
     stop(sprintf("length(%s) != 1", idname))
   }
   
-  if(id < 0 || id > maxid(lay)) {
-    stop(sprintf("%s is not present in the layout. The max id value is equal to %s.", idname, maxid(lay)))
+  if(id < 1 || id > maxid(lay)) {
+    stop(
+      sprintf(
+        "%s is not present in the layout. The max id value is equal to %s.",
+        idname,
+        maxid(lay)
+      )
+    )
   }
+  
+  return(invisible(TRUE))
 }

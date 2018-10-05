@@ -1,7 +1,7 @@
 #' Repeats rows in matrix.
 #' 
 #' @param x matrix
-#' @param fr numeric value or vector with number of repetition of given row.
+#' @param fr numeric value or vector with number of repetition of a given row.
 #' 
 #' @noRd
 #' @examples
@@ -22,7 +22,7 @@ layRepRow <- function(x,fr)
 #' Repeats columns in matrix.
 #' 
 #' @param x matrix
-#' @param fr numeric value or vector with number of repetition of given column.
+#' @param fr numeric value or vector with number of repetition of a given column.
 #' 
 #' @noRd
 #' @examples
