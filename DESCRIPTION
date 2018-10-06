@@ -16,7 +16,11 @@ Suggests: covr,
     vdiffr,
     gdtools,
     magrittr,
-    dplyr
+    dplyr,
+    FSelectorRcpp,
+    klaR,
+    stringr,
+    cowplot
 URL: https://www.customlayout.zstat.pl/, https://github.com/zzawadz/customLayout
 BugReports: https://github.com/zzawadz/customLayout/issues
 VignetteBuilder: knitr
