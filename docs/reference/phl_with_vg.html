@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Authors • customLayout</title>
+<title>add a plot as vector graphics into layout placeholder — phl_with_vg • customLayout</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,12 +25,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
-<link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script>
+<link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script>
 
 
 
-<meta property="og:title" content="Authors" />
+<meta property="og:title" content="add a plot as vector graphics into layout placeholder — phl_with_vg" />
+
+<meta property="og:description" content="add a plot as vector graphics into layout placeholder" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -46,7 +49,7 @@
   </head>
 
   <body>
-    <div class="container template-authors">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -57,7 +60,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">customLayout</a>
+        <a class="navbar-link" href="../index.html">customLayout</a>
         <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
@@ -65,16 +68,16 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">Intro</a>
+  <a href="../index.html">Intro</a>
 </li>
 <li>
-  <a href="articles/Roadmap.html">Roadmap</a>
+  <a href="../articles/Roadmap.html">Roadmap</a>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="articles/customlayout-cookbook.html">Cookbook</a>
+  <a href="../articles/customlayout-cookbook.html">Cookbook</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -84,7 +87,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="articles/layouts-for-officer-power-point-document.html">Layouts for officer's PowerPoint documents.</a>
+      <a href="../articles/layouts-for-officer-power-point-document.html">Layouts for officer's PowerPoint documents.</a>
     </li>
   </ul>
 </li>
@@ -107,22 +110,60 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Authors</h1>
+    <h1>add a plot as vector graphics into layout placeholder</h1>
+    <small class="dont-index">Source: <a href='https://github.com/zzawadz/customLayout/blob/master/R/officer.R'><code>R/officer.R</code></a></small>
+    <div class="hidden name"><code>phl_with_vg.Rd</code></div>
     </div>
 
-    <ul class="list-unstyled">
-      <li>
-        <p><strong>Zygmunt Zawadzki</strong>. Author, maintainer. 
-        </p>
-      </li>
-    </ul>
+    <div class="ref-description">
+    
+    <p>add a plot as vector graphics into layout placeholder</p>
+    
+    </div>
+
+    <pre class="usage"><span class='fu'>phl_with_vg</span>(<span class='no'>x</span>, <span class='no'>olay</span>, <span class='no'>id</span>, <span class='no'>code</span>, <span class='no'>ggobj</span>, <span class='no'>...</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>rpptx object</p></td>
+    </tr>
+    <tr>
+      <th>olay</th>
+      <td><p>an OfficerLayout object created using <code><a href='phl_layout.html'>phl_layout</a></code></p></td>
+    </tr>
+    <tr>
+      <th>id</th>
+      <td><p>an single integer with an id of the placeholder from <code>olay</code> object.</p></td>
+    </tr>
+    <tr>
+      <th>code</th>
+      <td><p>plot instructions.</p></td>
+    </tr>
+    <tr>
+      <th>ggobj</th>
+      <td><p>ggplot objet to print. Argument code will be ignored if this argument is supplied.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>other arguments passed to <code>dml_pptx</code></p></td>
+    </tr>
+    </table>
+    
 
   </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+                </ul>
 
+  </div>
 </div>
-
 
       <footer>
       <div class="copyright">

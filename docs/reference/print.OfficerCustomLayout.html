@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Articles • customLayout</title>
+<title>Print a OfficerCustomLayout object. — print.OfficerCustomLayout • customLayout</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,7 +30,10 @@
 
 
 
-<meta property="og:title" content="Articles" />
+<meta property="og:title" content="Print a OfficerCustomLayout object. — print.OfficerCustomLayout" />
+
+<meta property="og:description" content="Print a OfficerCustomLayout object." />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -46,7 +49,7 @@
   </head>
 
   <body>
-    <div class="container template-article-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -109,20 +112,62 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Articles</h1>
+    <h1>Print a OfficerCustomLayout object.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/zzawadz/customLayout/blob/master/R/officer.R'><code>R/officer.R</code></a></small>
+    <div class="hidden name"><code>print.OfficerCustomLayout.Rd</code></div>
     </div>
 
-    <div class="section ">
-      <h3>All vignettes</h3>
-      <p class="section-desc"></p>
-
-      <ul>
-        <li><a href="Roadmap.html">Roadmap</a></li>
-        <li><a href="customlayout-cookbook.html">Vignette Title</a></li>
-        <li><a href="layouts-for-officer-power-point-document.html">Layouts for officer's PowerPoint documents.</a></li>
-        <li><a href="officer-example-fselectorrcpp.html">customLayout and officer - example.</a></li>
-      </ul>
+    <div class="ref-description">
+    
+    <p>Print a OfficerCustomLayout object.</p>
+    
     </div>
+
+    <pre class="usage"><span class='co'># S3 method for OfficerCustomLayout</span>
+<span class='fu'>print</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>object of class OfficerCustomLayout</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>optional arguments to print or plot methods. Not used here.</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>lay_new lay_show phl_layout</p></div>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='no'>lay</span>  <span class='kw'>&lt;-</span> <span class='fu'><a href='lay_new.html'>lay_new</a></span>(<span class='fu'>matrix</span>(<span class='fl'>1</span>:<span class='fl'>4</span>,<span class='kw'>nc</span> <span class='kw'>=</span> <span class='fl'>2</span>),<span class='kw'>widths</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>3</span>, <span class='fl'>2</span>),<span class='kw'>heights</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>1</span>))
+<span class='no'>lay2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='lay_new.html'>lay_new</a></span>(<span class='fu'>matrix</span>(<span class='fl'>1</span>:<span class='fl'>3</span>))
+<span class='no'>cl</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='lay_bind_col.html'>lay_bind_col</a></span>(<span class='no'>lay</span>,<span class='no'>lay2</span>, <span class='kw'>widths</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>3</span>,<span class='fl'>1</span>))
+<span class='no'>ofl</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='phl_layout.html'>phl_layout</a></span>(<span class='no'>cl</span>, <span class='kw'>innerMargins</span> <span class='kw'>=</span> <span class='fu'>rep</span>(<span class='fl'>0.1</span>,<span class='fl'>4</span>))
+<span class='fu'>print</span>(<span class='no'>ofl</span>)</div><div class='output co'>#&gt; OfficerCustomLayout object:
+#&gt;   Elements: 7
+#&gt;   slideWidth: 10
+#&gt;   slideHeight: 7.5
+#&gt;   margins: 0.25, 0.25, 0.25, 0.25
+#&gt;   innerMargins: 0.1, 0.1, 0.1, 0.1</div><div class='input'>
+</div></pre>
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#see-also">See also</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
   </div>
 </div>
 
