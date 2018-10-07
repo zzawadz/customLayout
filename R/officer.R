@@ -175,6 +175,31 @@ phl_with_gg <- function(x, olay, id, value, ...) {
   )
 }
 
+#' add a plot as vector graphics into layout placeholder
+#'
+#' @param x rpptx object
+#' @param olay an OfficerLayout object created using \code{\link{phl_layout}}
+#' @param id an single integer with an id of the placeholder from \code{olay} object.
+#' @param code plot instructions.
+#' @param ggobj ggplot objet to print. Argument code will be ignored if this argument is supplied.
+#' @param ... other arguments passed to \code{\link{dml_pptx}}
+#'
+#' @export
+#' 
+phl_with_vg <- function(x, olay, id, code, ggobj, ...) {
+  
+  assert_id_inlayout(id, olay)
+  rvg::ph_with_vg_at(
+    x, code = ggobj, ggobj = ggobj,
+    width = olay[[id]]["width"],
+    height = olay[[id]]["height"], 
+    left = olay[[id]]["left"],
+    top = olay[[id]]["top"],
+    ...
+  )
+}
+
+
 #' add plot into layout placeholder
 #'
 #' @param x rpptx object
