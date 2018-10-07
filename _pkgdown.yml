@@ -32,6 +32,8 @@ navbar:
     href: articles/Roadmap.html
   - text: Reference
     href: reference/index.html
+  - text: Cookbook
+    href: articles/customlayout-cookbook.html
   - text: Articles
     menu:
       - text: Layouts for officer's PowerPoint documents.
