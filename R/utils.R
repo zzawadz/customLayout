@@ -94,7 +94,12 @@ layShow <- function(layout) {
   lay_show(layout)
 }
 
-.cleanCols <- function(lay)
+#' Internal customLayout function for shrinking the size of layuot's matrix.
+#'
+#' @param lay a CustomLayout object.
+#' @noRd
+#' 
+.clean_cols <- function(lay)
 {
   mat <- lay$mat
   widths <- lay$widths
@@ -113,8 +118,12 @@ layShow <- function(layout) {
   lay
 }
 
-
-.cleanRows <- function(lay)
+#' Internal customLayout function for shrinking the size of layuot's matrix.
+#'
+#' @param lay a CustomLayout object.
+#' @noRd
+#' 
+.clean_rows <- function(lay)
 {
   mat <- lay$mat
   heights <- lay$heights
@@ -133,10 +142,15 @@ layShow <- function(layout) {
   lay
 }
 
-.cleanLay <- function(lay)
+#' Internal customLayout function for shrinking the size of layuot's matrix.
+#'
+#' @param lay a CustomLayout object.
+#' @noRd
+#' 
+.clean_lay <- function(lay)
 {
-  lay <- .cleanCols(lay)
-  lay <- .cleanRows(lay)
+  lay <- .clean_cols(lay)
+  lay <- .clean_rows(lay)
   lay
 }
 

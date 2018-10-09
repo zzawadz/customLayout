@@ -102,7 +102,8 @@ lay_new <- function(mat, widths = NULL, heights = NULL)
   
   res <- list(mat = mat, widths = widths, heights = heights)
   class(res) <- "CustomLayout"
-  res
+  
+  .clean_lay(res)
 }
 
 #' @export
@@ -196,11 +197,10 @@ lay_bind_col <- function(
   widths  <- widths / .multipleGCD(widths)
   heights <- rep(1, nrow(mat))
   
-  layout <- lay_new(
+  lay_new(
     mat = mat,
     widths = widths,
     heights = heights)
-  .cleanLay(layout)
 }
 
 #' @rdname lay_bind_col
@@ -265,11 +265,10 @@ lay_bind_row <- function(
               sum(x$heights) * y$heights * heights[2])
   heights <- heights / .multipleGCD(heights)
   
-  layout <- lay_new(
+  lay_new(
     mat = mat,
     widths = widths,
     heights = heights)
-  .cleanLay(layout)
 }
 
 #' @export
