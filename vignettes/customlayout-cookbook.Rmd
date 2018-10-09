@@ -1,6 +1,6 @@
 ---
-title: "Vignette Title"
-author: "Vignette Author"
+title: "customLayout - cookbook"
+author: "Zygmunt Zawadzki"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
