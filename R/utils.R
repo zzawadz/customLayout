@@ -1,15 +1,15 @@
 #' Repeats rows in matrix.
 #' 
 #' @param x matrix
-#' @param fr numeric value or vector with number of repetition of a given row.
+#' @param fr numeric value or vector with the number of repetition of a given row.
 #' 
 #' @noRd
 #' @examples
 #' 
-#' layRepRow(matrix(1:4,ncol=2),c(4,2))
-#' layRepRow(matrix(1:4,ncol=2),2)
+#' lay_rep_row(matrix(1:4,ncol=2),c(4,2))
+#' lay_rep_row(matrix(1:4,ncol=2),2)
 #' 
-layRepRow <- function(x,fr)
+lay_rep_row <- function(x,fr)
 {
   nr <- sum(fr)# ilosc wierszy w nowej macierzy:
   nx <- NULL
@@ -22,15 +22,15 @@ layRepRow <- function(x,fr)
 #' Repeats columns in matrix.
 #' 
 #' @param x matrix
-#' @param fr numeric value or vector with number of repetition of a given column.
+#' @param fr numeric value or vector with the number of repetition of a given column.
 #' 
 #' @noRd
 #' @examples
 #' 
-#' layRepCol(matrix(1:4,ncol=2),c(4,2))
-#' layRepCol(matrix(1:4,ncol=2),2)
+#' lay_rep_col(matrix(1:4,ncol=2),c(4,2))
+#' lay_rep_col(matrix(1:4,ncol=2),2)
 #' 
-layRepCol <- function(x,fr)
+lay_rep_col <- function(x,fr)
 {
   nr <- sum(fr)# ilosc wierszy w nowej macierzy:
   nx <- NULL

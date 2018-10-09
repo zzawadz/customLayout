@@ -180,15 +180,15 @@ lay_bind_col <- function(
     ymat[ymat > 0] <- ymat[ymat > 0] + max(xmat)
   }
   
-  ymat <- layRepRow(ymat, y$heights)
-  xmat <- layRepRow(xmat, x$heights)
+  ymat <- lay_rep_row(ymat, y$heights)
+  xmat <- lay_rep_row(xmat, x$heights)
   
   rowx <- nrow(xmat)
   rowy <- nrow(ymat)
   lcm  <- .getSCM(rowx, rowy)
   
-  xmat <- layRepRow(xmat, lcm / rowx)
-  ymat <- layRepRow(ymat, lcm / rowy)
+  xmat <- lay_rep_row(xmat, lcm / rowx)
+  ymat <- lay_rep_row(ymat, lcm / rowy)
   
   mat <- cbind(xmat, ymat)
   widths <- c(x$widths * widths[1] * sum(y$widths),
@@ -249,15 +249,15 @@ lay_bind_row <- function(
     ymat[ymat > 0] <- ymat[ymat > 0] + max(xmat)
   }
   
-  ymat <- layRepCol(ymat, y$widths)
-  xmat <- layRepCol(xmat, x$widths)
+  ymat <- lay_rep_col(ymat, y$widths)
+  xmat <- lay_rep_col(xmat, x$widths)
   
   colx <- ncol(xmat)
   coly <- ncol(ymat)
   lcm  <- .getSCM(colx, coly)
   
-  xmat <- layRepCol(xmat, lcm / colx)
-  ymat <- layRepCol(ymat, lcm / coly)
+  xmat <- lay_rep_col(xmat, lcm / colx)
+  ymat <- lay_rep_col(ymat, lcm / coly)
   
   mat <- rbind(xmat, ymat)
   widths  <- rep(1, ncol(mat))
