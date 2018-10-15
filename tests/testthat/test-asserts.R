@@ -22,3 +22,10 @@ test_that("id in layout", {
   # only single value is allowed
   expect_error(customLayout:::assert_id_inlayout(c(1:5), lay))
 })
+
+test_that("pptx_testcase fails if the file does not exists", {
+  expect_error(
+    pptx_testcase(fnc = function() {}, expected = "test.pptx")
+  )
+})
+
