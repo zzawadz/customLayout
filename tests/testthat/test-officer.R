@@ -162,3 +162,48 @@ test_that("phl_with_gg - compare with standard", {
   )
   
 })
+
+test_phl_with_table <- function(seed = 123) {
+  
+  lay <- lay_bind_col(
+    lay_new(rbind(1,2)),
+    lay_new(rbind(1,2)), 
+    widths = c(3,4)
+  )
+  
+  olay <- phl_layout(lay)
+  
+  set.seed(seed)
+  
+  pptx <- officer::read_pptx()
+  pptx <- officer::add_slide(
+    pptx,
+    layout = "Two Content", master = "Office Theme")
+  
+  irs <- iris[sample.int(nrow(iris), 10), ]
+  
+  phl_with_table(pptx, olay, 1, head(irs,3))
+  phl_with_table(pptx, olay, 2, head(irs,4))
+  phl_with_table(pptx, olay, 3, head(irs[,c(1,5)],3))
+  phl_with_table(pptx, olay, 4, head(irs[,c(1,5)],4))
+  pptx
+}
+
+test_that("phl_with_table - compare with standard", {
+  
+  testthat::skip_on_cran()
+  # pptx is identical with the standard
+  expect_pptx_identical(
+    test_phl_with_table,
+    expected = "test_phl_with_table.pptx")
+
+  # pptx created with different seed should not be equal
+  expect_false(
+    pptx_testcase(
+      test_phl_with_table,
+      "test_phl_with_table.pptx",
+      seed = 125)
+  )
+  
+})
+
