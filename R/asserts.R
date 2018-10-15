@@ -52,7 +52,10 @@ assert_id_inlayout <- function(id, lay) {
   return(invisible(TRUE))
 }
 
-compare_pptx <- function(object, expected, checkImages = TRUE, imgTreshold = 0.99) {
+compare_pptx <- function(
+  object, expected, checkImages = TRUE,
+  imgThreshold = getOption("PPTX_IMAGE_THRESHOLD", default = 0.97)
+) {
   
   pptx     <- officer::read_pptx(object)
   expected <- officer::read_pptx(expected)
@@ -100,7 +103,7 @@ compare_pptx <- function(object, expected, checkImages = TRUE, imgTreshold = 0.9
       
       sim <- mean(png::readPNG(pl1) == png::readPNG(pl2))
       
-      if(sim < imgTreshold) {
+      if(sim < imgThreshold) {
         res <- FALSE
         attr(res, "descr") <- sprintf("Similarity: %.3f", sim)
         return(res)
