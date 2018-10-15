@@ -52,9 +52,17 @@ assert_id_inlayout <- function(id, lay) {
   return(invisible(TRUE))
 }
 
+get_img_threshold <- function() {
+  if(identical(Sys.getenv("TRAVIS"), "true")) {
+    0.95
+  } else {
+    0.99
+  }
+}
+
 compare_pptx <- function(
   object, expected, checkImages = TRUE,
-  imgThreshold = getOption("PPTX_IMAGE_THRESHOLD", default = 0.97)
+  imgThreshold = get_img_threshold()
 ) {
   
   pptx     <- officer::read_pptx(object)
