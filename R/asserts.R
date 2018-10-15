@@ -52,7 +52,7 @@ assert_id_inlayout <- function(id, lay) {
   return(invisible(TRUE))
 }
 
-compare_pptx <- function(object, expected, checkImages = TRUE) {
+compare_pptx <- function(object, expected, checkImages = TRUE, imgTreshold = 0.99) {
   
   pptx     <- officer::read_pptx(object)
   expected <- officer::read_pptx(expected)
@@ -97,7 +97,14 @@ compare_pptx <- function(object, expected, checkImages = TRUE) {
     for(i in seq_along(plots1)) {
       pl1 <- extract_temp_png(pptx, plots1[i])
       pl2 <- extract_temp_png(expected, plots2[i])
-      if(!all(png::readPNG(pl1) == png::readPNG(pl2))) return(FALSE)
+      
+      sim <- mean(png::readPNG(pl1) == png::readPNG(pl2))
+      
+      if(sim < imgTreshold) {
+        res <- FALSE
+        attr(res, "descr") <- sprintf("Similarity: %.3f", sim)
+        return(res)
+      }
     }
     
     
@@ -132,5 +139,8 @@ pptx_testcase <- function(fnc, expected, checkImages = TRUE, ...) {
 
 expect_pptx_identical <- function(
   fnc, expected, checkImages = TRUE, ...) {
-  testthat::expect_true(pptx_testcase(fnc, expected, checkImages, ...))
+  res <- pptx_testcase(fnc, expected, checkImages, ...)
+  descr <- attr(res, "descr")  
+  if(!is.null(descr)) stop(descr)
+  testthat::expect_true(res)
 }
