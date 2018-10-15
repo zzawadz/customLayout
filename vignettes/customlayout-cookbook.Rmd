@@ -84,3 +84,50 @@ layWithLegendTop <- lay_bind_row(
   legendPlaceholder, lay, heights = c(1, 6))
 lay_grid(c(list(legendTop), plList), layWithLegendTop)
 ```
+
+# PowerPoint
+
+## Create editable chart in PowerPoint. (Dev only)
+
+### Problem
+
+I want to be able to edit a plot inside PowerPoint (eg. change the font sizes in axes, remove elements, and so on).
+
+### Solution
+
+To export editable plot use the `phl_with_vg` function. It uses the `rvg` package to make your plot editable. It supports both base graphics and ggplot2 plots.
+
+```{r, results='hide'}
+library(officer)
+library(customLayout)
+library(ggplot2)
+library(rvg)
+# Create basic layout
+lay <- lay_bind_row(
+  lay_new(1),
+  lay_new(cbind(1,2)),
+  heights = c(3, 2)
+)
+olay <- phl_layout(lay)
+
+set.seed(123)
+
+pptx <- read_pptx()
+pptx <- add_slide(pptx, layout = "Two Content", master = "Office Theme")
+
+phl_with_vg(pptx, olay, 1, code = {
+  plot(rnorm(10), rnorm(10))
+  title("Title")
+})
+
+data("diamonds")
+diamonds2 <- diamonds[sample.int(nrow(diamonds), 100), ]
+gg1 <- ggplot(diamonds2) + geom_point(aes(carat, price))
+gg2 <- ggplot(diamonds2) + geom_point(aes(depth, price))
+phl_with_vg(pptx, olay, 2, ggobj = gg1)
+phl_with_vg(pptx, olay, 3, ggobj = gg2)
+
+print(pptx, target = tempfile(fileext = ".pptx"))
+```
+![](cookbook/pp-editable.png)
+

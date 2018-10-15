@@ -186,11 +186,12 @@ phl_with_gg <- function(x, olay, id, value, ...) {
 #'
 #' @export
 #' 
-phl_with_vg <- function(x, olay, id, code, ggobj, ...) {
+phl_with_vg <- function(x, olay, id, code, ggobj = NULL, ...) {
   
+  assert_officerlayout(olay)
   assert_id_inlayout(id, olay)
   rvg::ph_with_vg_at(
-    x, code = ggobj, ggobj = ggobj,
+    x, code = code, ggobj = ggobj,
     width = olay[[id]]["width"],
     height = olay[[id]]["height"], 
     left = olay[[id]]["left"],
