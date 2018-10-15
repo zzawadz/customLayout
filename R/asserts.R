@@ -60,16 +60,52 @@ compare_pptx <- function(object, expected, checkImages = TRUE) {
   p1 <- pptx_summary(pptx)
   p2 <- pptx_summary(expected)
   
-  if(nrow(p1) != nrow(p2)) return(FALSE)
-  if(!all(p1 == p2)) return(FALSE)
+  compare_pptx_summary <- function(p1, p2) {
+    
+    if(nrow(p1) != nrow(p2)) return(FALSE)
+    if(isFALSE(all.equal(colnames(p1), colnames(p2)))) return(FALSE)
+    
+    if("media_file" %in% colnames(p1)) {
+      p1 <- p1[,"media_file" != colnames(p1), drop = FALSE]
+      p2 <- p2[,"media_file" != colnames(p2), drop = FALSE]
+    }
+    if(!all(p1 == p2)) return(FALSE)
+    
+    return(TRUE)
+  }
   
-  if(checkImages) {
+  
+  if(!compare_pptx_summary(p1, p2)) return(FALSE)
+  
+  if(checkImages && "media_file" %in% colnames(p1)) {
+    
+    extract_plots_paths <- function(x) {
+      x <- x[["media_file"]]
+      x[nchar(x) > 0]
+    }
+    plots1 <- extract_plots_paths(p1)
+    plots2 <- extract_plots_paths(p2)
+    
+    if(length(plots1) != length(plots2)) return(FALSE)
+    
+    extract_temp_png <- function(pp, path) {
+      tpath <- tempfile(fileext = ".png")
+      media_extract(pp, path = path, target = tpath)
+      tpath
+    }
+    
+    for(i in seq_along(plots1)) {
+      pl1 <- extract_temp_png(pptx, plots1[i])
+      pl2 <- extract_temp_png(expected, plots2[i])
+      if(!all(png::readPNG(pl1) == png::readPNG(pl2))) return(FALSE)
+    }
+    
     
   }
   return(TRUE)
 }
 
-pptx_testcase <- function(fnc, expected, checkImages = FALSE, ...) {
+pptx_testcase <- function(fnc, expected, checkImages = TRUE, ...) {
   
   testsPath <- "tests/pptx"
   context <- get(".context", envir = testthat::get_reporter())
@@ -91,10 +127,10 @@ pptx_testcase <- function(fnc, expected, checkImages = FALSE, ...) {
   pp   <- fnc(...)
   path <- tempfile(fileext = ".pptx")
   print(pp, target = path)
-  compare_pptx(path, expectedPath)
+  compare_pptx(path, expectedPath, checkImages = checkImages)
 }
 
 expect_pptx_identical <- function(
-  fnc, expected, checkImages = FALSE) {
-  testthat::expect_true(pptx_testcase(fnc, expected, checkImages))
+  fnc, expected, checkImages = TRUE, ...) {
+  testthat::expect_true(pptx_testcase(fnc, expected, checkImages, ...))
 }

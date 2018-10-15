@@ -112,3 +112,53 @@ test_that("phl_with_vg - compare with standard", {
   )
   
 })
+
+test_phl_with_gg <- function(seed = 123) {
+  lay <- lay_bind_row(
+    lay_new(1),
+    lay_new(cbind(1,2)),
+    heights = c(3, 2)
+  )
+  olay <- phl_layout(lay)
+  
+  set.seed(seed)
+  
+  pptx <- officer::read_pptx()
+  pptx <- officer::add_slide(pptx,
+                             layout = "Two Content", master = "Office Theme")
+  
+  data("diamonds", package = "ggplot2")
+  diamonds2 <- diamonds[sample.int(nrow(diamonds), 100), ]
+  
+  gg <- ggplot2::ggplot(diamonds2) + 
+    ggplot2::geom_point(aes(x, price))
+  
+  phl_with_gg(pptx, olay, 1, gg)
+  
+  gg1 <- ggplot2::ggplot(diamonds2) + 
+    ggplot2::geom_point(aes(carat, price))
+  gg2 <- ggplot2::ggplot(diamonds2) + 
+    ggplot2::geom_point(aes(depth, price))
+  
+  phl_with_gg(pptx, olay, 2, gg1)
+  phl_with_gg(pptx, olay, 3, gg2)
+  pptx
+}
+
+test_that("phl_with_gg - compare with standard", {
+  
+  testthat::skip_on_cran()
+  # pptx is identical with standard
+  expect_pptx_identical(
+    test_phl_with_gg,
+    expected = "phl_with_gg.pptx")
+  
+  # pptx created with different seed should not be equal
+  expect_false(
+    pptx_testcase(
+      test_phl_with_gg,
+      "phl_with_gg.pptx",
+      seed = 125)
+  )
+  
+})
