@@ -1,8 +1,8 @@
 
 layColRepGenerator <- function(side)
 {
-  if(side == "widths") fnc <- layColBind
-  if(side == "heights") fnc <- layRowBind
+  if(side == "widths") fnc <- lay_bind_col
+  if(side == "heights") fnc <- lay_bind_row
   
   function(layout, n)
   {
