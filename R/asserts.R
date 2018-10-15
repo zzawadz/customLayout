@@ -73,13 +73,17 @@ pptx_testcase <- function(fnc, expected, checkImages = FALSE, ...) {
   
   testsPath <- "tests/pptx"
   context <- get(".context", envir = testthat::get_reporter())
-  testsPath <- if(is.null(context)) testsPath else context
+  testsPath <- if(is.null(context)) testsPath else "../pptx"
   
   if(!dir.exists(testsPath)) dir.create(testsPath)
   
   expectedPath <- file.path(testsPath, expected)
   
   if(!file.exists(expectedPath)) {
+    if(!is.null(context)) {
+      stop(expected, " file does not exists! Did you 
+           run tests wihtout evaluating pptx_testcase manually?")
+    }
     pptx <- fnc(...)
     print(pptx, target = expectedPath)
   }
