@@ -54,11 +54,11 @@ assert_id_inlayout <- function(id, lay) {
 
 compare_pptx <- function(object, expected, checkImages = TRUE) {
   
-  pptx <- read_pptx(object)
-  expected <- read_pptx(expected)
+  pptx     <- officer::read_pptx(object)
+  expected <- officer::read_pptx(expected)
   
-  p1 <- pptx_summary(pptx)
-  p2 <- pptx_summary(expected)
+  p1 <- officer::pptx_summary(pptx)
+  p2 <- officer::pptx_summary(expected)
   
   compare_pptx_summary <- function(p1, p2) {
     
@@ -90,7 +90,7 @@ compare_pptx <- function(object, expected, checkImages = TRUE) {
     
     extract_temp_png <- function(pp, path) {
       tpath <- tempfile(fileext = ".png")
-      media_extract(pp, path = path, target = tpath)
+      officer::media_extract(pp, path = path, target = tpath)
       tpath
     }
     
