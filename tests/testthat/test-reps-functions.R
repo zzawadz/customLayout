@@ -6,7 +6,7 @@ make_rep_test_function <- function(fnc) {
       matrix(1:4, ncol = 2),
       heights = c(1, 3))
     l2 <- fnc(l1, 3)
-    layShow(l2)
+    lay_show(l2)
   }
 }
 
