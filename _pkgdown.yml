@@ -18,10 +18,16 @@ reference:
   - phl_with_text
   - phl_with_table
   - phl_with_flextable
+  - phl_with_vg
 - title: PowerPoint - utils
   contents:
   - phl_adjust_table
   - phl_calc_fontsize
+- title: Other
+  contents:
+  - print.CustomLayout
+  - print.OfficerCustomLayout
+  
 
 navbar:
   type: default

@@ -4,7 +4,7 @@
 \alias{phl_with_vg}
 \title{add a plot as vector graphics into layout placeholder}
 \usage{
-phl_with_vg(x, olay, id, code, ggobj, ...)
+phl_with_vg(x, olay, id, code, ggobj = NULL, ...)
 }
 \arguments{
 \item{x}{rpptx object}

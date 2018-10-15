@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">customLayout</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.0</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@
       <h1>customLayout and officer - example.</h1>
                         <h4 class="author">Zygmunt Zawadzki</h4>
             
-            <h4 class="date">2018-10-07</h4>
+            <h4 class="date">2018-10-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/zzawadz/customLayout/blob/master/vignettes/officer-example-fselectorrcpp.Rmd"><code>vignettes/officer-example-fselectorrcpp.Rmd</code></a></small>
       <div class="hidden name"><code>officer-example-fselectorrcpp.Rmd</code></div>
@@ -105,8 +105,13 @@
 <a class="sourceLine" id="cb1-9" data-line-number="9">train &lt;-<span class="st"> </span>GermanCredit[idx, ]</a>
 <a class="sourceLine" id="cb1-10" data-line-number="10">test  &lt;-<span class="st"> </span>GermanCredit[<span class="op">-</span>idx, ]</a>
 <a class="sourceLine" id="cb1-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb1-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(train) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_boxplot">geom_boxplot</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(credit_risk, age))</a></code></pre></div>
+<a class="sourceLine" id="cb1-12" data-line-number="12">discTest &lt;-<span class="st"> </span><span class="kw">suppressWarnings</span>(FSelectorRcpp<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/FSelectorRcpp/topics/discretize">discretize</a></span>(test, credit_risk <span class="op">~</span><span class="st"> </span>.))</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">allNames &lt;-<span class="st"> </span><span class="kw">head</span>(<span class="kw">colnames</span>(discTest), <span class="dv">-1</span>)</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(discTest, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes_">aes_string</a></span>(allNames[<span class="dv">1</span>], <span class="dt">fill =</span> <span class="st">"credit_risk"</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_bar">geom_bar</a></span>(<span class="dt">position =</span> <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/position_stack">position_fill</a></span>()) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_discrete">scale_x_discrete</a></span>(</a>
+<a class="sourceLine" id="cb1-17" data-line-number="17">  <span class="dt">labels =</span> <span class="cf">function</span>(x) stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/str_wrap">str_wrap</a></span>(x, <span class="dt">width =</span> <span class="dv">10</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">ggtitle</a></span>(allNames[<span class="dv">1</span>]) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">ylab</a></span>(<span class="st">""</span>)</a></code></pre></div>
 <p><img src="officer-example-fselectorrcpp_files/figure-html/unnamed-chunk-1-1.png" width="700"></p>
 </div>
   </div>
