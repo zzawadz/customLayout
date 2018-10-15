@@ -74,7 +74,7 @@ compare_pptx <- function(
   compare_pptx_summary <- function(p1, p2) {
     
     if(nrow(p1) != nrow(p2)) return(FALSE)
-    if(isFALSE(all.equal(colnames(p1), colnames(p2)))) return(FALSE)
+    if(!isTRUE(all.equal(colnames(p1), colnames(p2)))) return(FALSE)
     
     if("media_file" %in% colnames(p1)) {
       p1 <- p1[,"media_file" != colnames(p1), drop = FALSE]
