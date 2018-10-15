@@ -51,3 +51,46 @@ assert_id_inlayout <- function(id, lay) {
   
   return(invisible(TRUE))
 }
+
+compare_pptx <- function(object, expected, checkImages = TRUE) {
+  
+  pptx <- read_pptx(object)
+  expected <- read_pptx(expected)
+  
+  p1 <- pptx_summary(pptx)
+  p2 <- pptx_summary(expected)
+  
+  if(nrow(p1) != nrow(p2)) return(FALSE)
+  if(!all(p1 == p2)) return(FALSE)
+  
+  if(checkImages) {
+    
+  }
+  return(TRUE)
+}
+
+pptx_testcase <- function(fnc, expected, checkImages = FALSE, ...) {
+  
+  testsPath <- "tests/pptx"
+  context <- get(".context", envir = testthat::get_reporter())
+  testsPath <- if(is.null(context)) testsPath else context
+  
+  if(!dir.exists(testsPath)) dir.create(testsPath)
+  
+  expectedPath <- file.path(testsPath, expected)
+  
+  if(!file.exists(expectedPath)) {
+    pptx <- fnc(...)
+    print(pptx, target = expectedPath)
+  }
+  
+  pp   <- fnc(...)
+  path <- tempfile(fileext = ".pptx")
+  print(pp, target = path)
+  compare_pptx(path, expectedPath)
+}
+
+expect_pptx_identical <- function(
+  fnc, expected, checkImages = FALSE) {
+  testthat::expect_true(pptx_testcase(fnc, expected, checkImages))
+}
