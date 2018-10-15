@@ -97,7 +97,7 @@ test_phl_with_flextable_large_tables_warns <- function(seed = 123) {
   tbl2 <- phl_adjust_table(irs, olay, 2, method = "height")
   tbl3 <- phl_adjust_table(irs, olay, 3)
   tbl4 <- flextable::flextable(irs)
-  tbl4 <- flextable::height_all(tbl4, tbl3$header$rowheights * 1.25)
+  tbl4 <- flextable::height_all(tbl4, tbl3$header$rowheights * 1.5)
   tbl4 <- flextable::width(tbl4, width = tbl4$body$colwidths * 1.5)
   
   
