@@ -30,7 +30,7 @@ lay_rep_row <- function(x,fr)
 #' lay_rep_col(matrix(1:4,ncol=2),c(4,2))
 #' lay_rep_col(matrix(1:4,ncol=2),2)
 #' 
-lay_rep_col <- function(x,fr)
+lay_rep_col <- function(x, fr)
 {
   nr <- sum(fr)# ilosc wierszy w nowej macierzy:
   nx <- NULL
