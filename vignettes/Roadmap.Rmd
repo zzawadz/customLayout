@@ -4,7 +4,7 @@ author: "Zygmunt Zawadzki"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Roadmap}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -15,11 +15,6 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
-
-### v0.3.0 (work in progress)
-- Make the package more robust:
-  - add more tests.
-  - add more informative error messages.
 
 
 ### v0.4.0
@@ -42,3 +37,7 @@ knitr::opts_chunk$set(
 - Use underscore in function names (change from `laySet` to `lay_set`).
 - Deprecate `camelCase` functions (they will be removed in the 0.4.0 release).
 
+### v0.3.0
+- Make the package more robust:
+  - add more tests.
+  - add more informative error messages.
