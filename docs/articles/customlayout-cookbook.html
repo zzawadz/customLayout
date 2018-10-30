@@ -82,7 +82,7 @@
       <h1>customLayout - cookbook</h1>
                         <h4 class="author">Zygmunt Zawadzki</h4>
             
-            <h4 class="date">2018-10-15</h4>
+            <h4 class="date">2018-10-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/zzawadz/customLayout/blob/master/vignettes/customlayout-cookbook.Rmd"><code>vignettes/customlayout-cookbook.Rmd</code></a></small>
       <div class="hidden name"><code>customlayout-cookbook.Rmd</code></div>
@@ -112,18 +112,18 @@
 <a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">library</span>(cowplot) <span class="co"># for get_legend</span></a>
 <a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">data</span>(<span class="st">"GermanCredit"</span>)</a>
 <a class="sourceLine" id="cb1-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">p &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(GermanCredit)</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">p &lt;-<span class="st"> </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(GermanCredit)</a>
 <a class="sourceLine" id="cb1-9" data-line-number="9"></a>
 <a class="sourceLine" id="cb1-10" data-line-number="10"><span class="co"># create first plot</span></a>
 <a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co"># stringr::str_wrap used to wrap long label</span></a>
 <a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co"># https://stackoverflow.com/a/21894897/10441348</span></a>
-<a class="sourceLine" id="cb1-13" data-line-number="13">p1 &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_bar">geom_bar</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(savings, <span class="dt">fill =</span> credit_risk))</a>
-<a class="sourceLine" id="cb1-14" data-line-number="14">p1 &lt;-<span class="st"> </span>p1 <span class="op">+</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_discrete">scale_x_discrete</a></span>(</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">p1 &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span>(<span class="kw"><a href="ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(savings, <span class="dt">fill =</span> credit_risk))</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">p1 &lt;-<span class="st"> </span>p1 <span class="op">+</span><span class="st"> </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/scale_discrete.html">scale_x_discrete</a></span>(</a>
 <a class="sourceLine" id="cb1-15" data-line-number="15">  <span class="dt">labels =</span> <span class="cf">function</span>(x) stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/str_wrap">str_wrap</a></span>(x, <span class="dt">width =</span> <span class="dv">10</span>))</a>
 <a class="sourceLine" id="cb1-16" data-line-number="16"></a>
 <a class="sourceLine" id="cb1-17" data-line-number="17"><span class="co"># add two more plots</span></a>
-<a class="sourceLine" id="cb1-18" data-line-number="18">p2 &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_boxplot">geom_boxplot</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(credit_risk, age, <span class="dt">color =</span> credit_risk))</a>
-<a class="sourceLine" id="cb1-19" data-line-number="19">p3 &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_boxplot">geom_boxplot</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(credit_risk, duration, <span class="dt">color =</span> credit_risk))</a>
+<a class="sourceLine" id="cb1-18" data-line-number="18">p2 &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span>(<span class="kw"><a href="ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(credit_risk, age, <span class="dt">color =</span> credit_risk))</a>
+<a class="sourceLine" id="cb1-19" data-line-number="19">p3 &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span>(<span class="kw"><a href="ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(credit_risk, duration, <span class="dt">color =</span> credit_risk))</a>
 <a class="sourceLine" id="cb1-20" data-line-number="20"></a>
 <a class="sourceLine" id="cb1-21" data-line-number="21"><span class="co"># Create basic layout</span></a>
 <a class="sourceLine" id="cb1-22" data-line-number="22">lay &lt;-<span class="st"> </span><span class="kw"><a href="../reference/lay_bind_row.html">lay_bind_row</a></span>(</a>
@@ -142,7 +142,7 @@
 <a class="sourceLine" id="cb1-35" data-line-number="35"></a>
 <a class="sourceLine" id="cb1-36" data-line-number="36"><span class="co"># remove legends from all plots</span></a>
 <a class="sourceLine" id="cb1-37" data-line-number="37"><span class="co"># https://stackoverflow.com/a/35622358/10441348</span></a>
-<a class="sourceLine" id="cb1-38" data-line-number="38">plList &lt;-<span class="st"> </span><span class="kw">lapply</span>(plList, <span class="cf">function</span>(p) p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/theme">theme</a></span>(<span class="dt">legend.position=</span><span class="st">"none"</span>))</a>
+<a class="sourceLine" id="cb1-38" data-line-number="38">plList &lt;-<span class="st"> </span><span class="kw">lapply</span>(plList, <span class="cf">function</span>(p) p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">legend.position=</span><span class="st">"none"</span>))</a>
 <a class="sourceLine" id="cb1-39" data-line-number="39"></a>
 <a class="sourceLine" id="cb1-40" data-line-number="40">#### Legend on the right side ####</a>
 <a class="sourceLine" id="cb1-41" data-line-number="41"></a>
@@ -156,7 +156,7 @@
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"></a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">#### Legend on the top ####</a>
 <a class="sourceLine" id="cb2-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">legendTop &lt;-<span class="st"> </span>cowplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/cowplot/topics/get_legend">get_legend</a></span>(p1 <span class="op">+</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/theme">theme</a></span>(<span class="dt">legend.position=</span><span class="st">"top"</span>))</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">legendTop &lt;-<span class="st"> </span>cowplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/cowplot/topics/get_legend">get_legend</a></span>(p1 <span class="op">+</span><span class="st"> </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">legend.position=</span><span class="st">"top"</span>))</a>
 <a class="sourceLine" id="cb2-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb2-6" data-line-number="6">#### Legend on the top ####</a>
 <a class="sourceLine" id="cb2-7" data-line-number="7">layWithLegendTop &lt;-<span class="st"> </span><span class="kw"><a href="../reference/lay_bind_row.html">lay_bind_row</a></span>(</a>
@@ -169,9 +169,9 @@
 <div id="powerpoint" class="section level1">
 <h1 class="hasAnchor">
 <a href="#powerpoint" class="anchor"></a>PowerPoint</h1>
-<div id="create-editable-chart-in-powerpoint--dev-only" class="section level2">
+<div id="create-editable-chart-in-powerpoint-" class="section level2">
 <h2 class="hasAnchor">
-<a href="#create-editable-chart-in-powerpoint--dev-only" class="anchor"></a>Create editable chart in PowerPoint. (Dev only)</h2>
+<a href="#create-editable-chart-in-powerpoint-" class="anchor"></a>Create editable chart in PowerPoint.</h2>
 <div id="problem-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#problem-1" class="anchor"></a>Problem</h3>
@@ -205,8 +205,8 @@
 <a class="sourceLine" id="cb3-22" data-line-number="22"></a>
 <a class="sourceLine" id="cb3-23" data-line-number="23"><span class="kw">data</span>(<span class="st">"diamonds"</span>)</a>
 <a class="sourceLine" id="cb3-24" data-line-number="24">diamonds2 &lt;-<span class="st"> </span>diamonds[<span class="kw">sample.int</span>(<span class="kw">nrow</span>(diamonds), <span class="dv">100</span>), ]</a>
-<a class="sourceLine" id="cb3-25" data-line-number="25">gg1 &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(diamonds2) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(carat, price))</a>
-<a class="sourceLine" id="cb3-26" data-line-number="26">gg2 &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(diamonds2) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(depth, price))</a>
+<a class="sourceLine" id="cb3-25" data-line-number="25">gg1 &lt;-<span class="st"> </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(diamonds2) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="kw"><a href="ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(carat, price))</a>
+<a class="sourceLine" id="cb3-26" data-line-number="26">gg2 &lt;-<span class="st"> </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(diamonds2) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="kw"><a href="ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(depth, price))</a>
 <a class="sourceLine" id="cb3-27" data-line-number="27"><span class="kw"><a href="../reference/phl_with_vg.html">phl_with_vg</a></span>(pptx, olay, <span class="dv">2</span>, <span class="dt">ggobj =</span> gg1)</a>
 <a class="sourceLine" id="cb3-28" data-line-number="28"><span class="kw"><a href="../reference/phl_with_vg.html">phl_with_vg</a></span>(pptx, olay, <span class="dv">3</span>, <span class="dt">ggobj =</span> gg2)</a>
 <a class="sourceLine" id="cb3-29" data-line-number="29"></a>
@@ -229,7 +229,7 @@
 </li>
       <li>
 <a href="#powerpoint">PowerPoint</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#create-editable-chart-in-powerpoint--dev-only">Create editable chart in PowerPoint. (Dev only)</a></li>
+<li><a href="#create-editable-chart-in-powerpoint-">Create editable chart in PowerPoint.</a></li>
       </ul>
 </li>
       </ul>

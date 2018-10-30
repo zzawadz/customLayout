@@ -202,9 +202,9 @@
 <a class="sourceLine" id="cb12-14" data-line-number="14"></a>
 <a class="sourceLine" id="cb12-15" data-line-number="15">make_cut_plot &lt;-<span class="st"> </span><span class="cf">function</span>(cut) {</a>
 <a class="sourceLine" id="cb12-16" data-line-number="16">  dd &lt;-<span class="st"> </span>diamonds[diamonds[[<span class="st">"cut"</span>]] <span class="op">==</span><span class="st"> </span>cut, ]</a>
-<a class="sourceLine" id="cb12-17" data-line-number="17">  pl &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(dd) <span class="op">+</span></a>
-<a class="sourceLine" id="cb12-18" data-line-number="18"><span class="st">      </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(carat, price)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb12-19" data-line-number="19"><span class="st">      </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/facet_wrap">facet_wrap</a></span>(<span class="st">"cut"</span>)</a>
+<a class="sourceLine" id="cb12-17" data-line-number="17">  pl &lt;-<span class="st"> </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(dd) <span class="op">+</span></a>
+<a class="sourceLine" id="cb12-18" data-line-number="18"><span class="st">      </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="kw"><a href="ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(carat, price)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb12-19" data-line-number="19"><span class="st">      </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="st">"cut"</span>)</a>
 <a class="sourceLine" id="cb12-20" data-line-number="20">  pl</a>
 <a class="sourceLine" id="cb12-21" data-line-number="21">}</a>
 <a class="sourceLine" id="cb12-22" data-line-number="22"></a>

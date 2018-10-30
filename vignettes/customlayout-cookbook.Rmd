@@ -87,7 +87,7 @@ lay_grid(c(list(legendTop), plList), layWithLegendTop)
 
 # PowerPoint
 
-## Create editable chart in PowerPoint. (Dev only)
+## Create editable chart in PowerPoint.
 
 ### Problem
 
