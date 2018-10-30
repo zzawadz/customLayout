@@ -12,3 +12,4 @@ README.html
 ^README\.Rmd$
 ^README-.*\.png$
 tmp
+extract.png
