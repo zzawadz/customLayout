@@ -15,7 +15,7 @@ phl_with_table(x, olay, id, value, ...)
 
 \item{value}{a data.frame}
 
-\item{...}{other arguments passed to \code{\link{ph_with_table_at}}}
+\item{...}{other arguments passed to \code{\link{ph_with}}}
 }
 \description{
 add table into layout placeholder

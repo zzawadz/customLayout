@@ -4,9 +4,13 @@
 \alias{phl_layout}
 \title{Create layout for the officer PowerPoint slide.}
 \usage{
-phl_layout(cl, slideWidth = 10, slideHeight = 7.5, margins = c(bottom
-  = 0.25, left = 0.25, top = 0.25, right = 0.25), innerMargins = c(bottom
-  = 0.025, left = 0.025, top = 0.025, right = 0.025))
+phl_layout(
+  cl,
+  slideWidth = 10,
+  slideHeight = 7.5,
+  margins = c(bottom = 0.25, left = 0.25, top = 0.25, right = 0.25),
+  innerMargins = c(bottom = 0.025, left = 0.025, top = 0.025, right = 0.025)
+)
 }
 \arguments{
 \item{cl}{layout object}
@@ -48,12 +52,12 @@ my_pres <- read_pptx() \%>\%
 p <- qplot(mpg, wt, data = mtcars)
 
 for(pos in allPositions) {
-  my_pres <- my_pres \%>\% officer::ph_with_gg_at(
-    p, 
+  my_pres <- my_pres \%>\% officer::ph_with(
+    p, location = ph_location(
     width = pos["width"],
     height = pos["height"], 
     left = pos["left"],
-    top = pos["top"])
+    top = pos["top"]) )
 }
 
 \dontrun{

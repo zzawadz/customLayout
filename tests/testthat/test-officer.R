@@ -182,10 +182,10 @@ test_phl_with_table <- function(seed = 123) {
   
   irs <- iris[sample.int(nrow(iris), 10), ]
   
-  phl_with_table(pptx, olay, 1, head(irs,3))
-  phl_with_table(pptx, olay, 2, head(irs,4))
-  phl_with_table(pptx, olay, 3, head(irs[,c(1,5)],3))
-  phl_with_table(pptx, olay, 4, head(irs[,c(1,5)],4))
+  pptx <- phl_with_table(pptx, olay, 1, head(irs,3))
+  pptx <- phl_with_table(pptx, olay, 2, head(irs,4))
+  pptx <- phl_with_table(pptx, olay, 3, head(irs[,c(1,5)],3))
+  pptx <- phl_with_table(pptx, olay, 4, head(irs[,c(1,5)],4))
   pptx
 }
 

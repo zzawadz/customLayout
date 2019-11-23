@@ -76,12 +76,12 @@ print.OfficerCustomLayout <- function(x, ...) {
 #' p <- qplot(mpg, wt, data = mtcars)
 #' 
 #' for(pos in allPositions) {
-#'   my_pres <- my_pres %>% officer::ph_with_gg_at(
-#'     p, 
+#'   my_pres <- my_pres %>% officer::ph_with(
+#'     p, location = ph_location(
 #'     width = pos["width"],
 #'     height = pos["height"], 
 #'     left = pos["left"],
-#'     top = pos["top"])
+#'     top = pos["top"]) )
 #' }
 #' 
 #' \dontrun{
@@ -157,20 +157,21 @@ layOfficerAddInnerMargins <- function(x, innerMargins) {
 #' @param olay an OfficerLayout object created using \code{\link{phl_layout}}
 #' @param id an single integer with an id of the placeholder from \code{olay} object.
 #' @param value a ggplot object
-#' @param ... other arguments passed to \code{\link{ph_with_gg_at}}
+#' @param ... other arguments passed to \code{\link{ph_with}}
 #'
 #' @export
-#' 
+#' @importFrom officer ph_location external_img ph_location_template ph_with
+#' @importFrom rvg dml
 phl_with_gg <- function(x, olay, id, value, ...) {
   
   assert_id_inlayout(id, olay)
-  officer::ph_with_gg_at(
+  officer::ph_with(
     x,
     value,
-    width = olay[[id]]["width"],
-    height = olay[[id]]["height"], 
-    left = olay[[id]]["left"],
-    top = olay[[id]]["top"],
+    ph_location(width = olay[[id]]["width"],
+                height = olay[[id]]["height"], 
+                left = olay[[id]]["left"],
+                top = olay[[id]]["top"]),
     ...
   )
 }
@@ -190,12 +191,12 @@ phl_with_vg <- function(x, olay, id, code, ggobj = NULL, ...) {
   
   assert_officerlayout(olay)
   assert_id_inlayout(id, olay)
-  rvg::ph_with_vg_at(
-    x, code = code, ggobj = ggobj,
-    width = olay[[id]]["width"],
-    height = olay[[id]]["height"], 
-    left = olay[[id]]["left"],
-    top = olay[[id]]["top"],
+  officer::ph_with(
+    x, dml(code = code, ggobj = ggobj),
+    location = ph_location(width = olay[[id]]["width"],
+                           height = olay[[id]]["height"], 
+                           left = olay[[id]]["left"],
+                           top = olay[[id]]["top"]),
     ...
   )
 }
@@ -225,13 +226,12 @@ phl_with_plot <- function(x, olay, id, plotFnc, ...) {
   grDevices::dev.off()
   on.exit(unlink(file))
   
-  officer::ph_with_img_at(
-    x,
-    file,
-    width = olay[[id]]["width"],
-    height = olay[[id]]["height"], 
-    left = olay[[id]]["left"],
-    top = olay[[id]]["top"]
+  officer::ph_with(
+    x, external_img(src = file),
+    location = ph_location(width = olay[[id]]["width"],
+                           height = olay[[id]]["height"], 
+                           left = olay[[id]]["left"],
+                           top = olay[[id]]["top"])
   )
 }
 
@@ -246,26 +246,23 @@ phl_with_plot <- function(x, olay, id, plotFnc, ...) {
 #' @param ... other arguments passed to \code{\link{ph_add_text}}.
 #'
 #' @export
-#'
+#' @importFrom officer slide_summary
 phl_with_text <- function(x, olay, id, str, type = "title", ...) {
   
   assert_id_inlayout(id, olay)
   sldSum <- officer::slide_summary(x)
   
-  x <- officer::ph_empty_at(
-    x,
-    width = olay[[id]]["width"],
-    height = olay[[id]]["height"], 
-    left = olay[[id]]["left"],
-    top = olay[[id]]["top"],
-    template_type = type
+  x <- officer::ph_with(x, str, 
+    location = ph_location_template(
+      width = olay[[id]]["width"],
+      height = olay[[id]]["height"], 
+      left = olay[[id]]["left"],
+      top = olay[[id]]["top"], 
+      type = type
+    )
   )
   
-  sldSum2 <- officer::slide_summary(x)
-  index <- as.numeric(sldSum2[["id"]][!sldSum2[["id"]] %in% sldSum[["id"]]])
-  
-  officer::ph_add_par(x, type = type, id_chr = as.character(index))
-  officer::ph_add_text(x, str, type = type, id_chr = as.character(index), ...)
+  x
 }
 
 #' add table into layout placeholder
@@ -274,7 +271,7 @@ phl_with_text <- function(x, olay, id, str, type = "title", ...) {
 #' @param olay an OfficerLayout object created using \code{\link{phl_layout}}
 #' @param id an single integer with an id of the placeholder from \code{olay} object.
 #' @param value a data.frame
-#' @param ... other arguments passed to \code{\link{ph_with_table_at}}
+#' @param ... other arguments passed to \code{\link{ph_with}}
 #'
 #' @export
 #' 
@@ -282,13 +279,15 @@ phl_with_table <- function(x, olay, id, value, ...) {
   
   assert_id_inlayout(id, olay)
   
-  officer::ph_with_table_at(
+  officer::ph_with(
     x,
-    value,
-    width = olay[[id]]["width"],
-    height = olay[[id]]["height"], 
-    left = olay[[id]]["left"],
-    top = olay[[id]]["top"],
+    value, 
+    location = ph_location(
+      width = olay[[id]]["width"],
+      height = olay[[id]]["height"], 
+      left = olay[[id]]["left"],
+      top = olay[[id]]["top"]
+      ),
     ...
   )
 }
