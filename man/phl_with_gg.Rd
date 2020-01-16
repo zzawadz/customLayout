@@ -15,7 +15,7 @@ phl_with_gg(x, olay, id, value, ...)
 
 \item{value}{a ggplot object}
 
-\item{...}{other arguments passed to \code{\link{ph_with_gg_at}}}
+\item{...}{other arguments passed to \code{\link{ph_with}}}
 }
 \description{
 add ggplot into layout placeholder

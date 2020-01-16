@@ -170,8 +170,9 @@ phl_with_flextable <- function(x, olay, id, value) {
       "\nPlaceholder height: ", round(lheight, 3))
   }
   
-  flextable::ph_with_flextable_at(
+  officer::ph_with(
     x, value = value,
+    location = ph_location(
     left = olay[[id]]["left"],
-    top = olay[[id]]["top"])
+    top = olay[[id]]["top"]))
 }

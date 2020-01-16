@@ -51,9 +51,9 @@ test_phl_with_flextable <- function(seed = 123) {
   t2 <- phl_adjust_table(tbl1, olay, 2)
   t3 <- phl_adjust_table(tbl1, olay, 3)
   
-  phl_with_flextable(pptx, olay, 1, t1)
-  phl_with_flextable(pptx, olay, 2, t2)
-  phl_with_flextable(pptx, olay, 3, t3)
+  pptx <- phl_with_flextable(pptx, olay, 1, t1)
+  pptx <- phl_with_flextable(pptx, olay, 2, t2)
+  pptx <- phl_with_flextable(pptx, olay, 3, t3)
   pptx
 }
 
