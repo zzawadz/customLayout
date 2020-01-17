@@ -9,8 +9,8 @@ stars](https://img.shields.io/github/stars/zzawadz/customLayout.svg?style=social
 watchers](https://img.shields.io/github/watchers/zzawadz/customLayout.svg?style=social&label=Watch)](https://github.com/zzawadz/customLayout)
 
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/customLayout)](https://cran.r-project.org/package=customLayout)
-[![Downloads](https://cranlogs.r-pkg.org/badges/customLayout)](https://cran.rstudio.com/package=customLayout)
-[![](https://cranlogs.r-pkg.org/badges/grand-total/customLayout)](https://cran.rstudio.com/web/packages/customLayout/index.html)
+[![Downloads](https://cranlogs.r-pkg.org/badges/customLayout)](https://CRAN.R-project.org/package=customLayout)
+[![](https://cranlogs.r-pkg.org/badges/grand-total/customLayout)](https://CRAN.R-project.org/package=customLayout)
 [![Travis-CI Build
 Status](https://travis-ci.org/zzawadz/customLayout.svg?branch=master)](https://travis-ci.org/zzawadz/customLayout)
 [![AppVeyor Build
