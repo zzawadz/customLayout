@@ -13,3 +13,4 @@ README.html
 ^README-.*\.png$
 tmp
 extract.png
+pkgdown

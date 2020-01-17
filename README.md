@@ -36,7 +36,7 @@ install.packages("customLayout")
 The development version can be installed from GitHub using `devtools`:
 
 ``` r
-require(devtools)
+library(devtools)
 install_github("zzawadz/customLayout")
 ```
 
