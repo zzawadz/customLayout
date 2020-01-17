@@ -64,37 +64,6 @@ test_that("phl_with_text works", {
 ########## Compare pptx ###########
 context("Compare pptx files")
 
-test_phl_with_vg <- function(seed = 123) {
-  lay <- lay_bind_row(
-    lay_new(1),
-    lay_new(cbind(1,2)),
-    heights = c(3, 2)
-  )
-  olay <- phl_layout(lay)
-  
-  set.seed(seed)
-  
-  pptx <- officer::read_pptx()
-  pptx <- officer::add_slide(pptx,
-    layout = "Two Content", master = "Office Theme")
-  
-  phl_with_vg(pptx, olay, 1, code = {
-    plot(rnorm(10), rnorm(10))
-    title("Title")
-  })
-  
-  data("diamonds", package = "ggplot2")
-  diamonds2 <- diamonds[sample.int(nrow(diamonds), 100), ]
-  gg1 <- ggplot2::ggplot(diamonds2) + 
-    ggplot2::geom_point(aes(carat, price))
-  gg2 <- ggplot2::ggplot(diamonds2) + 
-    ggplot2::geom_point(aes(depth, price))
-  
-  phl_with_vg(pptx, olay, 2, ggobj = gg1)
-  phl_with_vg(pptx, olay, 3, ggobj = gg2)
-  pptx
-}
-
 test_that("phl_with_vg - compare with standard", {
   
   testthat::skip_on_cran()
@@ -113,37 +82,6 @@ test_that("phl_with_vg - compare with standard", {
   
 })
 
-test_phl_with_gg <- function(seed = 123) {
-  lay <- lay_bind_row(
-    lay_new(1),
-    lay_new(cbind(1,2)),
-    heights = c(3, 2)
-  )
-  olay <- phl_layout(lay)
-  
-  set.seed(seed)
-  
-  pptx <- officer::read_pptx()
-  pptx <- officer::add_slide(pptx,
-                             layout = "Two Content", master = "Office Theme")
-  
-  data("diamonds", package = "ggplot2")
-  diamonds2 <- diamonds[sample.int(nrow(diamonds), 100), ]
-  
-  gg <- ggplot2::ggplot(diamonds2) + 
-    ggplot2::geom_point(aes(x, price))
-  
-  phl_with_gg(pptx, olay, 1, gg)
-  
-  gg1 <- ggplot2::ggplot(diamonds2) + 
-    ggplot2::geom_point(aes(carat, price))
-  gg2 <- ggplot2::ggplot(diamonds2) + 
-    ggplot2::geom_point(aes(depth, price))
-  
-  phl_with_gg(pptx, olay, 2, gg1)
-  phl_with_gg(pptx, olay, 3, gg2)
-  pptx
-}
 
 test_that("phl_with_gg - compare with standard", {
   
@@ -163,31 +101,6 @@ test_that("phl_with_gg - compare with standard", {
   
 })
 
-test_phl_with_table <- function(seed = 123) {
-  
-  lay <- lay_bind_col(
-    lay_new(rbind(1,2)),
-    lay_new(rbind(1,2)), 
-    widths = c(3,4)
-  )
-  
-  olay <- phl_layout(lay)
-  
-  set.seed(seed)
-  
-  pptx <- officer::read_pptx()
-  pptx <- officer::add_slide(
-    pptx,
-    layout = "Two Content", master = "Office Theme")
-  
-  irs <- iris[sample.int(nrow(iris), 10), ]
-  
-  pptx <- phl_with_table(pptx, olay, 1, head(irs,3))
-  pptx <- phl_with_table(pptx, olay, 2, head(irs,4))
-  pptx <- phl_with_table(pptx, olay, 3, head(irs[,c(1,5)],3))
-  pptx <- phl_with_table(pptx, olay, 4, head(irs[,c(1,5)],4))
-  pptx
-}
 
 test_that("phl_with_table - compare with standard", {
   
