@@ -4,9 +4,13 @@
 \alias{phl_layout}
 \title{Create layout for the officer PowerPoint slide.}
 \usage{
-phl_layout(cl, slideWidth = 10, slideHeight = 7.5, margins = c(bottom
-  = 0.25, left = 0.25, top = 0.25, right = 0.25), innerMargins = c(bottom
-  = 0.025, left = 0.025, top = 0.025, right = 0.025))
+phl_layout(
+  cl,
+  slideWidth = 10,
+  slideHeight = 7.5,
+  margins = c(bottom = 0.25, left = 0.25, top = 0.25, right = 0.25),
+  innerMargins = c(bottom = 0.025, left = 0.025, top = 0.025, right = 0.025)
+)
 }
 \arguments{
 \item{cl}{layout object}
