@@ -54,7 +54,7 @@ assert_id_inlayout <- function(id, lay) {
 
 get_img_threshold <- function() {
   if(identical(Sys.getenv("TRAVIS"), "true")) {
-    0.95
+    0.90
   } else {
     0.99
   }
