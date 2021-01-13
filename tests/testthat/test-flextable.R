@@ -9,6 +9,10 @@ test_that("Font size", {
 })
 
 test_that("phl_adjust_table - some tests", {
+  testthat::skip_if_not(
+    Sys.info()["sysname"] == "Linux",
+    message = "This can only pass on linux"
+  )
   irs <- head(iris, 10)
   lay <- lay_bind_row(
     lay_new(1),
