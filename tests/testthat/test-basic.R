@@ -36,7 +36,7 @@ test_that("Basic bind", {
   
   vdiffr::expect_doppelganger(
     "basic bind row",
-    make_basic_test(layRowBind)
+    make_basic_test(lay_bind_row)
   )
 })
 
