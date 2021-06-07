@@ -208,20 +208,20 @@ phl_with_vg <- function(x, olay, id, code, ggobj = NULL, ...) {
 #' @param olay an OfficerLayout object created using \code{\link{phl_layout}}
 #' @param id an single integer with an id of the placeholder from \code{olay} object.
 #' @param plotFnc a function which creates a plot when called.
+#' @param res The nominal resolution in ppi which will be recorded in the bitmap file. Default 300. See \code{res} parameter in \code{\link{png}}.
 #' @param ... other arguments passed to \code{\link{png}} function.
 #'
 #' @export
 #' 
-phl_with_plot <- function(x, olay, id, plotFnc, ...) {
+phl_with_plot <- function(x, olay, id, plotFnc, res = 300, ...) {
   
   assert_id_inlayout(id, olay)
   file <- tempfile(fileext = ".png")
-  options(bitmapType = "cairo")
   grDevices::png(filename = file,
       width = olay[[id]]["width"],
       height = olay[[id]]["height"],
       units = "in", 
-      res = 300, ...)
+      res = res, ...)
   plotFnc()
   grDevices::dev.off()
   on.exit(unlink(file))
