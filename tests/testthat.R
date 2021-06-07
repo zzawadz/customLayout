@@ -170,8 +170,8 @@ test_phl_with_flextable_large_tables_warns <- function(seed = 123) {
 }
 
 #' @examples 
-#' dir.create("tests/pptx2")
-#' path <- file.path("tests/pptx2")
+#' dir.create("tests/pptx")
+#' path <- file.path("tests/pptx")
 #' print(test_phl_with_flextable(), file.path(path, "phl_with_flextable.pptx"))
 #' print(test_phl_with_flextable_large_tables_warns(), file.path(path, "test_phl_with_flextable_large_tables_warns.pptx"))
 #' print(test_phl_with_gg(), file.path(path, "phl_with_gg.pptx"))
