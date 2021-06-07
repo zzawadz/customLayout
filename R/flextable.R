@@ -95,7 +95,7 @@ phl_adjust_table <- function(x, olay, id, method = c("all", "height")) {
         fontSize <- floor(fontSize / (sum(widths) / dims[["width"]]))
       }
       height <- flextable::dim_pretty(flTable)$height
-      height <- max(height)
+      height <- pmin(max(height), sizes[["height"]])
       flTable <- flextable::height_all(flTable, height = height)
     }
   }

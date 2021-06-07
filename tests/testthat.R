@@ -169,10 +169,13 @@ test_phl_with_flextable_large_tables_warns <- function(seed = 123) {
   pptx
 }
 
-# print(test_phl_with_flextable(), "tests/pptx/phl_with_flextable.pptx")
-# print(test_phl_with_flextable_large_tables_warns(), "tests/pptx/test_phl_with_flextable_large_tables_warns.pptx")
-# print(test_phl_with_gg(), "tests/pptx/phl_with_gg.pptx")
-# print(test_phl_with_table(), "tests/pptx/test_phl_with_table.pptx")
-# print(test_phl_with_vg(), "tests/pptx/phl_with_vg.pptx")
+#' @examples 
+#' dir.create("tests/pptx2")
+#' path <- file.path("tests/pptx2")
+#' print(test_phl_with_flextable(), file.path(path, "phl_with_flextable.pptx"))
+#' print(test_phl_with_flextable_large_tables_warns(), file.path(path, "test_phl_with_flextable_large_tables_warns.pptx"))
+#' print(test_phl_with_gg(), file.path(path, "phl_with_gg.pptx"))
+#' print(test_phl_with_table(), file.path(path, "test_phl_with_table.pptx"))
+#' print(test_phl_with_vg(), file.path(path, "phl_with_vg.pptx"))
 
 test_check("customLayout")

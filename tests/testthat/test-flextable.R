@@ -25,7 +25,7 @@ test_that("phl_adjust_table - some tests", {
   
   tbl <- phl_adjust_table(irs, olay, 3)
   fs  <- phl_calc_fontsize(irs, height = 2.750)
-  expect_true(tbl$header$rowheights < fs[["height"]])
+  expect_true(tbl$header$rowheights <= fs[["height"]] + 0.0001)
 })
 
 context("Compare flextable with standard")
