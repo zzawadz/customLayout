@@ -19,6 +19,10 @@ disp_basic_split_field_3 <- make_disp_basic_split_field(3)
 disp_basic_split_field_4 <- make_disp_basic_split_field(4)
 
 test_that("Basic split field", {
+  
+  testthat::skip_on_appveyor()
+  testthat::skip_on_cran()
+  
   vdiffr::expect_doppelganger(
     "basic split field 1",
     disp_basic_split_field_1

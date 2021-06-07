@@ -11,6 +11,8 @@ make_rep_test_function <- function(fnc) {
 }
 
 test_that("rep by col", {
+  testthat::skip_on_appveyor()
+  testthat::skip_on_cran()
   vdiffr::expect_doppelganger(
     "rep by col",
     make_rep_test_function(customLayout:::layRepByCol)
@@ -18,6 +20,8 @@ test_that("rep by col", {
 })
 
 test_that("rep by row", {
+  testthat::skip_on_appveyor()
+  testthat::skip_on_cran()
   vdiffr::expect_doppelganger(
     "rep by row",
     make_rep_test_function(customLayout:::layRepByRow)

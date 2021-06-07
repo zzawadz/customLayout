@@ -29,6 +29,8 @@ make_basic_test <- function(fnc) {
 }
 
 test_that("Basic bind", {
+  testthat::skip_on_appveyor()
+  testthat::skip_on_cran()
   vdiffr::expect_doppelganger(
     "basic bind col",
     make_basic_test(lay_bind_col)
