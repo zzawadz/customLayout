@@ -19,6 +19,9 @@ phl_with_text(x, olay, id, str, type = "title", ...)
 
 \item{...}{other arguments passed to \code{\link{ph_add_text}}.}
 }
+\value{
+\code{rpptx} object which represents PowerPoint presentation in \code{officer}. The returned object contains a new element on the slide.
+}
 \description{
 add text into layout placeholder
 }

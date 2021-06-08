@@ -17,6 +17,9 @@ phl_with_table(x, olay, id, value, ...)
 
 \item{...}{other arguments passed to \code{\link{ph_with}}}
 }
+\value{
+\code{rpptx} object which represents PowerPoint presentation in \code{officer}. The returned object contains a new element on the slide.
+}
 \description{
 add table into layout placeholder
 }

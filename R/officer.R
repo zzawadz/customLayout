@@ -251,7 +251,7 @@ phl_with_plot <- function(x, olay, id, plotFnc, res = 300, ...) {
 #' @param str text to add.
 #' @param type type of the text placeholder. See \code{\link{ph_add_text}} for more details.
 #' @param ... other arguments passed to \code{\link{ph_add_text}}.
-#'
+#' @return \code{rpptx} object which represents PowerPoint presentation in \code{officer}. The returned object contains a new element on the slide.
 #' @export
 #' @importFrom officer slide_summary
 phl_with_text <- function(x, olay, id, str, type = "title", ...) {
@@ -279,7 +279,7 @@ phl_with_text <- function(x, olay, id, str, type = "title", ...) {
 #' @param id an single integer with an id of the placeholder from \code{olay} object.
 #' @param value a data.frame
 #' @param ... other arguments passed to \code{\link{ph_with}}
-#'
+#' @return \code{rpptx} object which represents PowerPoint presentation in \code{officer}. The returned object contains a new element on the slide.
 #' @export
 #' 
 phl_with_table <- function(x, olay, id, value, ...) {
