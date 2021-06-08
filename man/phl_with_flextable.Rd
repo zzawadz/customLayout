@@ -43,9 +43,9 @@ x2 <- tail(iris, 10)[,c(1,5)]
 xf2 <- phl_adjust_table(x, offLayout, 2)
 pptx <- phl_with_flextable(pptx, offLayout, 2, xf2)
 
-\dontrun{
-file <- tempfile(fileext = ".pptx")
-print(pptx, target = file)
+if(interactive()) {
+  file <- tempfile(fileext = ".pptx")
+  print(pptx, target = file)
 }
 
 }

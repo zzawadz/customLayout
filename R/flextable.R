@@ -139,9 +139,9 @@ phl_adjust_table <- function(x, olay, id, method = c("all", "height")) {
 #' xf2 <- phl_adjust_table(x, offLayout, 2)
 #' pptx <- phl_with_flextable(pptx, offLayout, 2, xf2)
 #' 
-#' \dontrun{
-#' file <- tempfile(fileext = ".pptx")
-#' print(pptx, target = file)
+#' if(interactive()) {
+#'   file <- tempfile(fileext = ".pptx")
+#'   print(pptx, target = file)
 #' }
 #' 
 phl_with_flextable <- function(x, olay, id, value) {

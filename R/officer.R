@@ -84,9 +84,9 @@ print.OfficerCustomLayout <- function(x, ...) {
 #'     top = pos["top"]) )
 #' }
 #' 
-#' \dontrun{
-#' if(!dir.exists("tmp")) dir.create("tmp")
-#' print(my_pres, target = "tmp/test-officer-layout.pptx")
+#' if(interactive()) {
+#'   if(!dir.exists("tmp")) dir.create("tmp")
+#'   print(my_pres, target = "tmp/test-officer-layout.pptx")
 #' }
 #' 
 phl_layout <- function(cl, slideWidth = 10, slideHeight = 7.5,

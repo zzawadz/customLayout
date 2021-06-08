@@ -60,9 +60,9 @@ for(pos in allPositions) {
     top = pos["top"]) )
 }
 
-\dontrun{
-if(!dir.exists("tmp")) dir.create("tmp")
-print(my_pres, target = "tmp/test-officer-layout.pptx")
+if(interactive()) {
+  if(!dir.exists("tmp")) dir.create("tmp")
+  print(my_pres, target = "tmp/test-officer-layout.pptx")
 }
 
 }
