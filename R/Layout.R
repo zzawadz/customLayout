@@ -55,7 +55,7 @@ print.CustomLayout <- function(x, ...) {
 #' @examples
 #' library(customLayout)
 #' set.seed(123)
-#' par(mar = c(3, 2, 2, 1))
+#' oldpar <- par(mar = c(3, 2, 2, 1))
 #' 
 #' # Prepare layout
 #' lay  <- lay_new(matrix(1:4, nc = 2),
@@ -73,6 +73,8 @@ print.CustomLayout <- function(x, ...) {
 #' pie(c(3, 4, 6), col = 2:4)
 #' pie(c(3, 2, 7), col = 2:4 + 3)
 #' pie(c(5, 4, 2), col = 2:4 + 6)
+#' 
+#' par(oldpar)
 #' 
 lay_new <- function(mat, widths = NULL, heights = NULL)
 {
