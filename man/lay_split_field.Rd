@@ -16,6 +16,9 @@ laySplitField(lay, newlay, field)
 
 \item{field}{id of a field from \code{lay}.}
 }
+\value{
+a new Layout object.
+}
 \description{
 Split a selected field from layout using a schema from another layout.
 }

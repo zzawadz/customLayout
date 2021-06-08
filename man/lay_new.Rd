@@ -16,8 +16,18 @@ layCreate(mat, widths = NULL, heights = NULL)
 
 \item{heights}{a vector of values for the relative heights of rows in mat.}
 }
+\value{
+\code{CustomLayout} object.
+}
 \description{
 Create custom layout.
+}
+\details{
+This function creates a new \code{CustomLayout} object which contains the information about all the fields and their relative sizes.
+
+By combining multiple \code{CustomLayout} objects you can create more complicated layouts for your plots.
+
+This object is an alternative to \code{\link{layout}} function.
 }
 \examples{
 library(customLayout)
@@ -43,4 +53,7 @@ pie(c(5, 4, 2), col = 2:4 + 6)
 
 par(oldpar)
 
+}
+\seealso{
+\code{\link{lay_bind_col}}, \code{\link{lay_bind_row}}, \code{\link{lay_set}}.
 }

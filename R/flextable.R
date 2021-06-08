@@ -105,7 +105,7 @@ phl_adjust_table <- function(x, olay, id, method = c("all", "height")) {
   flTable
 }
 
-#' add flextable into layout placeholder
+#' Add flextable into layout placeholder
 #'
 #' @param x rpptx object
 #' @param olay an OfficerLayout object created using \code{\link{phl_layout}}.
@@ -114,6 +114,8 @@ phl_adjust_table <- function(x, olay, id, method = c("all", "height")) {
 #'    Possibly the result of the \code{\link{phl_adjust_table}}
 #'
 #' @export
+#' 
+#' @return \code{rpptx} object which represents PowerPoint presentation in \code{officer}. The returned object contains a new element on the slide.
 #'
 #' @examples
 #' 

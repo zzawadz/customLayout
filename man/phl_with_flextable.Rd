@@ -2,7 +2,7 @@
 % Please edit documentation in R/flextable.R
 \name{phl_with_flextable}
 \alias{phl_with_flextable}
-\title{add flextable into layout placeholder}
+\title{Add flextable into layout placeholder}
 \usage{
 phl_with_flextable(x, olay, id, value)
 }
@@ -16,8 +16,11 @@ phl_with_flextable(x, olay, id, value)
 \item{value}{a \code{flextable} object. 
 Possibly the result of the \code{\link{phl_adjust_table}}}
 }
+\value{
+\code{rpptx} object which represents PowerPoint presentation in \code{officer}. The returned object contains a new element on the slide.
+}
 \description{
-add flextable into layout placeholder
+Add flextable into layout placeholder
 }
 \examples{
 

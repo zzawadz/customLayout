@@ -1,4 +1,3 @@
-
 #' Split a selected field from layout using a schema from another layout.
 #'
 #' @param lay a Layout object.
@@ -7,6 +6,9 @@
 #'
 #' @export
 #' @rdname lay_split_field
+#' 
+#' @return a new Layout object.
+#' 
 #' @examples
 #' 
 #' l1 <- lay_new(matrix(c(1:4), ncol = 2), widths = c(4, 1))

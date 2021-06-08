@@ -16,6 +16,9 @@ layGrid(grobs, lay, ...)
 
 \item{...}{other parameters passed to \code{\link{grid.arrange}}.}
 }
+\value{
+\code{gtable} object containing multiple graphs. See \code{\link{grid.arrange}}.
+}
 \description{
 Use Layout object with grid graphics.
 }

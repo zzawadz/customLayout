@@ -5,6 +5,8 @@
 #'
 #' @export
 #' 
+#' @return Invisibly returns \code{x}.
+#' 
 #' @seealso lay_new lay_show phl_layout
 #' 
 #' @examples
@@ -37,6 +39,7 @@ print.OfficerCustomLayout <- function(x, ...) {
   print_attr(att, "slideHeight")
   print_attr(att, "margins")
   print_attr(att, "innerMargins")
+  invisible(x)
 }
 
 #' Create layout for the officer PowerPoint slide.
@@ -151,13 +154,15 @@ layOfficerAddInnerMargins <- function(x, innerMargins) {
   x
 }
 
-#' add ggplot into layout placeholder
+#' Add ggplot into layout placeholder
 #'
 #' @param x rpptx object
 #' @param olay an OfficerLayout object created using \code{\link{phl_layout}}
 #' @param id an single integer with an id of the placeholder from \code{olay} object.
 #' @param value a ggplot object
 #' @param ... other arguments passed to \code{\link{ph_with}}
+#'
+#' @return \code{rpptx} object which represents PowerPoint presentation in \code{officer}. The returned object contains a new element on the slide.
 #'
 #' @export
 #' @importFrom officer ph_location external_img ph_location_template ph_with
@@ -176,7 +181,7 @@ phl_with_gg <- function(x, olay, id, value, ...) {
   )
 }
 
-#' add a plot as vector graphics into layout placeholder
+#' Add a plot as vector graphics into layout placeholder
 #'
 #' @param x rpptx object
 #' @param olay an OfficerLayout object created using \code{\link{phl_layout}}
@@ -185,6 +190,7 @@ phl_with_gg <- function(x, olay, id, value, ...) {
 #' @param ggobj ggplot objet to print. Argument code will be ignored if this argument is supplied.
 #' @param ... other arguments passed to \code{\link{dml_pptx}}
 #'
+#' @return \code{rpptx} object which represents PowerPoint presentation in \code{officer}. The returned object contains a new element on the slide.
 #' @export
 #' 
 phl_with_vg <- function(x, olay, id, code, ggobj = NULL, ...) {
@@ -202,7 +208,7 @@ phl_with_vg <- function(x, olay, id, code, ggobj = NULL, ...) {
 }
 
 
-#' add plot into layout placeholder
+#' Add plot into layout placeholder
 #'
 #' @param x rpptx object
 #' @param olay an OfficerLayout object created using \code{\link{phl_layout}}
@@ -211,6 +217,7 @@ phl_with_vg <- function(x, olay, id, code, ggobj = NULL, ...) {
 #' @param res The nominal resolution in ppi which will be recorded in the bitmap file. Default 300. See \code{res} parameter in \code{\link{png}}.
 #' @param ... other arguments passed to \code{\link{png}} function.
 #'
+#' @return \code{rpptx} object which represents PowerPoint presentation in \code{officer}. The returned object contains a new element on the slide.
 #' @export
 #' 
 phl_with_plot <- function(x, olay, id, plotFnc, res = 300, ...) {

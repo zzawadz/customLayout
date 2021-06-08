@@ -12,6 +12,9 @@ layShow(layout)
 \arguments{
 \item{layout}{an object of class Layout.}
 }
+\value{
+No return value, called for side effects.
+}
 \description{
 Print the layout structure to the graphical device.
 }

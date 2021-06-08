@@ -5,6 +5,7 @@
 #'
 #' @export
 #' 
+#' @return Invisibly return input \code{x}.
 #' @seealso lay_new lay_show
 #' 
 #' @examples
@@ -49,6 +50,20 @@ print.CustomLayout <- function(x, ...) {
 #' @param mat a matrix specifying the location of the figures. See \code{\link{layout}} for more information.
 #' @param widths a vector of values for the relative heights of rows in mat.
 #' @param heights a vector of values for the relative heights of rows in mat.
+#' 
+#' 
+#' @details 
+#' 
+#' This function creates a new \code{CustomLayout} object which contains the information about all the fields and their relative sizes.
+#' 
+#' By combining multiple \code{CustomLayout} objects you can create more complicated layouts for your plots.
+#' 
+#' This object is an alternative to \code{\link{layout}} function.
+#' 
+#' @seealso \code{\link{lay_bind_col}}, \code{\link{lay_bind_row}}, \code{\link{lay_set}}.
+#' 
+#' @return \code{CustomLayout} object.
+#' 
 #' 
 #' @export
 #' @rdname lay_new
@@ -120,6 +135,7 @@ layCreate <- function(mat, widths = NULL, heights = NULL) {
 #' @param layout object of class Layout.
 #' 
 #' @export
+#' @return Returns the number of figures in layout.
 #' @rdname lay_set
 #' @examples
 #' 
@@ -148,10 +164,10 @@ laySet <- function(layout) {
   lay_set(layout)
 }
 
-#' Take two Layout objects and combine by rows.
+#' Take two CustomLayout objects and combine by rows.
 #' 
-#' @param x object of class Layout
-#' @param y object of class Layout
+#' @param x object of class CustomLayout.
+#' @param y object of class CustomLayout.
 #' @param widths a vector with relative widths used in combining 
 #'                the x and y layouts.
 #' @param addmax if true (default) the ids of the plots in the second 
@@ -159,10 +175,13 @@ laySet <- function(layout) {
 #'               the first layout.
 #'
 #' @rdname lay_bind_col
+#' 
+#' @return \code{CustomLayout} object created from combining two CustomLayout.
+#' 
 #' @export
 #' @examples
-#' l1 = lay_new(matrix(c(1:2),ncol = 2),widths=c(4,1))
-#' l2 = lay_new(matrix(c(1:4),ncol = 2),widths=c(1,1))
+#' l1 = lay_new(matrix(c(1:2), ncol = 2),widths=c(4,1))
+#' l2 = lay_new(matrix(c(1:4), ncol = 2),widths=c(1,1))
 #' lb = lay_bind_col(l1,l2)
 #' lay_show(lb)
 #' 
@@ -216,10 +235,10 @@ layColBind <- function(
   lay_bind_col(x, y, widths, addmax)
 }
 
-#' Take two Layout objects and combine by rows.
+#' Take two CustomLayout objects and combine by rows.
 #' 
-#' @param x object of class Layout
-#' @param y object of class Layout
+#' @param x object of class CustomLayout.
+#' @param y object of class CustomLayout.
 #' @param heights a vector with relative heights used in combining 
 #'                the x and y layouts.
 #' @param addmax if true (default) the ids of the plots in the second 
@@ -227,6 +246,9 @@ layColBind <- function(
 #'               the first layout.
 #' 
 #' @rdname lay_bind_row
+#' 
+#' @return \code{CustomLayout} object created from combining two CustomLayout.
+#' 
 #' @export
 #' @examples
 #' l1 = lay_new(matrix(c(1:2),ncol = 2),widths=c(4,1))
@@ -284,11 +306,14 @@ layRowBind <- function(
   .Deprecated("lay_bind_row")
   lay_bind_row(x, y, heights, addmax)
 }
+
 #' Use Layout object with grid graphics.
 #'
 #' @param grobs list of grobs.
 #' @param lay a Layout object.
 #' @param ... other parameters passed to \code{\link{grid.arrange}}.
+#'
+#' @return \code{gtable} object containing multiple graphs. See \code{\link{grid.arrange}}.
 #'
 #' @export
 #' @rdname lay_grid

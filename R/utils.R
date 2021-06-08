@@ -48,6 +48,8 @@ lay_rep_col <- function(x, fr)
 #'
 #' @export
 #' @rdname lay_show
+#' 
+#' @return No return value, called for side effects.
 #'
 #' @examples
 #' 

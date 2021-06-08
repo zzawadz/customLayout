@@ -11,6 +11,9 @@
 
 \item{...}{optional arguments to print or plot methods. Not used here.}
 }
+\value{
+Invisibly return input \code{x}.
+}
 \description{
 Print a CustomLayout object.
 }

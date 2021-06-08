@@ -12,6 +12,9 @@ laySet(layout)
 \arguments{
 \item{layout}{object of class Layout.}
 }
+\value{
+Returns the number of figures in layout.
+}
 \description{
 Set custom layout.
 }

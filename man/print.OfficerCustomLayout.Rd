@@ -11,6 +11,9 @@
 
 \item{...}{optional arguments to print or plot methods. Not used here.}
 }
+\value{
+Invisibly returns \code{x}.
+}
 \description{
 Print a OfficerCustomLayout object.
 }

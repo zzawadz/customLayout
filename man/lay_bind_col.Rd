@@ -3,16 +3,16 @@
 \name{lay_bind_col}
 \alias{lay_bind_col}
 \alias{layColBind}
-\title{Take two Layout objects and combine by rows.}
+\title{Take two CustomLayout objects and combine by rows.}
 \usage{
 lay_bind_col(x, y, widths = c(1, 1), addmax = TRUE)
 
 layColBind(x, y, widths = c(1, 1), addmax = TRUE)
 }
 \arguments{
-\item{x}{object of class Layout}
+\item{x}{object of class CustomLayout.}
 
-\item{y}{object of class Layout}
+\item{y}{object of class CustomLayout.}
 
 \item{widths}{a vector with relative widths used in combining 
 the x and y layouts.}
@@ -21,12 +21,15 @@ the x and y layouts.}
 layout will be shifted by the number of plots in 
 the first layout.}
 }
+\value{
+\code{CustomLayout} object created from combining two CustomLayout.
+}
 \description{
-Take two Layout objects and combine by rows.
+Take two CustomLayout objects and combine by rows.
 }
 \examples{
-l1 = lay_new(matrix(c(1:2),ncol = 2),widths=c(4,1))
-l2 = lay_new(matrix(c(1:4),ncol = 2),widths=c(1,1))
+l1 = lay_new(matrix(c(1:2), ncol = 2),widths=c(4,1))
+l2 = lay_new(matrix(c(1:4), ncol = 2),widths=c(1,1))
 lb = lay_bind_col(l1,l2)
 lay_show(lb)
 

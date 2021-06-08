@@ -2,7 +2,7 @@
 % Please edit documentation in R/officer.R
 \name{phl_with_plot}
 \alias{phl_with_plot}
-\title{add plot into layout placeholder}
+\title{Add plot into layout placeholder}
 \usage{
 phl_with_plot(x, olay, id, plotFnc, res = 300, ...)
 }
@@ -19,6 +19,9 @@ phl_with_plot(x, olay, id, plotFnc, res = 300, ...)
 
 \item{...}{other arguments passed to \code{\link{png}} function.}
 }
+\value{
+\code{rpptx} object which represents PowerPoint presentation in \code{officer}. The returned object contains a new element on the slide.
+}
 \description{
-add plot into layout placeholder
+Add plot into layout placeholder
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/officer.R
 \name{phl_with_vg}
 \alias{phl_with_vg}
-\title{add a plot as vector graphics into layout placeholder}
+\title{Add a plot as vector graphics into layout placeholder}
 \usage{
 phl_with_vg(x, olay, id, code, ggobj = NULL, ...)
 }
@@ -19,6 +19,9 @@ phl_with_vg(x, olay, id, code, ggobj = NULL, ...)
 
 \item{...}{other arguments passed to \code{\link{dml_pptx}}}
 }
+\value{
+\code{rpptx} object which represents PowerPoint presentation in \code{officer}. The returned object contains a new element on the slide.
+}
 \description{
-add a plot as vector graphics into layout placeholder
+Add a plot as vector graphics into layout placeholder
 }

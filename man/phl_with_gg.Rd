@@ -2,7 +2,7 @@
 % Please edit documentation in R/officer.R
 \name{phl_with_gg}
 \alias{phl_with_gg}
-\title{add ggplot into layout placeholder}
+\title{Add ggplot into layout placeholder}
 \usage{
 phl_with_gg(x, olay, id, value, ...)
 }
@@ -17,6 +17,9 @@ phl_with_gg(x, olay, id, value, ...)
 
 \item{...}{other arguments passed to \code{\link{ph_with}}}
 }
+\value{
+\code{rpptx} object which represents PowerPoint presentation in \code{officer}. The returned object contains a new element on the slide.
+}
 \description{
-add ggplot into layout placeholder
+Add ggplot into layout placeholder
 }
