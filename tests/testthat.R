@@ -69,9 +69,9 @@ test_phl_with_vg <- function(seed = 123) {
   data("diamonds", package = "ggplot2")
   diamonds2 <- diamonds[sample.int(nrow(diamonds), 100), ]
   gg1 <- ggplot2::ggplot(diamonds2) + 
-    ggplot2::geom_point(aes(carat, price))
+    ggplot2::geom_point(ggplot2::aes(carat, price))
   gg2 <- ggplot2::ggplot(diamonds2) + 
-    ggplot2::geom_point(aes(depth, price))
+    ggplot2::geom_point(ggplot2::aes(depth, price))
   
   phl_with_vg(pptx, olay, 2, ggobj = gg1)
   phl_with_vg(pptx, olay, 3, ggobj = gg2)
@@ -96,14 +96,14 @@ test_phl_with_gg <- function(seed = 123) {
   diamonds2 <- diamonds[sample.int(nrow(diamonds), 100), ]
   
   gg <- ggplot2::ggplot(diamonds2) + 
-    ggplot2::geom_point(aes(x, price))
+    ggplot2::geom_point(ggplot2::aes(x, price))
   
   phl_with_gg(pptx, olay, 1, gg)
   
   gg1 <- ggplot2::ggplot(diamonds2) + 
-    ggplot2::geom_point(aes(carat, price))
+    ggplot2::geom_point(ggplot2::aes(carat, price))
   gg2 <- ggplot2::ggplot(diamonds2) + 
-    ggplot2::geom_point(aes(depth, price))
+    ggplot2::geom_point(ggplot2::aes(depth, price))
   
   phl_with_gg(pptx, olay, 2, gg1)
   phl_with_gg(pptx, olay, 3, gg2)
