@@ -131,3 +131,1116 @@ print(pptx, target = tempfile(fileext = ".pptx"))
 ```
 ![](cookbook/pp-editable.png)
 
+# Base Graphics
+
+## Simple multi-panel layout
+
+### Problem
+
+I want to arrange multiple base R plots in a custom layout that's more flexible than `par(mfrow)`.
+
+### Solution
+
+Use `lay_new()` to define your layout matrix and `lay_set()` to apply it.
+
+```{r, fig.width=6, fig.height=5}
+library(customLayout)
+
+# Create a 2x2 layout
+lay <- lay_new(
+  mat = matrix(1:4, ncol = 2, byrow = TRUE)
+)
+lay_show(lay)
+
+# Apply layout and create plots
+lay_set(lay)
+
+# Plot 1: Scatter plot
+plot(mtcars$mpg, mtcars$hp,
+     main = "MPG vs Horsepower",
+     xlab = "Miles per Gallon",
+     ylab = "Horsepower",
+     pch = 19, col = "steelblue")
+
+# Plot 2: Histogram
+hist(mtcars$mpg,
+     main = "MPG Distribution",
+     xlab = "Miles per Gallon",
+     col = "lightblue", border = "white")
+
+# Plot 3: Boxplot
+boxplot(mpg ~ cyl, data = mtcars,
+        main = "MPG by Cylinders",
+        xlab = "Cylinders", ylab = "MPG",
+        col = c("coral", "lightgreen", "lightblue"))
+
+# Plot 4: Bar plot
+barplot(table(mtcars$gear),
+        main = "Gear Distribution",
+        xlab = "Number of Gears",
+        col = "mediumpurple")
+
+# Reset layout
+par(mfrow = c(1, 1))
+```
+
+## Asymmetric layout with different panel sizes
+
+### Problem
+
+I want one large main plot with smaller supporting plots arranged around it.
+
+### Solution
+
+Use a matrix to define different sized regions, where repeated numbers create larger panels.
+
+```{r, fig.width=7, fig.height=5}
+library(customLayout)
+
+# Create asymmetric layout: one large panel (1) and two smaller ones (2, 3)
+lay <- lay_new(
+  mat = matrix(c(1, 1, 2,
+                 1, 1, 3), ncol = 3, byrow = TRUE)
+)
+lay_show(lay)
+
+lay_set(lay)
+
+# Main plot (large)
+plot(iris$Sepal.Length, iris$Petal.Length,
+     col = as.numeric(iris$Species) + 1,
+     pch = 19, cex = 1.2,
+     main = "Iris: Sepal vs Petal Length",
+     xlab = "Sepal Length", ylab = "Petal Length")
+legend("topleft", legend = levels(iris$Species),
+       col = 2:4, pch = 19, cex = 0.8)
+
+# Top right plot (small)
+hist(iris$Sepal.Length,
+     main = "Sepal Length",
+     xlab = "", col = "lightcoral", border = "white",
+     cex.main = 0.9)
+
+# Bottom right plot (small)
+hist(iris$Petal.Length,
+     main = "Petal Length",
+     xlab = "", col = "lightseagreen", border = "white",
+     cex.main = 0.9)
+
+par(mfrow = c(1, 1))
+```
+
+## Combining rows and columns with `lay_bind_row` and `lay_bind_col`
+
+### Problem
+
+I want to build complex layouts by combining simpler layout blocks.
+
+### Solution
+
+Use `lay_bind_row()` and `lay_bind_col()` to stack layouts vertically or horizontally.
+
+```{r, fig.width=7, fig.height=6}
+library(customLayout)
+
+# Create top row: 3 equal plots
+top_row <- lay_new(matrix(1:3, nrow = 1))
+
+# Create bottom section: one wide plot on left, two stacked on right
+bottom_left <- lay_new(1)
+bottom_right <- lay_new(matrix(1:2, ncol = 1))
+bottom_row <- lay_bind_col(bottom_left, bottom_right, widths = c(2, 1))
+
+# Combine top and bottom
+lay <- lay_bind_row(top_row, bottom_row, heights = c(1, 2))
+lay_show(lay)
+
+lay_set(lay)
+
+# Top row plots
+plot(1:20, rnorm(20), type = "l", col = "blue", main = "Time Series 1", lwd = 2)
+plot(1:20, rnorm(20), type = "l", col = "red", main = "Time Series 2", lwd = 2)
+plot(1:20, rnorm(20), type = "l", col = "green", main = "Time Series 3", lwd = 2)
+
+# Bottom left (large scatter)
+set.seed(42)
+x <- rnorm(100)
+y <- x + rnorm(100, sd = 0.5)
+plot(x, y, pch = 19, col = rgb(0, 0, 1, 0.5),
+     main = "Main Scatter Plot",
+     xlab = "X Variable", ylab = "Y Variable")
+abline(lm(y ~ x), col = "red", lwd = 2)
+
+# Bottom right (two small plots)
+hist(x, main = "X Distribution", col = "steelblue", border = "white")
+hist(y, main = "Y Distribution", col = "coral", border = "white")
+
+par(mfrow = c(1, 1))
+```
+
+## Statistical summary dashboard
+
+### Problem
+
+I want to create a dashboard-style figure showing multiple aspects of a statistical analysis.
+
+### Solution
+
+Combine different plot types to create a comprehensive summary.
+
+```{r, fig.width=8, fig.height=6}
+library(customLayout)
+
+# Layout: residual plot large on left, diagnostics on right
+lay <- lay_new(
+  matrix(c(1, 1, 2,
+           1, 1, 3,
+           4, 4, 5), ncol = 3, byrow = TRUE)
+)
+lay_show(lay)
+
+# Fit a model
+model <- lm(mpg ~ wt + hp, data = mtcars)
+
+lay_set(lay)
+
+# 1. Fitted vs Residuals (main plot)
+plot(fitted(model), residuals(model),
+     pch = 19, col = "steelblue",
+     main = "Residuals vs Fitted",
+     xlab = "Fitted Values", ylab = "Residuals")
+abline(h = 0, lty = 2, col = "red")
+lines(lowess(fitted(model), residuals(model)), col = "red", lwd = 2)
+
+# 2. Q-Q Plot
+qqnorm(residuals(model), pch = 19, col = "darkgreen", main = "Normal Q-Q")
+qqline(residuals(model), col = "red", lwd = 2)
+
+# 3. Scale-Location
+plot(fitted(model), sqrt(abs(residuals(model))),
+     pch = 19, col = "purple",
+     main = "Scale-Location",
+     xlab = "Fitted Values", ylab = expression(sqrt("|Residuals|")))
+
+# 4. Actual vs Predicted
+plot(mtcars$mpg, fitted(model),
+     pch = 19, col = "coral",
+     main = "Actual vs Predicted",
+     xlab = "Actual MPG", ylab = "Predicted MPG")
+abline(0, 1, col = "blue", lwd = 2)
+
+# 5. Histogram of residuals
+hist(residuals(model),
+     main = "Residuals",
+     xlab = "Residual Value",
+     col = "lightblue", border = "white", breaks = 10)
+
+par(mfrow = c(1, 1))
+```
+
+## Time series with annotation panel
+
+### Problem
+
+I want to display multiple time series with a shared time axis and include summary statistics.
+
+### Solution
+
+Stack time series vertically with consistent x-axes.
+
+```{r, fig.width=7, fig.height=6}
+library(customLayout)
+
+# Create sample time series data
+set.seed(123)
+n <- 100
+time <- 1:n
+ts1 <- cumsum(rnorm(n))
+ts2 <- cumsum(rnorm(n, mean = 0.1))
+ts3 <- sin(time/10) + rnorm(n, sd = 0.3)
+
+# Layout: 3 time series stacked, summary panel at bottom
+lay <- lay_new(matrix(1:4, ncol = 1))
+lay_show(lay)
+
+lay_set(lay)
+par(mar = c(2, 4, 2, 1))
+
+# Time series 1
+plot(time, ts1, type = "l", col = "blue", lwd = 2,
+     main = "Random Walk 1", xlab = "", ylab = "Value", xaxt = "n")
+grid()
+
+# Time series 2
+plot(time, ts2, type = "l", col = "red", lwd = 2,
+     main = "Random Walk 2 (with drift)", xlab = "", ylab = "Value", xaxt = "n")
+grid()
+
+# Time series 3
+plot(time, ts3, type = "l", col = "darkgreen", lwd = 2,
+     main = "Sine + Noise", xlab = "", ylab = "Value", xaxt = "n")
+grid()
+
+# Correlation heatmap at bottom
+par(mar = c(4, 4, 2, 1))
+cor_mat <- cor(cbind(ts1, ts2, ts3))
+image(1:3, 1:3, cor_mat,
+      col = colorRampPalette(c("blue", "white", "red"))(20),
+      main = "Correlation Matrix",
+      xlab = "", ylab = "", axes = FALSE)
+axis(1, at = 1:3, labels = c("TS1", "TS2", "TS3"))
+axis(2, at = 1:3, labels = c("TS1", "TS2", "TS3"))
+# Add correlation values
+for(i in 1:3) {
+  for(j in 1:3) {
+    text(i, j, round(cor_mat[i, j], 2), cex = 0.8)
+  }
+}
+
+par(mfrow = c(1, 1), mar = c(5, 4, 4, 2) + 0.1)
+```
+
+## Pairs plot alternative with custom layout
+
+### Problem
+
+I want to create a pairs-plot style visualization but with more control over individual panels.
+
+### Solution
+
+Use `lay_new()` with a triangular matrix pattern.
+
+```{r, fig.width=7, fig.height=7}
+library(customLayout)
+
+# Create a lower-triangular layout for pairs
+# Using 4 variables: mpg, disp, hp, wt from mtcars
+lay <- lay_new(
+  matrix(c(0, 0, 0, 0,
+           1, 0, 0, 0,
+           2, 3, 0, 0,
+           4, 5, 6, 0), ncol = 4, byrow = TRUE)
+)
+lay_show(lay)
+
+lay_set(lay)
+
+vars <- c("mpg", "disp", "hp", "wt")
+data <- mtcars[, vars]
+colors <- c("steelblue", "coral", "darkgreen", "purple")
+
+# Create scatter plots for lower triangle
+panel_pairs <- list(
+  c(2, 1), c(3, 1), c(3, 2), c(4, 1), c(4, 2), c(4, 3)
+)
+
+for(i in seq_along(panel_pairs)) {
+  xi <- panel_pairs[[i]][1]
+  yi <- panel_pairs[[i]][2]
+
+  plot(data[, xi], data[, yi],
+       pch = 19, col = rgb(0.3, 0.3, 0.7, 0.6),
+       xlab = vars[xi], ylab = vars[yi],
+       main = "")
+
+  # Add correlation
+  r <- cor(data[, xi], data[, yi])
+  legend("topright", legend = paste("r =", round(r, 2)),
+         bty = "n", cex = 0.9)
+
+  # Add trend line
+  abline(lm(data[, yi] ~ data[, xi]), col = "red", lwd = 2)
+}
+
+par(mfrow = c(1, 1))
+```
+
+## Publication-ready figure with outer margins
+
+### Problem
+
+I want to create a multi-panel figure with labeled panels (A, B, C) for a publication.
+
+### Solution
+
+Use outer margins and `mtext()` for panel labels.
+
+```{r, fig.width=8, fig.height=5}
+library(customLayout)
+
+lay <- lay_new(
+  matrix(c(1, 2, 3), nrow = 1)
+)
+
+lay_set(lay)
+par(oma = c(0, 0, 2, 0))  # Outer margin for title
+
+# Panel A
+par(mar = c(4, 4, 3, 1))
+boxplot(Sepal.Length ~ Species, data = iris,
+        col = c("#E41A1C", "#377EB8", "#4DAF4A"),
+        main = "", xlab = "Species", ylab = "Sepal Length")
+mtext("A", side = 3, line = 1, adj = 0, font = 2, cex = 1.2)
+
+# Panel B
+plot(iris$Sepal.Length, iris$Sepal.Width,
+     col = c("#E41A1C", "#377EB8", "#4DAF4A")[iris$Species],
+     pch = 19, main = "",
+     xlab = "Sepal Length", ylab = "Sepal Width")
+legend("topright", legend = levels(iris$Species),
+       col = c("#E41A1C", "#377EB8", "#4DAF4A"), pch = 19, cex = 0.7)
+mtext("B", side = 3, line = 1, adj = 0, font = 2, cex = 1.2)
+
+# Panel C
+means <- aggregate(Sepal.Length ~ Species, data = iris, mean)
+sds <- aggregate(Sepal.Length ~ Species, data = iris, sd)
+bp <- barplot(means$Sepal.Length, names.arg = means$Species,
+              col = c("#E41A1C", "#377EB8", "#4DAF4A"),
+              ylim = c(0, 8), main = "",
+              xlab = "Species", ylab = "Mean Sepal Length")
+arrows(bp, means$Sepal.Length - sds$Sepal.Length,
+       bp, means$Sepal.Length + sds$Sepal.Length,
+       angle = 90, code = 3, length = 0.1)
+mtext("C", side = 3, line = 1, adj = 0, font = 2, cex = 1.2)
+
+# Overall title
+mtext("Iris Dataset Analysis", outer = TRUE, cex = 1.3, font = 2)
+
+par(mfrow = c(1, 1), oma = c(0, 0, 0, 0), mar = c(5, 4, 4, 2) + 0.1)
+```
+
+# ggplot2 Graphics
+
+## Basic ggplot2 multi-panel layout
+
+### Problem
+
+I want to arrange multiple ggplot2 plots in a custom layout without using facets.
+
+### Solution
+
+Use `lay_grid()` to combine ggplot2 objects.
+
+```{r, fig.width=7, fig.height=5, message=FALSE}
+library(customLayout)
+library(ggplot2)
+
+# Create multiple ggplot2 plots
+p1 <- ggplot(mtcars, aes(x = mpg, y = hp)) +
+  geom_point(color = "steelblue", size = 3) +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  labs(title = "MPG vs Horsepower") +
+  theme_minimal()
+
+p2 <- ggplot(mtcars, aes(x = factor(cyl), y = mpg, fill = factor(cyl))) +
+  geom_boxplot() +
+  scale_fill_brewer(palette = "Set2") +
+  labs(title = "MPG by Cylinders", x = "Cylinders") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+p3 <- ggplot(mtcars, aes(x = wt)) +
+  geom_histogram(fill = "coral", color = "white", bins = 15) +
+  labs(title = "Weight Distribution", x = "Weight (1000 lbs)") +
+  theme_minimal()
+
+p4 <- ggplot(mtcars, aes(x = factor(gear), fill = factor(cyl))) +
+  geom_bar(position = "dodge") +
+  scale_fill_brewer(palette = "Set1", name = "Cylinders") +
+  labs(title = "Gear by Cylinder", x = "Gears") +
+  theme_minimal()
+
+# Create layout
+lay <- lay_new(matrix(1:4, ncol = 2, byrow = TRUE))
+
+# Combine plots
+lay_grid(list(p1, p2, p3, p4), lay)
+```
+
+## Dashboard with header and different sized panels
+
+### Problem
+
+I want to create a dashboard-style layout with a title area and panels of varying sizes.
+
+### Solution
+
+Use `lay_bind_row()` and `lay_bind_col()` to create complex arrangements.
+
+```{r, fig.width=8, fig.height=6, message=FALSE}
+library(customLayout)
+library(ggplot2)
+library(grid)
+
+# Create plots
+main_scatter <- ggplot(diamonds[sample(nrow(diamonds), 1000), ],
+                       aes(x = carat, y = price, color = cut)) +
+  geom_point(alpha = 0.6) +
+  scale_color_viridis_d() +
+  labs(title = "Diamond Price vs Carat by Cut",
+       x = "Carat", y = "Price ($)") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+hist_carat <- ggplot(diamonds, aes(x = carat)) +
+  geom_histogram(fill = "#2E86AB", color = "white", bins = 50) +
+  labs(title = "Carat Distribution") +
+  theme_minimal() +
+  theme(axis.title = element_blank())
+
+hist_price <- ggplot(diamonds, aes(x = price)) +
+  geom_histogram(fill = "#A23B72", color = "white", bins = 50) +
+  labs(title = "Price Distribution") +
+  theme_minimal() +
+  theme(axis.title = element_blank())
+
+box_cut <- ggplot(diamonds, aes(x = cut, y = price, fill = cut)) +
+  geom_boxplot() +
+  scale_fill_viridis_d() +
+  labs(title = "Price by Cut") +
+  theme_minimal() +
+  theme(legend.position = "none",
+        axis.text.x = element_text(angle = 45, hjust = 1))
+
+# Build layout
+left_col <- lay_new(1)  # Main scatter plot
+right_col <- lay_new(matrix(1:3, ncol = 1))  # Stacked plots
+
+lay <- lay_bind_col(left_col, right_col, widths = c(2, 1))
+
+lay_grid(list(main_scatter, hist_carat, hist_price, box_cut), lay)
+```
+
+## Facet-like arrangement with independent scales
+
+### Problem
+
+Facets in ggplot2 share scales. I want similar plots but with independent y-axes.
+
+### Solution
+
+Create separate plots and arrange them with `lay_grid()`.
+
+```{r, fig.width=8, fig.height=4, message=FALSE}
+library(customLayout)
+library(ggplot2)
+library(dplyr)
+
+# Create data subsets with very different ranges
+set.seed(42)
+data_low <- data.frame(
+  x = 1:50,
+  y = cumsum(rnorm(50, 0, 1)),
+  group = "Low Variance"
+)
+data_high <- data.frame(
+  x = 1:50,
+  y = cumsum(rnorm(50, 0, 10)),
+  group = "High Variance"
+)
+data_drift <- data.frame(
+  x = 1:50,
+  y = cumsum(rnorm(50, 2, 5)),
+  group = "With Drift"
+)
+
+# Create individual plots with independent scales
+p1 <- ggplot(data_low, aes(x, y)) +
+  geom_line(color = "#1B9E77", linewidth = 1) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray50") +
+  labs(title = "Low Variance", y = "Value") +
+  theme_minimal()
+
+p2 <- ggplot(data_high, aes(x, y)) +
+  geom_line(color = "#D95F02", linewidth = 1) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray50") +
+  labs(title = "High Variance", y = "Value") +
+  theme_minimal()
+
+p3 <- ggplot(data_drift, aes(x, y)) +
+  geom_line(color = "#7570B3", linewidth = 1) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray50") +
+  labs(title = "With Drift", y = "Value") +
+  theme_minimal()
+
+# Arrange in row
+lay <- lay_new(matrix(1:3, nrow = 1))
+lay_grid(list(p1, p2, p3), lay)
+```
+
+## Inset plots
+
+### Problem
+
+I want to show a zoomed-in version of a plot as an inset within a larger plot.
+
+### Solution
+
+Use nested layouts to create an inset effect.
+
+```{r, fig.width=7, fig.height=5, message=FALSE}
+library(customLayout)
+library(ggplot2)
+
+# Main plot
+set.seed(123)
+df <- data.frame(
+  x = c(rnorm(200, 0, 1), rnorm(50, 5, 0.5)),
+  y = c(rnorm(200, 0, 1), rnorm(50, 5, 0.5))
+)
+
+main_plot <- ggplot(df, aes(x, y)) +
+  geom_point(alpha = 0.5, color = "steelblue") +
+  annotate("rect", xmin = 4, xmax = 6, ymin = 4, ymax = 6,
+           fill = NA, color = "red", linewidth = 1) +
+  labs(title = "Full Data with Highlighted Region",
+       x = "X", y = "Y") +
+  theme_minimal()
+
+# Inset plot (zoomed region)
+inset_plot <- ggplot(df[df$x > 4 & df$x < 6 & df$y > 4 & df$y < 6, ],
+                     aes(x, y)) +
+  geom_point(color = "red", size = 2) +
+  coord_cartesian(xlim = c(4, 6), ylim = c(4, 6)) +
+  labs(title = "Zoomed Region") +
+  theme_minimal() +
+  theme(plot.background = element_rect(fill = "white", color = "red"),
+        plot.title = element_text(size = 10))
+
+# Create layout: main plot with inset in corner
+# The inset occupies a smaller portion
+lay <- lay_new(
+  matrix(c(1, 1, 1, 1,
+           1, 1, 1, 1,
+           1, 1, 2, 2,
+           1, 1, 2, 2), ncol = 4, byrow = TRUE)
+)
+
+lay_grid(list(main_plot, inset_plot), lay)
+```
+
+## Combining different plot types
+
+### Problem
+
+I want to combine scatter plots, bar charts, and density plots in one figure.
+
+### Solution
+
+Create diverse ggplot2 objects and arrange them.
+
+```{r, fig.width=8, fig.height=6, message=FALSE}
+library(customLayout)
+library(ggplot2)
+
+# Scatter with marginal densities style layout
+p_main <- ggplot(iris, aes(x = Sepal.Length, y = Petal.Length, color = Species)) +
+  geom_point(size = 2, alpha = 0.7) +
+  scale_color_manual(values = c("#E41A1C", "#377EB8", "#4DAF4A")) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+p_top <- ggplot(iris, aes(x = Sepal.Length, fill = Species)) +
+  geom_density(alpha = 0.5) +
+  scale_fill_manual(values = c("#E41A1C", "#377EB8", "#4DAF4A")) +
+  theme_minimal() +
+  theme(legend.position = "none",
+        axis.title = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank())
+
+p_right <- ggplot(iris, aes(x = Petal.Length, fill = Species)) +
+  geom_density(alpha = 0.5) +
+  scale_fill_manual(values = c("#E41A1C", "#377EB8", "#4DAF4A")) +
+  coord_flip() +
+  theme_minimal() +
+  theme(legend.position = "none",
+        axis.title = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank())
+
+p_bar <- ggplot(iris, aes(x = Species, fill = Species)) +
+  geom_bar() +
+  scale_fill_manual(values = c("#E41A1C", "#377EB8", "#4DAF4A")) +
+  labs(title = "Sample Counts") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+# Layout: top density, main scatter with right density, bar chart
+lay <- lay_new(
+  matrix(c(1, 1, 0,
+           2, 2, 3,
+           2, 2, 3,
+           4, 4, 4), ncol = 3, byrow = TRUE)
+)
+lay_show(lay)
+
+lay_grid(list(p_top, p_main, p_right, p_bar), lay)
+```
+
+## Multiple legends arrangement
+
+### Problem
+
+I have plots with different legends and want to control their placement.
+
+### Solution
+
+Extract legends and place them strategically in the layout.
+
+```{r, fig.width=8, fig.height=5, message=FALSE, warning=FALSE}
+library(customLayout)
+library(ggplot2)
+library(cowplot)
+
+# Create plots with different categorical variables
+p1 <- ggplot(mtcars, aes(x = mpg, y = hp, color = factor(cyl))) +
+  geom_point(size = 3) +
+  scale_color_brewer(palette = "Set1", name = "Cylinders") +
+  labs(title = "By Cylinders") +
+  theme_minimal()
+
+p2 <- ggplot(mtcars, aes(x = mpg, y = hp, shape = factor(gear))) +
+  geom_point(size = 3, color = "steelblue") +
+  scale_shape_discrete(name = "Gears") +
+  labs(title = "By Gears") +
+  theme_minimal()
+
+# Extract legends
+legend1 <- cowplot::get_legend(p1)
+legend2 <- cowplot::get_legend(p2)
+
+# Remove legends from plots
+p1_noleg <- p1 + theme(legend.position = "none")
+p2_noleg <- p2 + theme(legend.position = "none")
+
+# Create layout with legend column
+lay <- lay_new(
+  matrix(c(1, 3,
+           2, 4), ncol = 2, byrow = TRUE)
+)
+
+lay_grid(list(p1_noleg, p2_noleg, legend1, legend2), lay)
+```
+
+## Heatmap with marginal summaries
+
+### Problem
+
+I want to create a heatmap with row and column summaries on the sides.
+
+### Solution
+
+Combine a heatmap with bar plots showing marginals.
+
+```{r, fig.width=7, fig.height=6, message=FALSE}
+library(customLayout)
+library(ggplot2)
+library(reshape2)
+
+# Create correlation matrix
+cor_mat <- cor(mtcars[, c("mpg", "cyl", "disp", "hp", "drat", "wt")])
+melted_cor <- melt(cor_mat)
+
+# Heatmap
+p_heat <- ggplot(melted_cor, aes(x = Var1, y = Var2, fill = value)) +
+  geom_tile(color = "white") +
+  geom_text(aes(label = round(value, 2)), size = 3) +
+  scale_fill_gradient2(low = "#2166AC", mid = "white", high = "#B2182B",
+                       midpoint = 0, limits = c(-1, 1), name = "Correlation") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        axis.title = element_blank())
+
+# Row means (average correlation per variable)
+row_means <- data.frame(
+  var = rownames(cor_mat),
+  mean_cor = rowMeans(cor_mat)
+)
+p_row <- ggplot(row_means, aes(x = var, y = mean_cor, fill = mean_cor > 0)) +
+  geom_col() +
+  scale_fill_manual(values = c("#2166AC", "#B2182B")) +
+  coord_flip() +
+  labs(y = "Mean r") +
+  theme_minimal() +
+  theme(legend.position = "none",
+        axis.title.y = element_blank(),
+        axis.text.y = element_blank())
+
+# Column means
+col_means <- data.frame(
+  var = colnames(cor_mat),
+  mean_cor = colMeans(cor_mat)
+)
+p_col <- ggplot(col_means, aes(x = var, y = mean_cor, fill = mean_cor > 0)) +
+  geom_col() +
+  scale_fill_manual(values = c("#2166AC", "#B2182B")) +
+  labs(y = "Mean r") +
+  theme_minimal() +
+  theme(legend.position = "none",
+        axis.title.x = element_blank(),
+        axis.text.x = element_blank())
+
+# Layout
+lay <- lay_new(
+  matrix(c(1, 2,
+           3, 0), ncol = 2, byrow = TRUE),
+  widths = c(4, 1),
+  heights = c(1, 4)
+)
+
+lay_grid(list(p_col, NULL, p_heat, p_row), lay)
+```
+
+## Model comparison plot
+
+### Problem
+
+I want to compare multiple models visually with predictions and residuals.
+
+### Solution
+
+Create side-by-side comparisons of model fits.
+
+```{r, fig.width=8, fig.height=6, message=FALSE, warning=FALSE}
+library(customLayout)
+library(ggplot2)
+
+# Fit different models
+data(mtcars)
+model_linear <- lm(mpg ~ wt, data = mtcars)
+model_quad <- lm(mpg ~ wt + I(wt^2), data = mtcars)
+
+# Create prediction data
+wt_seq <- seq(min(mtcars$wt), max(mtcars$wt), length.out = 100)
+pred_linear <- predict(model_linear, newdata = data.frame(wt = wt_seq))
+pred_quad <- predict(model_quad, newdata = data.frame(wt = wt_seq))
+
+pred_df <- data.frame(
+  wt = rep(wt_seq, 2),
+  mpg = c(pred_linear, pred_quad),
+  model = rep(c("Linear", "Quadratic"), each = 100)
+)
+
+# Fit plots
+p_fit_linear <- ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point(color = "gray40") +
+  geom_line(data = pred_df[pred_df$model == "Linear", ],
+            color = "#E41A1C", linewidth = 1.5) +
+  labs(title = paste("Linear (R² =", round(summary(model_linear)$r.squared, 3), ")"),
+       x = "Weight", y = "MPG") +
+  theme_minimal()
+
+p_fit_quad <- ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point(color = "gray40") +
+  geom_line(data = pred_df[pred_df$model == "Quadratic", ],
+            color = "#377EB8", linewidth = 1.5) +
+  labs(title = paste("Quadratic (R² =", round(summary(model_quad)$r.squared, 3), ")"),
+       x = "Weight", y = "MPG") +
+  theme_minimal()
+
+# Residual plots
+mtcars$resid_linear <- residuals(model_linear)
+mtcars$resid_quad <- residuals(model_quad)
+
+p_resid_linear <- ggplot(mtcars, aes(x = fitted(model_linear), y = resid_linear)) +
+  geom_point(color = "#E41A1C") +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_smooth(se = FALSE, color = "black", linewidth = 0.5) +
+  labs(title = "Linear Residuals", x = "Fitted", y = "Residual") +
+  theme_minimal()
+
+p_resid_quad <- ggplot(mtcars, aes(x = fitted(model_quad), y = resid_quad)) +
+  geom_point(color = "#377EB8") +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_smooth(se = FALSE, color = "black", linewidth = 0.5) +
+  labs(title = "Quadratic Residuals", x = "Fitted", y = "Residual") +
+  theme_minimal()
+
+# Arrange in grid
+lay <- lay_new(matrix(1:4, ncol = 2, byrow = TRUE))
+lay_grid(list(p_fit_linear, p_fit_quad, p_resid_linear, p_resid_quad), lay)
+```
+
+## Multi-dataset comparison
+
+### Problem
+
+I want to compare similar analyses across multiple datasets.
+
+### Solution
+
+Create parallel plots for each dataset arranged systematically.
+
+```{r, fig.width=9, fig.height=7, message=FALSE}
+library(customLayout)
+library(ggplot2)
+
+# Use different variables from mtcars as "datasets"
+create_analysis_plots <- function(x_var, y_var, color_var, title_prefix) {
+  # Scatter
+  p_scatter <- ggplot(mtcars, aes_string(x = x_var, y = y_var, color = color_var)) +
+    geom_point(size = 2) +
+    geom_smooth(method = "lm", se = TRUE, alpha = 0.2) +
+    scale_color_viridis_c() +
+    labs(title = paste(title_prefix, "- Scatter")) +
+    theme_minimal() +
+    theme(legend.position = "none")
+
+  # Distribution of y
+  p_dist <- ggplot(mtcars, aes_string(x = y_var)) +
+    geom_histogram(fill = "steelblue", color = "white", bins = 12) +
+    labs(title = paste(title_prefix, "-", y_var, "dist")) +
+    theme_minimal()
+
+  list(scatter = p_scatter, dist = p_dist)
+}
+
+# Create plots for different relationships
+plots1 <- create_analysis_plots("wt", "mpg", "hp", "Weight→MPG")
+plots2 <- create_analysis_plots("hp", "qsec", "mpg", "HP→QSec")
+plots3 <- create_analysis_plots("disp", "hp", "wt", "Disp→HP")
+
+# Arrange in grid: 3 rows, 2 columns
+lay <- lay_new(matrix(1:6, ncol = 2, byrow = TRUE))
+
+all_plots <- list(
+  plots1$scatter, plots1$dist,
+  plots2$scatter, plots2$dist,
+  plots3$scatter, plots3$dist
+)
+
+lay_grid(all_plots, lay)
+```
+
+## Creating a themed report layout
+
+### Problem
+
+I want to create a consistent, professional-looking layout with custom themes.
+
+### Solution
+
+Apply consistent themes and color schemes across all plots.
+
+```{r, fig.width=9, fig.height=6, message=FALSE}
+library(customLayout)
+library(ggplot2)
+
+# Define a custom theme
+theme_report <- function() {
+  theme_minimal() +
+    theme(
+      plot.title = element_text(face = "bold", size = 11, hjust = 0),
+      plot.subtitle = element_text(color = "gray50", size = 9),
+      axis.title = element_text(size = 9),
+      axis.text = element_text(size = 8),
+      legend.title = element_text(size = 9, face = "bold"),
+      legend.text = element_text(size = 8),
+      panel.grid.minor = element_blank(),
+      plot.background = element_rect(fill = "white", color = NA),
+      panel.background = element_rect(fill = "#FAFAFA", color = NA)
+    )
+}
+
+# Color palette
+colors <- c("#264653", "#2A9D8F", "#E9C46A", "#F4A261", "#E76F51")
+
+# Create consistent plots
+p1 <- ggplot(mpg, aes(x = displ, y = hwy, color = class)) +
+  geom_point(size = 2, alpha = 0.7) +
+  scale_color_manual(values = colors) +
+  labs(title = "Engine Displacement vs Highway MPG",
+       subtitle = "By vehicle class",
+       x = "Displacement (L)", y = "Highway MPG") +
+  theme_report() +
+  theme(legend.position = "none")
+
+p2 <- ggplot(mpg, aes(x = class, fill = class)) +
+  geom_bar() +
+  scale_fill_manual(values = colors) +
+  labs(title = "Vehicle Class Distribution",
+       subtitle = "Number of vehicles per class",
+       x = "", y = "Count") +
+  theme_report() +
+  theme(legend.position = "none",
+        axis.text.x = element_text(angle = 45, hjust = 1))
+
+p3 <- ggplot(mpg, aes(x = class, y = hwy, fill = class)) +
+  geom_boxplot(alpha = 0.8) +
+  scale_fill_manual(values = colors) +
+  labs(title = "Highway MPG by Class",
+       subtitle = "Distribution comparison",
+       x = "", y = "Highway MPG") +
+  theme_report() +
+  theme(legend.position = "none",
+        axis.text.x = element_text(angle = 45, hjust = 1))
+
+p4 <- ggplot(mpg, aes(x = hwy, fill = drv)) +
+  geom_density(alpha = 0.6) +
+  scale_fill_manual(values = colors[1:3],
+                    labels = c("4WD", "Front", "Rear"),
+                    name = "Drive") +
+  labs(title = "Highway MPG Density",
+       subtitle = "By drive type",
+       x = "Highway MPG", y = "Density") +
+  theme_report()
+
+# Layout
+lay <- lay_new(
+  matrix(c(1, 1, 2,
+           3, 3, 4), ncol = 3, byrow = TRUE)
+)
+
+lay_grid(list(p1, p2, p3, p4), lay)
+```
+
+## Annotated plot arrangement
+
+### Problem
+
+I want to add text annotations or labels between plots to create sections.
+
+### Solution
+
+Use grid text objects as placeholders in the layout.
+
+```{r, fig.width=8, fig.height=7, message=FALSE}
+library(customLayout)
+library(ggplot2)
+library(grid)
+
+# Create summary plots for different aspects
+p_overview <- ggplot(iris, aes(x = Species, y = Sepal.Length, fill = Species)) +
+  geom_violin() +
+  geom_boxplot(width = 0.2, fill = "white") +
+  scale_fill_brewer(palette = "Set2") +
+  labs(title = "Species Overview") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+p_sepal <- ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point(size = 2) +
+  stat_ellipse(level = 0.95) +
+  scale_color_brewer(palette = "Set2") +
+  labs(title = "Sepal Dimensions") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+p_petal <- ggplot(iris, aes(x = Petal.Length, y = Petal.Width, color = Species)) +
+  geom_point(size = 2) +
+  stat_ellipse(level = 0.95) +
+  scale_color_brewer(palette = "Set2") +
+  labs(title = "Petal Dimensions") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+p_corr <- ggplot(iris, aes(x = Sepal.Length, y = Petal.Length, color = Species)) +
+  geom_point(size = 2) +
+  geom_smooth(method = "lm", se = FALSE) +
+  scale_color_brewer(palette = "Set2") +
+  labs(title = "Sepal-Petal Correlation") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+# Create layout: top overview, middle row of two, bottom summary
+lay <- lay_bind_row(
+  lay_new(1),
+  lay_new(matrix(1:2, nrow = 1)),
+  lay_new(1),
+  heights = c(2, 2, 2)
+)
+
+lay_grid(list(p_overview, p_sepal, p_petal, p_corr), lay)
+```
+
+## Complex nested layout
+
+### Problem
+
+I need a highly customized layout with nested sections.
+
+### Solution
+
+Build the layout step by step using multiple `lay_bind_*` operations.
+
+```{r, fig.width=10, fig.height=8, message=FALSE}
+library(customLayout)
+library(ggplot2)
+
+# Generate sample data
+set.seed(42)
+n <- 200
+df <- data.frame(
+  x = rnorm(n),
+  y = rnorm(n),
+  z = rnorm(n),
+  group = sample(LETTERS[1:4], n, replace = TRUE)
+)
+df$y <- df$x * 0.5 + df$y
+df$z <- df$x * 0.3 + df$z * 0.5
+
+# Create 6 different plots
+p1 <- ggplot(df, aes(x, y, color = group)) +
+  geom_point(alpha = 0.7) +
+  scale_color_brewer(palette = "Set1") +
+  labs(title = "X vs Y") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+p2 <- ggplot(df, aes(x, z, color = group)) +
+  geom_point(alpha = 0.7) +
+  scale_color_brewer(palette = "Set1") +
+  labs(title = "X vs Z") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+p3 <- ggplot(df, aes(y, z, color = group)) +
+  geom_point(alpha = 0.7) +
+  scale_color_brewer(palette = "Set1") +
+  labs(title = "Y vs Z") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+p4 <- ggplot(df, aes(x = group, y = x, fill = group)) +
+  geom_boxplot() +
+  scale_fill_brewer(palette = "Set1") +
+  labs(title = "X by Group") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+p5 <- ggplot(df, aes(x = group, y = y, fill = group)) +
+  geom_boxplot() +
+  scale_fill_brewer(palette = "Set1") +
+  labs(title = "Y by Group") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+p6 <- ggplot(df, aes(x = group, y = z, fill = group)) +
+  geom_boxplot() +
+  scale_fill_brewer(palette = "Set1") +
+  labs(title = "Z by Group") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+# Build complex nested layout
+# Top: 2 plots with 2:1 ratio
+# Middle: 1 large plot
+# Bottom: 3 equal plots
+
+top_row <- lay_new(matrix(1:2, nrow = 1), widths = c(2, 1))
+middle_row <- lay_new(1)
+bottom_row <- lay_new(matrix(1:3, nrow = 1))
+
+lay <- lay_bind_row(
+  top_row,
+  middle_row,
+  bottom_row,
+  heights = c(2, 2, 2)
+)
+
+lay_show(lay)
+
+lay_grid(list(p1, p2, p3, p4, p5, p6), lay)
+```
+
