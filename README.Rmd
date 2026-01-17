@@ -173,3 +173,22 @@ vignette("layouts-for-officer-power-point-document", package = "customLayout")
 ```
 
 ![](man/figures/officer-text.png)<!-- -->
+
+## Comparison with other packages
+
+`customLayout` vs `patchwork` vs `cowplot`:
+
+| Feature | customLayout | patchwork | cowplot |
+|---------|--------------|-----------|---------|
+| Base graphics support | Yes | No | No |
+| ggplot2 support | Yes | Yes | Yes |
+| PowerPoint export | Yes | No | No |
+| Matrix-based specification | Yes | No | No |
+| Operator syntax (+, /, \|) | No | Yes | No |
+| Auto panel labels | No | Yes | Yes |
+| Legend collection | Manual | Yes | Manual |
+| Inset plots | No | Yes | Yes |
+| Aspect ratio preservation | Yes | Yes | Yes |
+| Axis alignment | N/A | Yes | Yes |
+
+For a detailed comparison with examples, see the [comparison vignette](https://www.customlayout.zstat.pl/articles/comparison-with-other-packages.html).
