@@ -19,20 +19,22 @@ knitr::opts_chunk$set(
 
 ### v0.4.0
 - Add more examples.
-- Compare the package with others (create vignettes).
-    - patchwork
-    - cowplot
 
 ### v?.?.? (experimental):
 - Create layouts for shiny applications.
 
 ## Done
 
+### v0.3.5
+- Compare the package with others (create vignettes).
+    - patchwork
+    - cowplot
+
 ### v0.1.0
 
 - Support for base and gird graphics systems.
 
-### v0.2.0 
+### v0.2.0
 - Support for layouts in officer's pptx files.
 - Use underscore in function names (change from `laySet` to `lay_set`).
 - Deprecate `camelCase` functions (they will be removed in the 0.4.0 release).

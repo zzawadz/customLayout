@@ -1,7 +1,7 @@
 Package: customLayout
 Type: Package
 Title: Arrange Elements on the R's Drawing Area or Inside the 'PowerPoint' Slide
-Version: 0.3.5
+Version: 0.4.0
 Authors@R: c(person("Zygmunt", "Zawadzki", role = c("aut", "cre"), email = "zygmunt@zstat.pl"))
 Maintainer: Zygmunt Zawadzki <zygmunt@zstat.pl>
 Description: Create complicated drawing areas for multiple elements by combining much simpler layouts. It is an extended version of layout function from the 'graphics' package, but it also works with 'grid' graphics. It also supports arranging elements inside 'PowerPoint' slides created using the 'officer' package.
@@ -21,7 +21,8 @@ Suggests: covr,
     klaR,
     stringr,
     cowplot,
-    png
+    png,
+    patchwork
 URL: https://www.customlayout.zstat.pl/, https://github.com/zzawadz/customLayout
 BugReports: https://github.com/zzawadz/customLayout/issues
 VignetteBuilder: knitr
