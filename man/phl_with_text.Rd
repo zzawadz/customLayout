@@ -15,9 +15,9 @@ phl_with_text(x, olay, id, str, type = "title", ...)
 
 \item{str}{text to add.}
 
-\item{type}{type of the text placeholder. See \code{\link{ph_add_text}} for more details.}
+\item{type}{type of the text placeholder. See \code{\link{ph_location_template}} for more details.}
 
-\item{...}{other arguments passed to \code{\link{ph_add_text}}.}
+\item{...}{other arguments passed to \code{\link{ph_with}}.}
 }
 \value{
 \code{rpptx} object which represents PowerPoint presentation in \code{officer}. The returned object contains a new element on the slide.
