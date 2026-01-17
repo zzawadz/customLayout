@@ -1,9 +1,9 @@
-pandoc: 2.7.3
-pkgdown: 1.6.1
+pandoc: 3.6.3
+pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
-  Roadmap: Roadmap.html
+  comparison-with-other-packages: comparison-with-other-packages.html
   customlayout-cookbook: customlayout-cookbook.html
   layouts-for-officer-power-point-document: layouts-for-officer-power-point-document.html
-last_built: 2021-01-13T18:19Z
-
+  Roadmap: Roadmap.html
+last_built: 2026-01-17T20:24Z

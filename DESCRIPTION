@@ -26,4 +26,5 @@ Suggests: covr,
 URL: https://www.customlayout.zstat.pl/, https://github.com/zzawadz/customLayout
 BugReports: https://github.com/zzawadz/customLayout/issues
 VignetteBuilder: knitr
+SystemRequirements: cairo
 Encoding: UTF-8
