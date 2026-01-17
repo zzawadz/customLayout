@@ -31,11 +31,12 @@ make_basic_test <- function(fnc) {
 test_that("Basic bind", {
   testthat::skip_on_appveyor()
   testthat::skip_on_cran()
+  skip_if_no_graphics()
   vdiffr::expect_doppelganger(
     "basic bind col",
     make_basic_test(lay_bind_col)
   )
-  
+
   vdiffr::expect_doppelganger(
     "basic bind row",
     make_basic_test(lay_bind_row)
@@ -60,6 +61,7 @@ if(require(ggplot2)) {
   }
   
   test_that("Basic grid", {
+    skip_if_no_graphics()
     vdiffr::expect_doppelganger(
       "basic grid layout",
       basic_grid_layout

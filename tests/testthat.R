@@ -1,6 +1,8 @@
 library(testthat)
 library(customLayout)
-library(vdiffr)
+if (requireNamespace("vdiffr", quietly = TRUE)) {
+  library(vdiffr)
+}
 
 on_appveyor <- function() {
   identical(Sys.getenv("APPVEYOR"), "True")
@@ -9,9 +11,42 @@ on_cran <- function() {
   !identical(Sys.getenv("NOT_CRAN"), "true")
 }
 
+# Check if graphics capabilities are available for vdiffr tests
+has_graphics_capabilities <- function() {
+  # Check if vdiffr is available
+
+  if (!requireNamespace("vdiffr", quietly = TRUE)) {
+    return(FALSE)
+  }
+  # Check if we can create a PNG device
+  tryCatch({
+    tmp <- tempfile(fileext = ".png")
+    grDevices::png(tmp, width = 100, height = 100)
+    grDevices::dev.off()
+    unlink(tmp)
+    TRUE
+  }, error = function(e) {
+    FALSE
+  })
+}
+
+skip_if_no_graphics <- function() {
+  if (!has_graphics_capabilities()) {
+    testthat::skip("Graphics capabilities not available (cairo may be missing)")
+  }
+}
+
 # Use minimal fonts.conf to speed up fc-cache
+# Only call gdtools if it's available
 if (on_appveyor() || on_cran()) {
-  gdtools::set_dummy_conf()
+  if (requireNamespace("gdtools", quietly = TRUE)) {
+    tryCatch(
+      gdtools::set_dummy_conf(),
+      error = function(e) {
+        message("gdtools::set_dummy_conf() failed: ", conditionMessage(e))
+      }
+    )
+  }
 }
 
 

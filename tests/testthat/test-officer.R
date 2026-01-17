@@ -32,25 +32,27 @@ test_get_slide_summary <- function(pptx) {
 }
 
 test_that("phl_with_gg works", {
+  skip_if_no_graphics()
   pptx <- test_make_pptx()
   plot1 <- qplot(mpg, wt, data = mtcars)
   pptx <- phl_with_gg(pptx, offLayout, 2, plot1)
-  
+
   vals <- test_get_slide_summary(pptx)
-  expect_equivalent(offLayout[[2]], vals) 
+  expect_equivalent(offLayout[[2]], vals)
 })
 
 test_that("phl_with_plot works", {
+  skip_if_no_graphics()
   pptx <- test_make_pptx()
   pl7 <- function() {
     par(mar = rep(0.1, 4))
     pie(c(5, 4, 2), col = 2:4 + 6)
   }
-  
+
   pptx <- phl_with_plot(pptx, offLayout, 7, pl7)
-  
+
   vals <- test_get_slide_summary(pptx)
-  expect_equivalent(offLayout[[7]], vals) 
+  expect_equivalent(offLayout[[7]], vals)
 })
 
 test_that("phl_with_text works", {
@@ -65,8 +67,9 @@ test_that("phl_with_text works", {
 context("Compare pptx files")
 
 test_that("phl_with_vg - compare with standard", {
-  
+
   testthat::skip_on_cran()
+  skip_if_no_graphics()
   # pptx is identical with standard
   expect_pptx_identical(
     test_phl_with_vg,
@@ -84,8 +87,9 @@ test_that("phl_with_vg - compare with standard", {
 
 
 test_that("phl_with_gg - compare with standard", {
-  
+
   testthat::skip_on_cran()
+  skip_if_no_graphics()
   # pptx is identical with standard
   expect_pptx_identical(
     test_phl_with_gg,
@@ -103,8 +107,9 @@ test_that("phl_with_gg - compare with standard", {
 
 
 test_that("phl_with_table - compare with standard", {
-  
+
   testthat::skip_on_cran()
+  skip_if_no_graphics()
   # pptx is identical with the standard
   expect_pptx_identical(
     test_phl_with_table,
