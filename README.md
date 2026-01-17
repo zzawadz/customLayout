@@ -7,16 +7,9 @@
 stars](https://img.shields.io/github/stars/zzawadz/customLayout.svg?style=social&label=Stars)](https://github.com/zzawadz/customLayout/stargazers)
 [![GitHub
 watchers](https://img.shields.io/github/watchers/zzawadz/customLayout.svg?style=social&label=Watch)](https://github.com/zzawadz/customLayout)
-
-[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/customLayout)](https://cran.r-project.org/package=customLayout)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/customLayout)](https://cran.r-project.org/package=customLayout)
 [![Downloads](https://cranlogs.r-pkg.org/badges/customLayout)](https://CRAN.R-project.org/package=customLayout)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/customLayout)](https://CRAN.R-project.org/package=customLayout)
-[![Travis-CI Build
-Status](https://travis-ci.org/zzawadz/customLayout.svg?branch=master)](https://travis-ci.org/zzawadz/customLayout)
-[![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/zzawadz/customLayout?branch=master&svg=true)](https://ci.appveyor.com/project/zzawadz/customLayout)
-[![Coverage
-Status](https://img.shields.io/codecov/c/github/zzawadz/customLayout/master.svg)](https://codecov.io/github/zzawadz/customLayout?branch=master)
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
@@ -64,8 +57,6 @@ lay2 <- lay_new(
   heights = c(2, 4))
 lay_show(lay2)
 ```
-
-![](man/figures/README-base-2.png)<!-- -->
 
 But the main strength of this package is in combining created layouts
 with specific ratio:
@@ -118,18 +109,13 @@ lay2 <- lay_new(
   widths = c(3, 5),
   heights = c(2, 4))
 lay_show(lay2)
-```
-
-![](man/figures/README-split-2.png)<!-- -->
-
-``` r
 
 # Split field 4 from lay into lay2:
 slay <- lay_split_field(lay, lay2, field = 4)
 lay_show(slay)
 ```
 
-![](man/figures/README-split-3.png)<!-- -->
+![](man/figures/README-split-2.png)<!-- -->
 
 ## Example session:
 
@@ -203,3 +189,23 @@ vignette("layouts-for-officer-power-point-document", package = "customLayout")
 ```
 
 ![](man/figures/officer-text.png)<!-- -->
+
+## Comparison with other packages
+
+`customLayout` vs `patchwork` vs `cowplot`:
+
+| Feature                    | customLayout | patchwork | cowplot |
+|----------------------------|--------------|-----------|---------|
+| Base graphics support      | Yes          | No        | No      |
+| ggplot2 support            | Yes          | Yes       | Yes     |
+| PowerPoint export          | Yes          | No        | No      |
+| Matrix-based specification | Yes          | No        | No      |
+| Operator syntax (+, /, \|) | No           | Yes       | No      |
+| Auto panel labels          | No           | Yes       | Yes     |
+| Legend collection          | Manual       | Yes       | Manual  |
+| Inset plots                | No           | Yes       | Yes     |
+| Aspect ratio preservation  | Yes          | Yes       | Yes     |
+| Axis alignment             | N/A          | Yes       | Yes     |
+
+For a detailed comparison with examples, see the [comparison
+vignette](https://www.customlayout.zstat.pl/articles/comparison-with-other-packages.html).
