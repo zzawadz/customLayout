@@ -9,6 +9,9 @@ test_that("Font size", {
 })
 
 test_that("phl_adjust_table - some tests", {
+  
+  testthat::skip_on_cran()
+  
   testthat::skip_if_not(
     Sys.info()["sysname"] == "Linux",
     message = "This can only pass on linux"
