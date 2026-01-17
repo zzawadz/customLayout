@@ -209,8 +209,8 @@ Unlike patchwork and cowplot, customLayout works with base R graphics. Here's a 
 
 # Build the layout by combining simpler layouts
 top_row <- lay_new(matrix(c(1, 1, 2), nrow = 1))
-middle_row <- lay_new(matrix(3:5, nrow = 1))
-bottom_left <- lay_new(matrix(6:7, nrow = 1))
+middle_row <- lay_new(matrix(1:3, nrow = 1))
+bottom_left <- lay_new(matrix(1:2, nrow = 1))
 
 # Combine middle and bottom rows, then split field for the tall right plot
 main_area <- lay_bind_row(middle_row, bottom_left, heights = c(1, 1))
