@@ -42,5 +42,7 @@ navbar:
     href: articles/customlayout-cookbook.html
   - text: Articles
     menu:
+      - text: Comparison with patchwork and cowplot
+        href: articles/comparison-with-other-packages.html
       - text: Layouts for officer's PowerPoint documents.
         href: articles/layouts-for-officer-power-point-document.html
